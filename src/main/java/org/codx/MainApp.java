@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class MainApp extends Application {
 
@@ -16,12 +17,13 @@ public class MainApp extends Application {
     public void start(Stage primaryStage){
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getClassLoader().getResource("mainFXML.fxml"));
+            root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("mainFXML.fxml")));
         }catch (IOException e){
             e.printStackTrace();
-            System.out.println(e);
+
         }
 //        primaryStage.initStyle(StageStyle.UNDECORATED);
+        assert root != null;
         Scene scene = new Scene(root);
 //        scene.setFill(Color.TRANSPARENT);
 //        primaryStage.initStyle(StageStyle.TRANSPARENT);
