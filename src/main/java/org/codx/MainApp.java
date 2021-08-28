@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
@@ -19,7 +20,7 @@ public class MainApp extends Application {
             e.printStackTrace();
             System.out.println(e);
         }
-//        primaryStage.initStyle(StageStyle.UNDECORATED);
+        primaryStage.initStyle(StageStyle.UNDECORATED);
         Scene scene = new Scene(root);
 //        scene.setFill(Color.TRANSPARENT);
 //        primaryStage.initStyle(StageStyle.TRANSPARENT);
