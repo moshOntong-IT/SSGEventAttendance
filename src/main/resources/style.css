@@ -5,3 +5,25 @@
 .system_button{
     -fx-background-color: transparent;
 }
+
+.btn{
+    -fx-background-color: #3641B7;
+    -fx-background-radius: 18px;
+}
+.btn .text{
+    -fx-fill: white;
+}
+
+.btn-border{
+    -fx-background-color: transparent;
+    -fx-border-color:  #3641B7;
+    -fx-border-radius: 18px;
+    -fx-border-width: 2px;
+}
+.btn-border .text{
+    -fx-fill: #3641B7;
+}
+
+.cursor-hand{
+    -fx-cursor: hand;
+}
