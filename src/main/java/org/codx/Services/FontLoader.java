@@ -20,55 +20,22 @@ public class FontLoader {
 
 
     public void load(String fontName, String path) {
-        g = GraphicsEnvironment.getLocalGraphicsEnvironment();
-        String[] fonts = g.getAvailableFontFamilyNames();
-        boolean isExist = true;
-        for (String font : fonts) {
-            System.out.println(font);
-
-            if (font.equals(fontName)) {
-                System.out.println("[INFO]:" + fontName + " Found!");
-                isExist = true;
-                break;
-            } else {
-                isExist = false;
-            }
-        }
-
-        if (!isExist) {
-            System.out.println("[FAILED]: " + fontName + " font is not "
-                    + "available in your system. We temporary to installing the " + fontName +
-                    "in your system "
-                    + "please wait...");
-            getFont(fontName, path);
-        }
+        getFont(fontName,path);
     }
 
 
     private void getFont(String fontName, String fontPath) {
         System.out.println("[INFO]:Installing font...");
 
-        InputStream is = getClass().getClassLoader().getResourceAsStream(fontPath);
-//        System.out.println(FontLoader.class.getProtectionDomain().getCodeSource().getLocation());
-        GraphicsEnvironment ge
-                = GraphicsEnvironment.getLocalGraphicsEnvironment();
-        if (is != null) {
-            Font eFont = Font.loadFont(is,12);
-//            javafx.scene.text.Font
-//            System.out.println("[INFO]:File is exist on application itself");
-//            try {
-//
-//
-//                ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, is));
-//
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//            System.out.println("[INFO]:Checking font again...");
-//            load(fontName, fontPath);
-        } else {
-            System.out.println("[INFO]:Sorry the file is not exist");
-        }
+//        InputStream is = getClass().getClassLoader().getResourceAsStream(fontPath);
+
+//        if (is != null) {
+            Font eFont = Font.loadFont(fontPath,100);
+
+//            System.out.println("[INFO]: Font installed");
+//        } else {
+//            System.out.println("[INFO]:Sorry the file is not exist");
+//        }
     }
 
 }
