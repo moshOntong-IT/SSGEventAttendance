@@ -27,3 +27,12 @@
 .cursor-hand{
     -fx-cursor: hand;
 }
+
+.progress-bar .bar {
+    -fx-background-radius: 20px;
+    -fx-background-color: #FE6174;
+}
+
+.progress-bar .track {
+    -fx-background-color: Transparent;
+}
