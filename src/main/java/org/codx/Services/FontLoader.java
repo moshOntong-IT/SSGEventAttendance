@@ -30,7 +30,8 @@ public class FontLoader {
 //        InputStream is = getClass().getClassLoader().getResourceAsStream(fontPath);
 
 //        if (is != null) {
-            Font eFont = Font.loadFont(fontPath,100);
+
+//            Font eFont = Font.loadFont(getClass().getResource(fontPath).toExternalForm(),12);
 
 //            System.out.println("[INFO]: Font installed");
 //        } else {
