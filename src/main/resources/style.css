@@ -1,0 +1,63 @@
+@font-face {
+  font-family: 'Euclid Circular A Bold';
+  src: url(assets/fonts/EuclidCircularABold.ttf) format('tff');
+}
+@font-face {
+  font-family: 'Euclid Circular A';
+  src: url(assets/fonts/Euclid-Circular-A-Regular.ttf) format('tff');
+}
+
+@font-face {
+  font-family: 'Euclid Circular A SemiBold';
+  src: url(assets/fonts/Euclid-Circular-A-SemiBold.ttf) format('tff');
+}
+@font-face {
+  font-family: 'Euclid Circular A Medium';
+  src: url(assets/fonts/Euclid-Circular-A-Medium.ttf) format('tff');
+}
+
+
+.body  {
+    -fx-background-color: white;
+    -fx-font-family: 'Euclid Circular A';
+}
+
+.system_button{
+    -fx-background-color: transparent;
+}
+
+.btn{
+    -fx-background-color: #3641B7;
+    -fx-background-radius: 18px;
+
+}
+.btn .text{
+    -fx-fill: white;
+    -fx-font-family: 'Euclid Circular A SemiBold';
+    -fx-font-size: 15px;
+}
+
+.btn-border{
+    -fx-background-color: transparent;
+    -fx-border-color:  #3641B7;
+    -fx-border-radius: 18px;
+    -fx-border-width: 2px;
+}
+.btn-border .text{
+    -fx-fill: #3641B7;
+    -fx-font-family: 'Euclid Circular A SemiBold';
+    -fx-font-size: 15px;
+}
+
+.cursor-hand{
+    -fx-cursor: hand;
+}
+
+.progress-bar .bar {
+    -fx-background-radius: 20px;
+    -fx-background-color: #FE6174;
+}
+
+.progress-bar .track {
+    -fx-background-color: Transparent;
+}
