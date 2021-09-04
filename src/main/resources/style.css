@@ -78,9 +78,16 @@
     -fx-border-color:  #1F28CF;
     -fx-border-radius: 5px;
     -fx-border-width: 1px;
+    -fx-prompt-text-fill: #a0a0a0;
+
+}
+
+.sign-up-div .field .list-cell:filled:selected{
+    -fx-text-fill: #989898;
 }
 .sign-up-div .field .text{
     -fx-font-family: 'EuclidCircularA-Regular';
+
 }
 
 .next-btn{
@@ -89,4 +96,27 @@
 }
 .sign-up-div .message{
     -fx-fill: #FF6D6D;
+}
+
+.gender-box .gender-text{
+    -fx-fill: #989898;
+    -fx-font-size = 14px;
+}
+.txt-euclid-bold{
+    -fx-font-family: 'EuclidCircularA-Bold';
+}
+.txt-euclid-regular{
+    -fx-font-family: 'EuclidCircularA-Regular';
+}
+.txt-euclid-semibold{
+    -fx-font-family: 'EuclidCircularA-SemiBold';
+}
+.txt-euclid-medium{
+    -fx-font-family: 'EuclidCircularA-Medium';
+}
+
+.gender-box .radio-button .radio{
+    -fx-background-color:transparent;
+    -fx-border-color: #3641B7;
+    -fx-border-radius: 50px;
 }
