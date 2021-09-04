@@ -1,18 +1,18 @@
 @font-face {
-  font-family: 'Euclid Circular A Bold';
-  src: url(assets/fonts/EuclidCircularABold.ttf) format('tff');
+  font-family: 'EuclidCircularA-Bold';
+  src: url('assets/fonts/Euclid-Circular-A-Bold.ttf');
 }
 @font-face {
-  font-family: 'Euclid Circular A';
-  src: url(assets/fonts/Euclid-Circular-A-Regular.ttf) format('tff');
+  font-family: 'EuclidCircularA-Regular';
+  src: url('assets/fonts/Euclid-Circular-A-Regular.ttf');
 }
 
 @font-face {
-  font-family: 'Euclid Circular A SemiBold';
-  src: url(assets/fonts/Euclid-Circular-A-SemiBold.ttf) format('tff');
+  font-family: 'EuclidCircularA-SemiBold';
+  src: url('assets/fonts/Euclid-Circular-A-SemiBold.ttf');
 }
 @font-face {
-  font-family: 'Euclid Circular A Medium';
+  font-family: 'EuclidCircularA-Medium';
   src: url(assets/fonts/Euclid-Circular-A-Medium.ttf) format('tff');
 }
 
@@ -29,11 +29,13 @@
 .btn{
     -fx-background-color: #3641B7;
     -fx-background-radius: 18px;
+    -fx-cursor: hand;
+
 
 }
 .btn .text{
     -fx-fill: white;
-    -fx-font-family: 'Euclid Circular A SemiBold';
+    -fx-font-family: 'EuclidCircularA-SemiBold';
     -fx-font-size: 15px;
 }
 
@@ -42,10 +44,11 @@
     -fx-border-color:  #3641B7;
     -fx-border-radius: 18px;
     -fx-border-width: 2px;
+    -fx-cursor: hand;
 }
 .btn-border .text{
     -fx-fill: #3641B7;
-    -fx-font-family: 'Euclid Circular A SemiBold';
+    -fx-font-family: 'EuclidCircularA-SemiBold';
     -fx-font-size: 15px;
 }
 
@@ -60,4 +63,30 @@
 
 .progress-bar .track {
     -fx-background-color: Transparent;
+}
+
+.sign-up-div .header{
+    -fx-font-family: 'EuclidCircularA-Bold';
+}
+
+.sign-up-div .subtitle{
+     -fx-font-family: 'EuclidCircularA-SemiBold';
+ }
+
+.sign-up-div .field{
+    -fx-background-color: transparent;
+    -fx-border-color:  #1F28CF;
+    -fx-border-radius: 5px;
+    -fx-border-width: 1px;
+}
+.sign-up-div .field .text{
+    -fx-font-family: 'EuclidCircularA-Regular';
+}
+
+.next-btn{
+    -fx-font-family: 'EuclidCircularA-Bold';
+    -fx-font-size: 15px;
+}
+.sign-up-div .message{
+    -fx-fill: #FF6D6D;
 }
