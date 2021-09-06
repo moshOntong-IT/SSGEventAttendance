@@ -30,16 +30,6 @@ public class MainApp extends Application {
     }
 
     public static void main(String[] args) {
-
-        FontLoader fontLoader = new FontLoader();
-
-        System.out.println("[INFO]: Avanti is now running....");
-        System.out.println("[INFO]: Fetching all available font on your system....");
-        fontLoader.load(Constant.fontString,Constant.fontStringPath);
-        fontLoader.load(Constant.fontString1,Constant.fontStringPath1);
-        fontLoader.load(Constant.fontString2,Constant.fontStringPath2);
-        fontLoader.load(Constant.fontString3,Constant.fontStringPath3);
-
         launch(args);
     }
 }
