@@ -13,10 +13,10 @@ public class Constant {
 
 
     public static String fontString = "Euclid Circular A Bold";
-    public static String fontStringPath = "assets/fonts/EuclidCircularABold.ttf";
+    public static String fontStringPath = "/assets/fonts/Euclid-Circular-A-Bold.ttf";
 
     public static String fontString1 = "Euclid Circular A Medium";
-    public static String fontStringPath1 = "assets/fonts/Euclid-Circular-A-Medium.ttf";
+    public static String fontStringPath1 = "/assets/fonts/Euclid-Circular-A-Medium.ttf";
 
     public static String fontString2 = "Euclid Circular A";
     public static String fontStringPath2 = "assets/fonts/Euclid-Circular-A-Regular.ttf";
