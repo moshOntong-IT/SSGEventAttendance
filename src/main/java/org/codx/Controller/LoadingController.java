@@ -1,7 +1,6 @@
 package org.codx.Controller;
 
 import javafx.concurrent.Task;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ProgressBar;
@@ -31,7 +30,7 @@ public class LoadingController implements Initializable {
             protected Void call() throws Exception {
                 for (int i = 1; i <= 100; i++){
                     updateProgress(i, 100);
-                    Thread.sleep(5);
+                    Thread.sleep(50);
                 }
 
                 return null;
@@ -40,7 +39,7 @@ public class LoadingController implements Initializable {
         };
 
         loadingData.setOnSucceeded( event -> {
-            landingPanel = new StageTool("landingPage.fxml");
+            landingPanel = new StageTool("mainPage.fxml");
             landingPanel.hide((Stage)progressBarIndicator.getScene().getWindow());
             landingPanel.setOnMovable();
         });
@@ -52,6 +51,4 @@ public class LoadingController implements Initializable {
         runProgress.setDaemon(true);
         runProgress.start();
     }
-
-
 }

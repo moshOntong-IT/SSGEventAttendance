@@ -26,7 +26,7 @@ public class LandingController implements Initializable {
 
     @FXML
     void exitBTN(ActionEvent event) {
-       systemHeader.getScene().getWindow().hide();
+        System.exit(0);
 
     }
 

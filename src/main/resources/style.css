@@ -131,9 +131,13 @@
     -fx-background-color: #FE6174;
     -fx-background-radius: 20px;
     -fx-effect: dropshadow(gaussian, rgba(237, 5, 33, 0.5), 20px, 0, 0, 0);
+    -fx-text-alignment: center;
+    -fx-cursor: hand;
 }
 
 .menu-nav-left-btn{
+    -fx-text-alignment: center;
     -fx-background-color: white;
     -fx-background-radius: 20px;
+    -fx-cursor: hand;
 }

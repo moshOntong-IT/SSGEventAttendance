@@ -24,6 +24,7 @@
 
 .system_button{
     -fx-background-color: transparent;
+    -fx-cursor: hand;
 }
 
 .btn{
@@ -100,7 +101,7 @@
 
 .gender-box .gender-text{
     -fx-fill: #989898;
-    -fx-font-size = 14px;
+    -fx-font-size : 14px;
 }
 .txt-euclid-bold{
     -fx-font-family: 'EuclidCircularA-Bold';
@@ -119,4 +120,24 @@
     -fx-background-color:transparent;
     -fx-border-color: #3641B7;
     -fx-border-radius: 50px;
+}
+
+.menu-nav-left{
+    -fx-background-color: #FE6174;
+    -fx-background-radius: 0 50px 0 0;
+}
+
+.menu-nav-left-btn-highlight{
+    -fx-background-color: #FE6174;
+    -fx-background-radius: 20px;
+    -fx-effect: dropshadow(gaussian, rgba(237, 5, 33, 0.5), 20px, 0, 0, 0);
+    -fx-text-alignment: center;
+    -fx-cursor: hand;
+}
+
+.menu-nav-left-btn{
+    -fx-text-alignment: center;
+    -fx-background-color: white;
+    -fx-background-radius: 20px;
+    -fx-cursor: hand;
 }
