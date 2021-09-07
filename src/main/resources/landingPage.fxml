@@ -14,25 +14,24 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" styleClass="body" stylesheets="@style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.codx.Controller.LandingController">
    <top>
-      <HBox alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="200.0" spacing="15.0">
+      <HBox fx:id="systemHeader" alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="200.0" spacing="15.0">
          <BorderPane.margin>
-            <Insets/>
+            <Insets />
          </BorderPane.margin>
          <padding>
-            <Insets bottom="5.0" left="5.0" right="25.0" top="5.0"/>
+            <Insets bottom="5.0" left="5.0" right="25.0" top="5.0" />
          </padding>
-         <Button alignment="CENTER" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" styleClass="system_button"
-                 HBox.hgrow="ALWAYS">
+         <Button alignment="CENTER" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#minimize" styleClass="system_button" HBox.hgrow="ALWAYS">
             <graphic>
                <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                  <Image url="@assets/minus_icon.png"/>
+                  <Image url="@assets/minus_icon.png" />
                </ImageView>
             </graphic>
          </Button>
-         <Button alignment="CENTER" mnemonicParsing="false" styleClass="system_button" HBox.hgrow="ALWAYS">
+         <Button alignment="CENTER" mnemonicParsing="false" onAction="#exitBTN" styleClass="system_button" HBox.hgrow="ALWAYS">
             <graphic>
                <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                  <Image url="@assets/exit_icon.png"/>
+                  <Image url="@assets/exit_icon.png" />
                </ImageView>
             </graphic>
          </Button>
@@ -41,36 +40,34 @@
    <center>
       <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0">
-            <ImageView fitHeight="370.0" fitWidth="460.0" pickOnBounds="true" preserveRatio="true"
-                       HBox.hgrow="ALWAYS">
-               <Image url="@assets/humaan_1.png"/>
+            <ImageView fitHeight="370.0" fitWidth="460.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+               <Image url="@assets/humaan_1.png" />
             </ImageView>
          </HBox>
          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
             <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-               <Image url="@assets/logo_ds_icon.png"/>
+               <Image url="@assets/logo_ds_icon.png" />
             </ImageView>
             <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="662.0" spacing="20.0">
                <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="210.0" text="Login">
                   <font>
-                     <Font name="EuclidCircularA-SemiBold" size="15.0"/>
+                     <Font name="EuclidCircularA-SemiBold" size="15.0" />
                   </font>
                   <cursor>
-                     <Cursor fx:constant="DEFAULT"/>
+                     <Cursor fx:constant="DEFAULT" />
                   </cursor>
                   <styleClass>
-                     <String fx:value="btn"/>
-                     <String fx:value="cursor-hand"/>
+                     <String fx:value="btn" />
+                     <String fx:value="cursor-hand" />
                   </styleClass>
                </Button>
-               <Button layoutX="205.0" layoutY="10.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="210.0"
-                       text="Register">
+               <Button layoutX="205.0" layoutY="10.0" mnemonicParsing="false" onAction="#registerAction" prefHeight="50.0" prefWidth="210.0" text="Register">
                   <font>
-                     <Font name="EuclidCircularA-SemiBold" size="15.0"/>
+                     <Font name="EuclidCircularA-SemiBold" size="15.0" />
                   </font>
                   <styleClass>
-                     <String fx:value="btn-border"/>
-                     <String fx:value="cursor-hand"/>
+                     <String fx:value="btn-border" />
+                     <String fx:value="cursor-hand" />
                   </styleClass>
                </Button>
             </VBox>
