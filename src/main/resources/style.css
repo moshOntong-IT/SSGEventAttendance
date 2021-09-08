@@ -149,3 +149,44 @@
 .subtitle2{
     -fx-font-size: 18px;
 }
+
+.txt{
+    -fx-font-size: 15px;
+}
+
+.MorningButton{
+     -fx-background-color: #3641B7;
+     -fx-text-fill: white;
+     -fx-font-family: 'EuclidCircularA-Bold';
+     -fx-font-size: 15px;
+     -fx-border-radius: 0px;
+}
+
+.AfterButton{
+    -fx-background-color: darkgrey;
+    -fx-text-fill: white;
+    -fx-font-family: 'EuclidCircularA-SemiBold';
+    -fx-font-size: 15px;
+    -fx-border-radius: 0px;
+}
+
+.DateBorder{
+    -fx-border-color: #3641B7;
+}
+
+.BackButton{
+     -fx-background-color: white;
+     -fx-text-fill: #3641B7;
+     -fx-font-family: 'EuclidCircularA-Bold';
+     -fx-font-size: 15px;
+     -fx-border-radius: 0px;
+     -fx-border-color: #3641B7;
+}
+
+.SubmitButton{
+     -fx-background-color: #3641B7;
+     -fx-text-fill: white;
+     -fx-font-family: 'EuclidCircularA-Bold';
+     -fx-font-size: 15px;
+     -fx-border-radius: 0px;
+}
