@@ -82,7 +82,7 @@ public class EventPageController implements Initializable {
                             imgBuffered.flush();
                             Platform.runLater(() -> imageProperty.set(ref.get()));
                             String scanResult = qrDecoder.decodeQRCode(imgBuffered);
-                            System.out.println(scannerQR.getFitHeight());
+
                             if (scanResult!=null){
                                 Alert qrStringAlert = new Alert(Alert.AlertType.INFORMATION);
                                 qrStringAlert.setContentText("Result: "+ qrStringAlert);

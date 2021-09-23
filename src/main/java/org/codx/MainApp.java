@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.codx.Services.DbConnection;
 import org.codx.Services.FontLoader;
 
 import java.io.IOException;
@@ -23,8 +24,9 @@ public class MainApp extends Application {
         }
         primaryStage.initStyle(StageStyle.UNDECORATED);
         Scene scene = new Scene(root);
+        DbConnection.connectDb();
 //        scene.setFill(Color.TRANSPARENT);
-//        primaryStage.initStyle(StageStyle.TRANSPARENT);
+        primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.setScene(scene);
         primaryStage.show();
     }

@@ -29,6 +29,7 @@ public class QRCodeService {
 
     //decode through Image Webcam
     public String decodeQRCode(BufferedImage image) {
+
         LuminanceSource source = new BufferedImageLuminanceSource(image);
         BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));
 
@@ -36,7 +37,7 @@ public class QRCodeService {
             Result result = new MultiFormatReader().decode(bitmap);
             return result.getText();
         } catch (NotFoundException e) {
-            System.out.println("There is no QR code in the image");
+//                System.out.println("There is no QR code in the image");
             return null;
         }
     }
