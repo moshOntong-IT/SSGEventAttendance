@@ -47,28 +47,29 @@ public class EventPageController implements Initializable {
         Task<Void> webCamTask = new Task<Void>() {
             @Override
             protected Void call() {
+                //TODO logger found on LoggerFactory.java
                 webcam = Webcam.getDefault();
                 System.out.println("[INFO]"+webcam);
-//                if (webcam != null) {
-//                    System.out.println("[INFO]: Initializing camera....");
-//                    webcam.setCustomViewSizes(new Dimension(300, 600)); // register custom resolutions
-//                    webcam.setViewSize(new Dimension(300, 600));
-//                    webcam.open();
-//                    startWebCamStream();
-//                    System.out.println("[INFO]: Qr scanner is ready to use....");
-//                } else {
-//                    System.out.println("[ERROR]: No camera detect");
-//                  Platform.runLater(new Runnable() {
-//                      @Override
-//                      public void run() {
-//                          Alert error = new Alert(Alert.AlertType.ERROR);
-//                          error.setHeaderText("Camera Status");
-//                          error.setContentText("There is no camera installed on the computer.");
-//                          error.showAndWait();
-//                      }
-//                  });
-//
-//                }
+                if (webcam != null) {
+                    System.out.println("[INFO]: Initializing camera....");
+                    webcam.setCustomViewSizes(new Dimension[]{new Dimension(300, 600)}); // register custom resolutions
+                    webcam.setViewSize(new Dimension(300, 600));
+                    webcam.open();
+                    startWebCamStream();
+                    System.out.println("[INFO]: Qr scanner is ready to use....");
+                } else {
+                    System.out.println("[ERROR]: No camera detect");
+                  Platform.runLater(new Runnable() {
+                      @Override
+                      public void run() {
+                          Alert error = new Alert(Alert.AlertType.ERROR);
+                          error.setHeaderText("Camera Status");
+                          error.setContentText("There is no camera installed on the computer.");
+                          error.showAndWait();
+                      }
+                  });
+
+                }
 
 
                 return null;
