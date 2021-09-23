@@ -9,7 +9,9 @@ import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
@@ -19,6 +21,7 @@ import org.codx.Services.QRCodeService;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -65,7 +68,19 @@ public class EventPageController implements Initializable {
                           Alert error = new Alert(Alert.AlertType.ERROR);
                           error.setHeaderText("Camera Status");
                           error.setContentText("There is no camera installed on the computer.");
-                          error.showAndWait();
+
+                          Optional<ButtonType> result = error.showAndWait();
+                          System.out.println(result);
+                          if (result.get() == ButtonType.OK){
+
+                              Stage stage = (Stage) scannerQR.getScene().getWindow();
+                              // do what you have to do
+
+                              stage.close();
+                          }
+
+
+
                       }
                   });
 
