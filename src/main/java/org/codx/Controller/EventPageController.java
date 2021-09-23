@@ -9,6 +9,7 @@ import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
@@ -44,10 +45,16 @@ public class EventPageController implements Initializable {
             @Override
             protected Void call() {
                 webcam = Webcam.getDefault();
-                webcam.setCustomViewSizes(new Dimension(300,600)); // register custom resolutions
-                webcam.setViewSize(new Dimension(300,600));
-                webcam.open();
-                startWebCamStream();
+
+                if(webcam != null){
+                    webcam.setCustomViewSizes(new Dimension(300,600)); // register custom resolutions
+                    webcam.setViewSize(new Dimension(300,600));
+                    webcam.open();
+                    startWebCamStream();
+                }else{
+                    Alert error = new Alert(Alert.AlertType.ERROR);
+                    error.setContentText("There is no camera installed on the computer.");
+                }
 
 
                 return null;
@@ -76,7 +83,7 @@ public class EventPageController implements Initializable {
                             System.out.println(scannerQR.getFitHeight());
                             if (scanResult!=null){
 
-                                System.out.println(webcam.getCustomViewSizes());
+                                System.out.println(scanResult);
                                 webcam.close();
 //                                System.exit(0);
                             }
