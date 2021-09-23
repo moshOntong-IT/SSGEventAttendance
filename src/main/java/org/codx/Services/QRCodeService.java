@@ -12,6 +12,8 @@ import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
 
+import org.slf4j.impl.StaticLoggerBinder;
+
 public class QRCodeService {
 
 
