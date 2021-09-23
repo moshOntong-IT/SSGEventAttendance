@@ -33,7 +33,7 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
 
 
-    testImplementation 'org.slf4j:slf4j-nop:1.7.30'
+    testImplementation 'org.slf4j:slf4j-jdk14:1.7.25'
 
     implementation group: 'io.github.typhon0', name: 'AnimateFX', version: '1.2.1'
 

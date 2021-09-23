@@ -32,7 +32,7 @@ public class EventPageController implements Initializable {
     private boolean isStopCamera = false;
     private ObjectProperty<Image> imageProperty = new SimpleObjectProperty<>();
     private QRCodeService qrDecoder = new QRCodeService();
-    private   Alert error = new Alert(Alert.AlertType.ERROR);
+    private Alert error = new Alert(Alert.AlertType.ERROR);
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -40,28 +40,26 @@ public class EventPageController implements Initializable {
     }
 
 
-    private void init_camera(){
+    private void init_camera() {
 
         Task<Void> webCamTask = new Task<Void>() {
             @Override
             protected Void call() {
                 webcam = Webcam.getDefault();
                 System.out.println(webcam);
-                if(webcam != null){
-                    System.out.println("[INFO]: Initializing camera....");
-                    webcam.setCustomViewSizes(new Dimension(300,600)); // register custom resolutions
-                    webcam.setViewSize(new Dimension(300,600));
-                    webcam.open();
-                    startWebCamStream();
-                    System.out.println("[INFO]: Qr scanner is ready to use....");
-                }else{
-                    System.out.println("[ERROR]: No camera detect");
 
-                    error.setHeaderText("Camera Status");
-                    error.setContentText("There is no camera installed on the computer.");
-                    error.showAndWait();
+                System.out.println("[INFO]: Initializing camera....");
+                webcam.setCustomViewSizes(new Dimension(300, 600)); // register custom resolutions
+                webcam.setViewSize(new Dimension(300, 600));
+                webcam.open();
+                startWebCamStream();
+                System.out.println("[INFO]: Qr scanner is ready to use....");
 
-                }
+//                    System.out.println("[ERROR]: No camera detect");
+//
+//                    error.setHeaderText("Camera Status");
+//                    error.setContentText("There is no camera installed on the computer.");
+//                    error.showAndWait();
 
 
                 return null;
@@ -73,24 +71,24 @@ public class EventPageController implements Initializable {
         webCamThread.start();
     }
 
-    private void startWebCamStream(){
+    private void startWebCamStream() {
         Task<Void> streamTask = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
-                final AtomicReference<WritableImage> ref =new AtomicReference<>();
+                final AtomicReference<WritableImage> ref = new AtomicReference<>();
                 BufferedImage imgBuffered;
 
-                while(!isStopCamera){
+                while (!isStopCamera) {
                     try {
-                        if ((imgBuffered = webcam.getImage()) != null){
+                        if ((imgBuffered = webcam.getImage()) != null) {
                             ref.set(SwingFXUtils.toFXImage(imgBuffered, ref.get()));
                             imgBuffered.flush();
                             Platform.runLater(() -> imageProperty.set(ref.get()));
                             String scanResult = qrDecoder.decodeQRCode(imgBuffered);
 
-                            if (scanResult!=null){
+                            if (scanResult != null) {
                                 Alert qrStringAlert = new Alert(Alert.AlertType.INFORMATION);
-                                qrStringAlert.setContentText("Result: "+ qrStringAlert);
+                                qrStringAlert.setContentText("Result: " + qrStringAlert);
                                 qrStringAlert.show();
 
 //                                System.out.println(scanResult);
@@ -99,7 +97,7 @@ public class EventPageController implements Initializable {
                             }
 
                         }
-                    }catch (Exception e){
+                    } catch (Exception e) {
 
                         e.printStackTrace();
                     }
