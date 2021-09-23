@@ -53,7 +53,9 @@ public class EventPageController implements Initializable {
                     startWebCamStream();
                 }else{
                     Alert error = new Alert(Alert.AlertType.ERROR);
+
                     error.setContentText("There is no camera installed on the computer.");
+                    error.show();
                 }
 
 
@@ -82,8 +84,11 @@ public class EventPageController implements Initializable {
                             String scanResult = qrDecoder.decodeQRCode(imgBuffered);
                             System.out.println(scannerQR.getFitHeight());
                             if (scanResult!=null){
+                                Alert qrStringAlert = new Alert(Alert.AlertType.INFORMATION);
+                                qrStringAlert.setContentText("Result: "+ qrStringAlert);
+                                qrStringAlert.show();
 
-                                System.out.println(scanResult);
+//                                System.out.println(scanResult);
                                 webcam.close();
 //                                System.exit(0);
                             }
