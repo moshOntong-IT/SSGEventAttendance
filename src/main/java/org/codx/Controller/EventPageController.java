@@ -34,9 +34,6 @@ public class EventPageController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-
-
         init_camera();
     }
 
@@ -46,13 +43,12 @@ public class EventPageController implements Initializable {
         Task<Void> webCamTask = new Task<Void>() {
             @Override
             protected Void call() {
-                int width = (int) scannerQR.getFitWidth();
-                int height = (int) scannerQR.getFitHeight();
                 webcam = Webcam.getDefault();
-
+                webcam.setCustomViewSizes(new Dimension(300,600)); // register custom resolutions
+                webcam.setViewSize(new Dimension(300,600));
                 webcam.open();
                 startWebCamStream();
-                webcam.setViewSize(new Dimension(width,height));
+
 
                 return null;
             }
@@ -77,9 +73,10 @@ public class EventPageController implements Initializable {
                             imgBuffered.flush();
                             Platform.runLater(() -> imageProperty.set(ref.get()));
                             String scanResult = qrDecoder.decodeQRCode(imgBuffered);
+                            System.out.println(scannerQR.getFitHeight());
                             if (scanResult!=null){
 
-                                System.out.println(scanResult);
+                                System.out.println(webcam.getCustomViewSizes());
                                 webcam.close();
 //                                System.exit(0);
                             }
