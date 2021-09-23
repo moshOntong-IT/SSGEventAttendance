@@ -32,6 +32,7 @@ public class EventPageController implements Initializable {
     private boolean isStopCamera = false;
     private ObjectProperty<Image> imageProperty = new SimpleObjectProperty<>();
     private QRCodeService qrDecoder = new QRCodeService();
+    private   Alert error = new Alert(Alert.AlertType.ERROR);
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -45,17 +46,21 @@ public class EventPageController implements Initializable {
             @Override
             protected Void call() {
                 webcam = Webcam.getDefault();
-
+                System.out.println(webcam);
                 if(webcam != null){
+                    System.out.println("[INFO]: Initializing camera....");
                     webcam.setCustomViewSizes(new Dimension(300,600)); // register custom resolutions
                     webcam.setViewSize(new Dimension(300,600));
                     webcam.open();
                     startWebCamStream();
+                    System.out.println("[INFO]: Qr scanner is ready to use....");
                 }else{
-                    Alert error = new Alert(Alert.AlertType.ERROR);
+                    System.out.println("[ERROR]: No camera detect");
 
+                    error.setHeaderText("Camera Status");
                     error.setContentText("There is no camera installed on the computer.");
-                    error.show();
+                    error.showAndWait();
+
                 }
 
 
