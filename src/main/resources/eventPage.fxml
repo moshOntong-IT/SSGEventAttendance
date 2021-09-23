@@ -110,7 +110,7 @@
                </children>
             </VBox>
             <Pane prefHeight="319.0" prefWidth="15.0" />
-            <ImageView fx:id="scannerQR" fitHeight="319.0" fitWidth="337.0" pickOnBounds="true">
+            <ImageView fx:id="scannerQR" fitHeight="319.0" fitWidth="337.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@assets/demoQR.png" />
                </image>

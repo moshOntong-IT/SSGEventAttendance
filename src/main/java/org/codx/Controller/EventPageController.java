@@ -124,7 +124,17 @@ public class EventPageController implements Initializable {
 
                                             Alert qrStringAlert = new Alert(Alert.AlertType.INFORMATION);
                                             qrStringAlert.setContentText("Result: " + scanResult);
-                                            qrStringAlert.showAndWait();
+
+
+                                            Optional<ButtonType> result = qrStringAlert.showAndWait();
+                                            System.out.println(result);
+                                            if (result.get() == ButtonType.OK){
+
+                                                Stage stage = (Stage) scannerQR.getScene().getWindow();
+                                                // do what you have to do
+
+                                                stage.close();
+                                            }
                                         }
 
                                     });
