@@ -24,7 +24,7 @@ public class DbConnection {
             System.out.println("[ERROR]:Connection Failed!");
             return null;
         }
-        System.out.println("[INFO]: Successfully");
+        System.out.println("[INFO]: Database Successfully");
         return conn;
     }
 }
