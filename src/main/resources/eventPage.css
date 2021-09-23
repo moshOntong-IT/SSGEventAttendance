@@ -1,4 +1,4 @@
-font-face {
+@font-face {
   font-family: 'EuclidCircularA-Bold';
   src: url('assets/fonts/Euclid-Circular-A-Bold.ttf');
 }
@@ -13,9 +13,9 @@ font-face {
 }
 @font-face {
   font-family: 'EuclidCircularA-Medium';
-  src: url(assets/fonts/Euclid-Circular-A-Medium.ttf) format('tff');
-}
+  src: url('assets/fonts/Euclid-Circular-A-Medium.ttf');
 
+}
 
 .body{
     -fx-background-color: white;

@@ -15,7 +15,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="600.0" prefWidth="900.0" styleClass="body" stylesheets="@assets/eventPage.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.codx.Controller.EventPageController">
+<VBox prefHeight="600.0" prefWidth="900.0" styleClass="body" stylesheets="@eventPage.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.codx.Controller.EventPageController">
    <children>
       <HBox alignment="CENTER_LEFT" prefHeight="57.0" prefWidth="900.0">
          <children>
