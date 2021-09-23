@@ -1,4 +1,5 @@
 plugins {
+    id 'java'
     id 'application'
     id 'org.openjfx.javafxplugin' version '0.0.9'
 }
@@ -31,6 +32,9 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
 
+
+    testImplementation 'org.slf4j:slf4j-nop:1.7.30'
+
     implementation group: 'io.github.typhon0', name: 'AnimateFX', version: '1.2.1'
 
 
@@ -42,10 +46,14 @@ dependencies {
     //sarxos webcam library
     implementation group: 'com.github.sarxos', name: 'webcam-capture', version: '0.3.12'
 
+
+    //postgre jdbc
+    implementation 'org.postgresql:postgresql:42.2.23'
+
 }
 javafx {
     version = "16"
-    modules = [ 'javafx.controls', 'javafx.fxml' ]
+    modules = [ 'javafx.controls', 'javafx.fxml' , 'javafx.swing']
 }
 mainClassName = 'org.codx.MainApp'
 

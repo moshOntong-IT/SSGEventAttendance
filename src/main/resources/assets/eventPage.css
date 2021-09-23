@@ -1,0 +1,87 @@
+font-face {
+  font-family: 'EuclidCircularA-Bold';
+  src: url('assets/fonts/Euclid-Circular-A-Bold.ttf');
+}
+@font-face {
+  font-family: 'EuclidCircularA-Regular';
+  src: url('assets/fonts/Euclid-Circular-A-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'EuclidCircularA-SemiBold';
+  src: url('assets/fonts/Euclid-Circular-A-SemiBold.ttf');
+}
+@font-face {
+  font-family: 'EuclidCircularA-Medium';
+  src: url(assets/fonts/Euclid-Circular-A-Medium.ttf) format('tff');
+}
+
+
+.body{
+    -fx-background-color: white;
+}
+
+.system_button{
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+}
+
+.title{
+    -fx-font-family: 'EuclidCircularA-Bold';
+    -fx-font-size: 40px;
+}
+
+.subtitle{
+    -fx-font-family: 'EuclidCircularA-Regular';
+    -fx-font-size: 15px;
+
+}
+
+
+.btn{
+    -fx-font-family: 'EuclidCircularA-Regular';
+    -fx-font-size: 12px;
+    -fx-background-radius:  10px;
+    -fx-background-color: #1F28CF;
+    -fx-text-fill: white;
+    -fx-cursor: hand;
+}
+
+.availability-pane{
+    -fx-background-color: white;
+    -fx-background-radius: 15px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 30px, 0, 0, 0);
+}
+
+.line-availability{
+    -fx-stroke-dash-array:3;
+}
+
+.label-availability{
+    -fx-font-family: 'EuclidCircularA-Regular';
+    -fx-font-size: 12px;
+}
+
+.label-availability-day{
+    -fx-text-fill: #FE6174;
+    -fx-font-size: 15px;
+}
+
+.text-login-title{
+    -fx-font-family: 'EuclidCircularA-SemiBold';
+    -fx-font-size: 20px;
+}
+
+.present-btn{
+    -fx-font-family: 'EuclidCircularA-SemiBold','Euclid Circular A SemiBold';
+    -fx-font-size: 14px;
+}
+
+.field{
+    -fx-background-color: transparent;
+    -fx-border-color:  #1F28CF;
+    -fx-border-radius: 5px;
+    -fx-border-width: 1px;
+    -fx-prompt-text-fill: #a0a0a0;
+
+}

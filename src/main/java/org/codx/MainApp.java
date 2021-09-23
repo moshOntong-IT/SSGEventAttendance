@@ -16,7 +16,7 @@ public class MainApp extends Application {
     public void start(Stage primaryStage){
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getClassLoader().getResource("loadingPage.fxml"));
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("eventPage.fxml"));
         }catch (IOException e){
             e.printStackTrace();
             System.out.println(e);
