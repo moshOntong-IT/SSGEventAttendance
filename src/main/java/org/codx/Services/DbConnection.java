@@ -11,7 +11,7 @@ public class DbConnection {
     private static String dbName = "d3sdt5h4vak3pv";
     private static String user = "rioewehkzwlxxa";
     private static String pass = "505f047f5e68c036b7e180e325e49ea43b1335012aa60f8dd7b01b9cf11b2540";
-    private static String ssl = "?ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory";
+//    private static String ssl = "?ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory";
 
     public static Connection connectDb(){
         Connection conn = null;
