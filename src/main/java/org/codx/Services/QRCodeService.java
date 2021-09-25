@@ -18,7 +18,7 @@ public class QRCodeService {
 
 
     //qr code encoder
-    private static void generateQRCode(String text, int width, int height, String filePath)
+    public static void generateQRCode(String text, int width, int height, String filePath)
             throws WriterException, IOException {
 
         QRCodeWriter writer = new QRCodeWriter();
