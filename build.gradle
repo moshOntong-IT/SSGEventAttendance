@@ -14,11 +14,11 @@ targetCompatibility = '1.8'
 // Create a single Jar with all dependencies
 jar {
     manifest {
-        attributes 'Main-Class': 'org.codx.MainApp',
-                'Implementation-Title': 'Avanti',
-                'Implementation-Version': archiveVersion
+        attributes 'Main-Class': 'org.codx.MainApp'
     }
+    duplicatesStrategy(DuplicatesStrategy.EXCLUDE)
     from {
+
         exclude '**/module-info.class'
         configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
     }
@@ -50,7 +50,9 @@ dependencies {
     //sarxos webcam library
     implementation group: 'com.github.sarxos', name: 'webcam-capture', version: '0.3.11'
 
-
+    //javamail api
+    implementation group: 'com.sun.mail', name: 'javax.mail', version: '1.6.2'
+    implementation 'com.sun.activation:javax.activation:1.2.0'
 
     //postgre jdbc
     implementation 'org.postgresql:postgresql:42.2.23'
