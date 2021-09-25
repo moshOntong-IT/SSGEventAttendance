@@ -41,24 +41,24 @@ public class MainApp extends Application {
             e.printStackTrace();
         }
 
-        System.exit(0);
-//        Parent root = null;
-//        try {
-//            root = FXMLLoader.load(getClass().getClassLoader().getResource("eventPage.fxml"));
-//        }catch (IOException e){
-//            e.printStackTrace();
-//            System.out.println(e);
-//        }
-//        primaryStage.initStyle(StageStyle.UNDECORATED);
-//        Scene scene = new Scene(root);
-//
-////        scene.setFill(Color.TRANSPARENT);
-//        primaryStage.initStyle(StageStyle.TRANSPARENT);
-//        primaryStage.setScene(scene);
-//        primaryStage.show();
+
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("eventPage.fxml"));
+        }catch (IOException e){
+            e.printStackTrace();
+            System.out.println(e);
+        }
+        primaryStage.initStyle(StageStyle.UNDECORATED);
+        Scene scene = new Scene(root);
+
+//        scene.setFill(Color.TRANSPARENT);
+        primaryStage.initStyle(StageStyle.TRANSPARENT);
+        primaryStage.setScene(scene);
+        primaryStage.show();
 
 
-//        DbConnection.connectDb();
+        DbConnection.connectDb();
 
     }
 
