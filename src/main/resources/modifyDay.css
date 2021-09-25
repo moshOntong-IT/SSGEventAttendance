@@ -1,0 +1,52 @@
+@font-face {
+  font-family: 'EuclidCircularA-Bold';
+  src: url('assets/fonts/Euclid-Circular-A-Bold.ttf');
+}
+@font-face {
+  font-family: 'EuclidCircularA-Regular';
+  src: url('assets/fonts/Euclid-Circular-A-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'EuclidCircularA-SemiBold';
+  src: url('assets/fonts/Euclid-Circular-A-SemiBold.ttf');
+}
+@font-face {
+  font-family: 'EuclidCircularA-Medium';
+  src: url(assets/fonts/Euclid-Circular-A-Medium.ttf) format('tff');
+}
+.Entrance{
+    -fx-font-family: 'EuclidCircularA-Bold';
+    -fx-font-size: 20px;
+}
+
+.Exit{
+    -fx-font-family: 'EuclidCircularA-Bold';
+    -fx-font-size: 20px;
+}
+
+
+
+.DiscardButton1{
+    -fx-background-color: transparent;
+    -fx-font-size: 20px;
+    -fx-border-color: #3641B7;
+    -fx-text-fill: #3641B7;
+}
+
+.ConfirmButton{
+    -fx-font-size: 20px;
+    -fx-border-color: #3641B7;
+    -fx-background-color: #1F28CF;
+    -fx-text-fill: #FFFFFF;
+}
+
+.lbl{
+    -fx-font-family: 'EuclidCircularA-Regular';
+    -fx-font-size: 12px;
+}
+
+.txt-field{
+    -fx-background-color: transparent;
+    -fx-border-color: #1F28CF;
+}
