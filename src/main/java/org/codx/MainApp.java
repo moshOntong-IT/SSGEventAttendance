@@ -8,8 +8,10 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.codx.Services.DbConnection;
 import org.codx.Services.EmailService;
+import org.codx.Services.FileService;
 import org.codx.Services.FontLoader;
 
+import java.io.File;
 import java.io.IOException;
 
 public class MainApp extends Application {
@@ -30,10 +32,11 @@ public class MainApp extends Application {
 //        primaryStage.initStyle(StageStyle.TRANSPARENT);
 //        primaryStage.setScene(scene);
 //        primaryStage.show();
-        String tempPath = "C:\\Users\\ACER\\IdeaProjects\\SSGEventAttendanec\\src\\main\\resources\\assets\\demoQR.png";
-        EmailService emailService = new EmailService("montong_200000000677@uic.edu.ph","2O5NqRJKkjYI4xLf");
-        emailService.sendMessage("moshontong@gmail.com","Muslimin Ontong",tempPath);
-        DbConnection.connectDb();
+//        String tempPath = "C:\\Users\\ACER\\IdeaProjects\\SSGEventAttendanec\\src\\main\\resources\\assets\\demoQR.png";
+//        EmailService emailService = new EmailService("montong_200000000677@uic.edu.ph","2O5NqRJKkjYI4xLf");
+//        emailService.sendMessage("moshontong@gmail.com","Muslimin Ontong",tempPath);
+//        DbConnection.connectDb();
+       System.out.println(FileService.getProjectPath());
     }
 
     public static void main(String[] args) {

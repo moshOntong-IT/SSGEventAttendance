@@ -18,7 +18,9 @@ jar {
                 'Implementation-Title': 'Avanti',
                 'Implementation-Version': archiveVersion
     }
+    duplicatesStrategy(DuplicatesStrategy.EXCLUDE)
     from {
+
         exclude '**/module-info.class'
         configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
     }
