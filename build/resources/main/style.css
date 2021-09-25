@@ -13,9 +13,9 @@
 }
 @font-face {
   font-family: 'EuclidCircularA-Medium';
-  src: url(assets/fonts/Euclid-Circular-A-Medium.ttf) format('tff');
-}
+  src: url('assets/fonts/Euclid-Circular-A-Medium.ttf');
 
+}
 
 .body  {
     -fx-background-color: white;
@@ -149,4 +149,12 @@
     -fx-background-color: white;
     -fx-background-radius: 20px;
     -fx-cursor: hand;
+}
+
+.createEvent-header{
+    -fx-font-size: 40px;
+}
+
+.subtitle2{
+    -fx-font-size: 18px;
 }
