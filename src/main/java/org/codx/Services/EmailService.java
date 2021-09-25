@@ -58,7 +58,7 @@ public class EmailService {
             MimeBodyPart bodyPart2 = new MimeBodyPart();
             DataSource source = new FileDataSource(qrFilePath);
             bodyPart2.setDataHandler(new DataHandler(source));
-            bodyPart2.setFileName(name+"jpg");
+            bodyPart2.setFileName(source.getName());
 
             Multipart multipart = new MimeMultipart();
             multipart.addBodyPart(bodyPart1);

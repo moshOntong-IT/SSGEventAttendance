@@ -11,10 +11,24 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.slf4j.impl.StaticLoggerBinder;
 
 public class QRCodeService {
+
+    //generate random name
+    public static String generateName(){
+        String result = "";
+        SimpleDateFormat formatter = new SimpleDateFormat("ddMMyyyyhhmmss");
+
+        Date date = new Date();
+        String toStringDate = formatter.format(date);
+        result = "AvantiQRCode_"+toStringDate+".jpg";
+        return result;
+
+    }
 
 
     //qr code encoder

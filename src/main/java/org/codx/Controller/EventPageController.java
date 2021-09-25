@@ -52,7 +52,7 @@ public class EventPageController implements Initializable {
             protected Void call() {
                 //TODO logger found on LoggerFactory.java
                 webcam = Webcam.getDefault();
-                System.out.println("[INFO]"+webcam);
+                System.out.println("[INFO]" + webcam);
                 if (webcam != null) {
                     System.out.println("[INFO]: Initializing camera....");
                     webcam.setCustomViewSizes(new Dimension[]{new Dimension(300, 600)}); // register custom resolutions
@@ -62,27 +62,26 @@ public class EventPageController implements Initializable {
                     System.out.println("[INFO]: Qr scanner is ready to use....");
                 } else {
                     System.out.println("[ERROR]: No camera detect");
-                  Platform.runLater(new Runnable() {
-                      @Override
-                      public void run() {
-                          Alert error = new Alert(Alert.AlertType.ERROR);
-                          error.setHeaderText("Camera Status");
-                          error.setContentText("There is no camera installed on the computer.");
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            Alert error = new Alert(Alert.AlertType.ERROR);
+                            error.setHeaderText("Camera Status");
+                            error.setContentText("There is no camera installed on the computer.");
 
-                          Optional<ButtonType> result = error.showAndWait();
-                          System.out.println(result);
-                          if (result.get() == ButtonType.OK){
+                            Optional<ButtonType> result = error.showAndWait();
+                            System.out.println(result);
+                            if (result.get() == ButtonType.OK) {
 
-                              Stage stage = (Stage) scannerQR.getScene().getWindow();
-                              // do what you have to do
+                                Stage stage = (Stage) scannerQR.getScene().getWindow();
+                                // do what you have to do
 
-                              stage.close();
-                          }
+                                stage.close();
+                            }
 
 
-
-                      }
-                  });
+                        }
+                    });
 
                 }
 
@@ -127,8 +126,8 @@ public class EventPageController implements Initializable {
 
 
                                             Optional<ButtonType> result = qrStringAlert.showAndWait();
-                                            System.out.println(result);
-                                            if (result.get() == ButtonType.OK){
+
+                                            if (result.get() == ButtonType.OK) {
 
                                                 Stage stage = (Stage) scannerQR.getScene().getWindow();
                                                 // do what you have to do
