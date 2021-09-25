@@ -9,6 +9,8 @@
 <?import javafx.scene.text.Font?>
 
 <?import javafx.scene.control.TextField?>
+
+<!-- TODO revision-->
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="503.0" styleClass="body" stylesheets="@style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox prefHeight="178.0" prefWidth="503.0">
