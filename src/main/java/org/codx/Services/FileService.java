@@ -16,9 +16,9 @@ public class FileService {
     //save in download as a defualt path
     public static String defaultPath(String qrName) throws URISyntaxException {
         String downloadPath = "";
-        File  currentFolder = new File(generatePath());
+
         File folder = new File( getProjectPath()+ "/AvantiQrCode");
-        System.out.print(folder.getPath());
+
         if (!folder.exists()) {
             folder.mkdir();
         }

@@ -20,11 +20,11 @@ public class MainApp extends Application {
     @Override
     public void start(Stage primaryStage){
 
-        System.out.println("Enter ID Number:");
+
 
          String qrID = "200000000677";
         try {
-            QRCodeService.generateQRCode(qrID,300,300,FileService.defaultPath("sample.jpg"));
+            QRCodeService.generateQRCode(qrID,600,600,FileService.defaultPath("sample.jpg"));
         } catch (WriterException e) {
             e.printStackTrace();
         } catch (IOException e) {
