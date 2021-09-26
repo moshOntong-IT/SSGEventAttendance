@@ -13,9 +13,9 @@
 }
 @font-face {
   font-family: 'EuclidCircularA-Medium';
-  src: url(assets/fonts/Euclid-Circular-A-Medium.ttf) format('tff');
-}
+  src: url('assets/fonts/Euclid-Circular-A-Medium.ttf');
 
+}
 
 .body  {
     -fx-background-color: white;
@@ -55,6 +55,15 @@
 
 .cursor-hand{
     -fx-cursor: hand;
+}
+
+.progress-bar .bar {
+    -fx-background-radius: 20px;
+    -fx-background-color: #FE6174;
+}
+
+.progress-bar .track {
+    -fx-background-color: Transparent;
 }
 
 .progress-bar .bar {
@@ -140,4 +149,12 @@
     -fx-background-color: white;
     -fx-background-radius: 20px;
     -fx-cursor: hand;
+}
+
+.createEvent-header{
+    -fx-font-size: 40px;
+}
+
+.subtitle2{
+    -fx-font-size: 18px;
 }
