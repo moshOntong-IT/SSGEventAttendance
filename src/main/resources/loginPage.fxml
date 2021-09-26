@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="860.0" styleClass="body" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="860.0" styleClass="body" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.codx.Controller.LoginController">
    <stylesheets>
       <URL value="@style.css" />
       <URL value="@loginPage.css" />
@@ -136,7 +136,7 @@
                            </children>
                         </HBox>
                         <Pane prefHeight="7.0" prefWidth="300.0" />
-                        <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="249.0" styleClass="btn" text="LOGIN" VBox.vgrow="ALWAYS" />
+                        <Button fx:id="loginBTN" mnemonicParsing="false" onAction="#submitButton" prefHeight="39.0" prefWidth="249.0" styleClass="btn" text="LOGIN" VBox.vgrow="ALWAYS" />
                      </children>
                      <padding>
                         <Insets left="50.0" />

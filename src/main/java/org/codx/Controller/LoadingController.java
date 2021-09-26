@@ -39,7 +39,7 @@ public class LoadingController implements Initializable {
         };
 
         loadingData.setOnSucceeded( event -> {
-            landingPanel = new StageTool("mainPage.fxml");
+            landingPanel = new StageTool("landingPage.fxml");
             landingPanel.hide((Stage)progressBarIndicator.getScene().getWindow());
             landingPanel.setOnMovable();
         });
@@ -51,4 +51,7 @@ public class LoadingController implements Initializable {
         runProgress.setDaemon(true);
         runProgress.start();
     }
+
+
+
 }

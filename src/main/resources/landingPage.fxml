@@ -49,7 +49,7 @@
                <Image url="@assets/logo_ds_icon.png" />
             </ImageView>
             <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="662.0" spacing="20.0">
-               <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="210.0" text="Login">
+               <Button mnemonicParsing="false" onAction="#loginAction" prefHeight="50.0" prefWidth="210.0" text="Login">
                   <font>
                      <Font name="EuclidCircularA-SemiBold" size="15.0" />
                   </font>

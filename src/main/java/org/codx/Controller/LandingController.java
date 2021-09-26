@@ -43,4 +43,11 @@ public class LandingController implements Initializable {
         registerPanel.hide((Stage)systemHeader.getScene().getWindow());
         registerPanel.setOnMovable();
     }
+
+    @FXML
+    void loginAction(ActionEvent event) {
+        StageTool loginPanel = new StageTool("loginPage.fxml");
+        loginPanel.hide((Stage)systemHeader.getScene().getWindow());
+        loginPanel.setOnMovable();
+    }
 }
