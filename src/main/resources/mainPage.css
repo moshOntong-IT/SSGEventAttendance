@@ -108,3 +108,29 @@
     -fx-background-radius: 0 0 20px 20px;
     -fx-cursor: hand;
 }
+
+.system-item-m{
+    -fx-background-color: white;
+    -fx-background-radius: 20px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 25, 5%, 0, 0);
+    -fx-text-alignment: center;
+    -fx-cursor: hand;
+}
+
+.system-item-m:hover{
+    -fx-effect: dropshadow(gaussian,#FFD175, 25, 5%, 0, 0);
+}
+
+.system-items-title-lbl{
+    -fx-font-family: 'EuclidCircularA-SemiBold';
+    -fx-font-size: 20px;
+}
+
+.system-items-name-lbl{
+    -fx-font-family: 'EuclidCircularA-Medium';
+    -fx-font-size: 14px;
+}
+.system-items-sub-lbl{
+    -fx-font-family: 'EuclidCircularA-SemiBold';
+    -fx-font-size: 15px;
+}

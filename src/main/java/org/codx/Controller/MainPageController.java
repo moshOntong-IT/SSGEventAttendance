@@ -16,6 +16,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -57,10 +58,11 @@ public class MainPageController implements Initializable {
     private StackPane stackLayout;
 
     @FXML
-    private Pane eventPane;
+    private VBox systemRole;
 
     @FXML
-    private Pane red;
+    private VBox eventPane;
+
 
 
     @Override
@@ -107,7 +109,7 @@ public class MainPageController implements Initializable {
             eventButton.getStyleClass().add("menu-nav-left-btn-highlight");
 
         } else if (event.getSource() == systemRoleButton) {
-            red.toFront();
+            systemRole.toFront();
             systemRoleIcon.setImage(imageHighlightPath.get(1));
             systemRoleButton.getStyleClass().clear();
             systemRoleButton.getStyleClass().add("menu-nav-left-btn-highlight");
