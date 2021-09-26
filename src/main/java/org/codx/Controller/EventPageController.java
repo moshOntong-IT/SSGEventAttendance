@@ -173,4 +173,5 @@ public class EventPageController implements Initializable {
     void exit(ActionEvent event) {
         System.exit(0);
     }
+
 }
