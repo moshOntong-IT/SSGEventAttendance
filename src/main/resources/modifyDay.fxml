@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<?import javafx.scene.control.TextField?>
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="503.0" styleClass="body" stylesheets="@style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="503.0" styleClass="body" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox prefHeight="178.0" prefWidth="503.0">
          <children>
-            <Label prefHeight="108.0" prefWidth="388.0" text="Edit Morning Time">
+            <Label prefHeight="108.0" prefWidth="507.0" text="Edit Morning Time">
                <padding>
                   <Insets left="30.0" top="50.0" />
                </padding>
@@ -36,115 +39,151 @@
             </Label>
          </children>
       </VBox>
-      <HBox prefHeight="167.0" prefWidth="503.0">
+      <VBox prefHeight="350.0" prefWidth="503.0">
          <children>
-            <VBox prefHeight="164.0" prefWidth="288.0">
+            <VBox prefHeight="159.0" prefWidth="503.0" styleClass="Entrance">
                <children>
-                  <Label text="Entance">
-                     <styleClass>
-                        <String fx:value="Entrance" />
-                        <String fx:value="txt-euclid-bold" />
-                     </styleClass>
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
+                  <Label text="Entrance" />
+                  <Pane prefHeight="25.0" prefWidth="443.0" />
+                  <HBox prefHeight="91.0" prefWidth="443.0">
                      <padding>
-                        <Insets left="30.0" />
+                        <Insets bottom="5.0" right="5.0" top="5.0" />
                      </padding>
-                  </Label>
-                  <Label text="Start">
-                     <padding>
-                        <Insets left="30.0" top="10.0" />
-                     </padding>
-                     <VBox.margin>
-                        <Insets top="20.0" />
-                     </VBox.margin>
-                  </Label>
-                  <TextField prefHeight="62.0" prefWidth="163.0">
-                     <VBox.margin>
-                        <Insets bottom="30.0" left="30.0" right="30.0" />
-                     </VBox.margin>
-                  </TextField>
+                     <children>
+                        <VBox prefHeight="80.0" prefWidth="252.0">
+                           <children>
+                              <HBox prefHeight="32.0" prefWidth="252.0">
+                                 <children>
+                                    <Label styleClass="lbl" text="Start" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="62.0" prefWidth="252.0">
+                                 <children>
+                                    <TextField prefHeight="29.0" prefWidth="35.0" styleClass="txt-field" />
+                                    <Label text=":">
+                                       <HBox.margin>
+                                          <Insets left="5.0" right="5.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <TextField prefHeight="29.0" prefWidth="35.0" styleClass="txt-field" />
+                                    <ComboBox prefHeight="40.0" prefWidth="79.0" styleClass="txt-field">
+                                       <HBox.margin>
+                                          <Insets left="15.0" />
+                                       </HBox.margin>
+                                    </ComboBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="80.0" prefWidth="252.0">
+                           <children>
+                              <HBox prefHeight="32.0" prefWidth="252.0">
+                                 <children>
+                                    <Label styleClass="lbl" text="End" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="62.0" prefWidth="252.0">
+                                 <children>
+                                    <TextField prefHeight="29.0" prefWidth="35.0" styleClass="txt-field" />
+                                    <Label text=":">
+                                       <HBox.margin>
+                                          <Insets left="5.0" right="5.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <TextField prefHeight="29.0" prefWidth="35.0" styleClass="txt-field" />
+                                    <ComboBox prefHeight="40.0" prefWidth="79.0" styleClass="txt-field">
+                                       <HBox.margin>
+                                          <Insets left="15.0" />
+                                       </HBox.margin>
+                                    </ComboBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
                </children>
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
+               <padding>
+                  <Insets left="30.0" right="30.0" />
+               </padding>
             </VBox>
-            <VBox prefHeight="164.0" prefWidth="281.0">
+            <VBox prefHeight="159.0" prefWidth="503.0" styleClass="Entrance">
                <children>
-                  <Label text="Exit">
-                     <VBox.margin>
-                        <Insets top="35.0" />
-                     </VBox.margin>
+                  <Label text="Exit" />
+                  <Pane prefHeight="25.0" prefWidth="443.0" />
+                  <HBox prefHeight="91.0" prefWidth="443.0">
                      <padding>
-                        <Insets left="30.0" top="10.0" />
+                        <Insets bottom="5.0" right="5.0" top="5.0" />
                      </padding>
-                  </Label>
-                  <TextField  prefHeight="28.0" prefWidth="213.0">
-                     <VBox.margin>
-                        <Insets bottom="30.0" left="30.0" right="20.0" top="10.0" />
-                     </VBox.margin>
-                  </TextField>
+                     <children>
+                        <VBox prefHeight="80.0" prefWidth="252.0">
+                           <children>
+                              <HBox prefHeight="32.0" prefWidth="252.0">
+                                 <children>
+                                    <Label styleClass="lbl" text="Start" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="62.0" prefWidth="252.0">
+                                 <children>
+                                    <TextField prefHeight="29.0" prefWidth="35.0" styleClass="txt-field" />
+                                    <Label text=":">
+                                       <HBox.margin>
+                                          <Insets left="5.0" right="5.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <TextField prefHeight="29.0" prefWidth="35.0" styleClass="txt-field" />
+                                    <ComboBox prefHeight="40.0" prefWidth="79.0" styleClass="txt-field">
+                                       <HBox.margin>
+                                          <Insets left="15.0" />
+                                       </HBox.margin>
+                                    </ComboBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="80.0" prefWidth="252.0">
+                           <children>
+                              <HBox prefHeight="32.0" prefWidth="252.0">
+                                 <children>
+                                    <Label styleClass="lbl" text="End" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="62.0" prefWidth="252.0">
+                                 <children>
+                                    <TextField prefHeight="29.0" prefWidth="35.0" styleClass="txt-field" />
+                                    <Label text=":">
+                                       <HBox.margin>
+                                          <Insets left="5.0" right="5.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <TextField prefHeight="29.0" prefWidth="35.0" styleClass="txt-field" />
+                                    <ComboBox prefHeight="40.0" prefWidth="79.0" styleClass="txt-field">
+                                       <HBox.margin>
+                                          <Insets left="15.0" />
+                                       </HBox.margin>
+                                    </ComboBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
                </children>
+               <padding>
+                  <Insets left="30.0" right="30.0" />
+               </padding>
             </VBox>
          </children>
-      </HBox>
-      <HBox prefHeight="192.0" prefWidth="503.0">
-         <children>
-            <VBox prefHeight="189.0" prefWidth="260.0">
-               <children>
-                  <Label text="Exit">
-                     <styleClass>
-                        <String fx:value="Exit" />
-                        <String fx:value="txt-euclid-bold" />
-                     </styleClass>
-                     <padding>
-                        <Insets left="30.0" />
-                     </padding>
-                  </Label>
-                  <Label text="Start">
-                     <VBox.margin>
-                        <Insets top="20.0" />
-                     </VBox.margin>
-                     <padding>
-                        <Insets left="30.0" />
-                     </padding>
-                  </Label>
-                  <TextField>
-                     <VBox.margin>
-                        <Insets bottom="30.0" left="30.0" right="30.0" />
-                     </VBox.margin>
-                  </TextField>
-               </children>
-            </VBox>
-            <VBox prefHeight="189.0" prefWidth="268.0">
-               <children>
-                  <Label text="Exit">
-                     <VBox.margin>
-                        <Insets top="35.0" />
-                     </VBox.margin>
-                     <padding>
-                        <Insets left="30.0" top="10.0" />
-                     </padding>
-                  </Label>
-                  <TextField prefHeight="38.0" prefWidth="209.0">
-                     <VBox.margin>
-                        <Insets bottom="30.0" left="30.0" right="20.0" />
-                     </VBox.margin>
-                  </TextField>
-               </children>
-            </VBox>
-         </children>
-      </HBox>
+      </VBox>
       <HBox alignment="CENTER" prefHeight="76.0" prefWidth="503.0">
          <children>
-            <Button mnemonicParsing="false" prefHeight="91.0" prefWidth="258.0" text="Discard">
+            <Button mnemonicParsing="false" prefHeight="78.0" prefWidth="247.0" text="Discard">
                <styleClass>
                   <String fx:value="DiscardButton1" />
                   <String fx:value="txt-euclid-bold" />
                </styleClass>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="73.0" prefWidth="267.0" text="Confirm" textFill="#f8f4f4">
+            <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="262.0" text="Confirm" textFill="#f8f4f4">
                <styleClass>
                   <String fx:value="txt-euclid-bold" />
                   <String fx:value="ConfirmButton" />
@@ -153,4 +192,8 @@
          </children>
       </HBox>
    </children>
+   <stylesheets>
+      <URL value="@style.css" />
+      <URL value="@modifyDay.css" />
+   </stylesheets>
 </VBox>
