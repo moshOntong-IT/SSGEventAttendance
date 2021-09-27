@@ -1,0 +1,61 @@
+@font-face {
+  font-family: 'EuclidCircularA-Bold';
+  src: url('assets/fonts/Euclid-Circular-A-Bold.ttf');
+}
+@font-face {
+  font-family: 'EuclidCircularA-Regular';
+  src: url('assets/fonts/Euclid-Circular-A-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'EuclidCircularA-SemiBold';
+  src: url('assets/fonts/Euclid-Circular-A-SemiBold.ttf');
+}
+@font-face {
+  font-family: 'EuclidCircularA-Medium';
+  src: url('assets/fonts/Euclid-Circular-A-Medium.ttf');
+}
+
+
+.body  {
+    -fx-background-color: white;
+    -fx-font-family: 'Euclid Circular A';
+}
+
+
+.MorningButton{
+     -fx-background-color: #3641B7;
+     -fx-text-fill: white;
+     -fx-font-family: 'EuclidCircularA-Bold';
+     -fx-font-size: 15px;
+     -fx-border-radius: 0px;
+}
+
+.AfterButton{
+    -fx-background-color: darkgrey;
+    -fx-text-fill: white;
+    -fx-font-family: 'EuclidCircularA-SemiBold';
+    -fx-font-size: 15px;
+    -fx-border-radius: 0px;
+}
+
+.DateBorder{
+    -fx-border-color: #3641B7;
+}
+
+.BackButton{
+     -fx-background-color: white;
+     -fx-text-fill: #3641B7;
+     -fx-font-family: 'EuclidCircularA-Bold';
+     -fx-font-size: 15px;
+     -fx-border-radius: 0px;
+     -fx-border-color: #3641B7;
+}
+
+.SubmitButton{
+     -fx-background-color: #3641B7;
+     -fx-text-fill: white;
+     -fx-font-family: 'EuclidCircularA-Bold';
+     -fx-font-size: 15px;
+     -fx-border-radius: 0px;
+}
