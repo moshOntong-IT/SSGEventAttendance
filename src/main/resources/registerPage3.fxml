@@ -81,7 +81,7 @@
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="message" text="ID is already exist*" />
                         <ComboBox prefHeight="50.0" prefWidth="315.0" promptText="Department" styleClass="field" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="message" text="ID is already exist*" />
-                        <ComboBox prefHeight="50.0" prefWidth="315.0" promptText="Course/Strand" styleClass="field" />
+                        <ComboBox prefHeight="50.0" prefWidth="315.0" promptText="School year" styleClass="field" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="message" text="ID is already exist*" />
                         <PasswordField prefHeight="50.0" promptText="Section" styleClass="field" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="message" text="ID is already exist*" />

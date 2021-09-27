@@ -14,11 +14,12 @@ targetCompatibility = '1.8'
 // Create a single Jar with all dependencies
 jar {
     manifest {
-        attributes 'Main-Class': 'org.codx.MainApp'
+        attributes 'Main-Class': 'org.codx.MainApp',
+                'Implementation-Title': 'Avanti',
+                'Implementation-Version': archiveVersion
     }
     duplicatesStrategy(DuplicatesStrategy.EXCLUDE)
     from {
-
         exclude '**/module-info.class'
         configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
     }
