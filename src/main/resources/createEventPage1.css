@@ -1,0 +1,47 @@
+@font-face {
+  font-family: 'EuclidCircularA-Bold';
+  src: url('assets/fonts/Euclid-Circular-A-Bold.ttf');
+}
+@font-face {
+  font-family: 'EuclidCircularA-Regular';
+  src: url('assets/fonts/Euclid-Circular-A-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'EuclidCircularA-SemiBold';
+  src: url('assets/fonts/Euclid-Circular-A-SemiBold.ttf');
+}
+@font-face {
+  font-family: 'EuclidCircularA-Medium';
+  src: url(assets/fonts/Euclid-Circular-A-Medium.ttf) format('tff');
+}
+
+
+
+.DiscardButton{
+    -fx-background-color: transparent;
+    -fx-text-fill: #3641B7;
+    -fx-font-family: 'EuclidCircularA-SemiBold';
+    -fx-font-size: 15px;
+}
+
+.NextButton{
+    -fx-background-color: #3641B7;
+    -fx-text-fill: white;
+    -fx-font-family: 'EuclidCircularA-Bold';
+    -fx-font-size: 16px;
+}
+
+.EventTitle{
+    -fx-border-color: black;
+    -fx-border-radius: 0px;
+}
+
+.EventDescription{
+    -fx-border-color: black;
+    -fx-border-radius: 0px;
+}
+
+.EventBackground{
+    -fx-background-color: transparent;
+}
