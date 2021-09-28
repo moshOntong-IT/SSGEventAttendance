@@ -33,7 +33,7 @@
             <HBox prefHeight="90.0" prefWidth="690.0" HBox.hgrow="ALWAYS" />
             <HBox alignment="CENTER" prefHeight="73.0" prefWidth="200.0" spacing="20.0">
                <children>
-                  <Button mnemonicParsing="false" styleClass="system_button">
+                  <Button fx:id="minimize" mnemonicParsing="false" styleClass="system_button">
                      <graphic>
                         <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -42,7 +42,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" styleClass="system_button">
+                  <Button fx:id="exit" mnemonicParsing="false" styleClass="system_button">
                      <graphic>
                         <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                            <image>

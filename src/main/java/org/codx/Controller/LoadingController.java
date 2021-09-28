@@ -35,7 +35,7 @@ public class LoadingController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         studentObservableList =  FXCollections.observableArrayList();
-        studentObservableList.add(new Student("1",1,"Muslimin","Banto",
+        studentObservableList.add(new Student("1","password",1,"Muslimin","Banto",
                 "Ontong",18,"Male","moshOntong@gmail.com","09777044903","Gentoo","SHS",
                 "AMACC Davao","2019-2020"));
         loadProgress();

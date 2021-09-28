@@ -5,16 +5,19 @@ public class UserCredentials {
     private String userID;
     private String password;
 
-    public UserCredentials(String userID) {
+    public UserCredentials(){
+
+    }
+    public UserCredentials(String userID, String password) {
         this.userID = userID;
     }
 
-    public Long getUserID() {
-        return Long.parseLong(userID);
+    public String getUserID() {
+        return userID;
     }
 
-    public void setUserID(Long userID) {
-        this.userID = userID.toString();
+    public void setUserID(String userID) {
+        this.userID = userID;
     }
 
     public String getPassword() {

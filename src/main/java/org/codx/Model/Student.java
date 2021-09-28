@@ -15,11 +15,15 @@ public class Student extends UserCredentials {
     private String schoolName;
     private String schoolYear;
 
-    public Student(String userID, int studentID,
+
+    public  Student (){
+
+    }
+    public Student(String userID, String password, int studentID,
                    String fName, String mName, String lName,
                    int age, String gender, String email, String phoneNumber,
                    String section, String department, String schoolName, String schoolYear) {
-        super(userID);
+        super(userID,password);
         this.studentID = studentID;
         this.fName = fName;
         this.mName = mName;
