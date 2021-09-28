@@ -13,9 +13,9 @@
 }
 @font-face {
   font-family: 'EuclidCircularA-Medium';
-  src: url('assets/fonts/Euclid-Circular-A-Medium.ttf');
-
+  src: url(assets/fonts/Euclid-Circular-A-Medium.ttf) format('tff');
 }
+
 
 .body  {
     -fx-background-color: white;
@@ -55,15 +55,6 @@
 
 .cursor-hand{
     -fx-cursor: hand;
-}
-
-.progress-bar .bar {
-    -fx-background-radius: 20px;
-    -fx-background-color: #FE6174;
-}
-
-.progress-bar .track {
-    -fx-background-color: Transparent;
 }
 
 .progress-bar .bar {
@@ -153,8 +144,36 @@
 
 .createEvent-header{
     -fx-font-size: 40px;
+    -fx-font-family: 'EuclidCircularA-Bold';
 }
-
 .subtitle2{
     -fx-font-size: 18px;
+    -fx-font-family: 'EuclidCircularA-SemiBold';
+}
+.DiscardButton{
+    -fx-background-color: transparent;
+    -fx-text-fill: #3641B7;
+    -fx-font-family: 'EuclidCircularA-SemiBold';
+    -fx-font-size: 15px;
+}
+
+.NextButton{
+    -fx-background-color: #3641B7;
+    -fx-text-fill: white;
+    -fx-font-family: 'EuclidCircularA-Bold';
+    -fx-font-size: 16px;
+}
+
+.EventTitle{
+    -fx-border-color: black;
+    -fx-border-radius: 0px;
+}
+
+.EventDescription{
+    -fx-border-color: black;
+    -fx-border-radius: 0px;
+}
+
+.EventBackground{
+    -fx-background-color: transparent;
 }
