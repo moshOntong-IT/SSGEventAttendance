@@ -3,7 +3,6 @@ package org.codx;
 import animatefx.animation.FadeIn;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
@@ -19,15 +18,25 @@ public class StageTool {
 
     private double x;
     private double y;
+
+    private static double xStatic;
+    private static  double yStatic;
     private Stage stage;
     private Parent root;
+
+
 
     public StageTool(){
 
     }
     public StageTool(String fxmlPath){
+
+
         try {
-            root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource(fxmlPath)));
+            FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource(fxmlPath)));
+            root = loader.load();
+
+
             stage = new Stage();
             stage.initStyle(StageStyle.UNDECORATED);
 
@@ -62,6 +71,28 @@ public class StageTool {
             });
 
     }
+
+    public static void setOnMovable (Parent root, Stage stage){
+
+        root.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                xStatic = mouseEvent.getSceneX();
+                yStatic = mouseEvent.getSceneY();
+            }
+        });
+
+        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                stage.setX(mouseEvent.getScreenX() - xStatic);
+                stage.setY(mouseEvent.getScreenY()- yStatic);
+
+            }
+        });
+
+    }
+
 
     public void hide(Stage stage){
         stage.hide();

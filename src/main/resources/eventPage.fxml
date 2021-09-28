@@ -109,8 +109,8 @@
                   <Label styleClass="label-availability" text="Exit" />
                </children>
             </VBox>
-            <Pane prefHeight="319.0" prefWidth="15.0" />
-            <ImageView fx:id="scannerQR" fitHeight="319.0" fitWidth="337.0" pickOnBounds="true" preserveRatio="true">
+            <Pane prefHeight="319.0" prefWidth="39.0" />
+            <ImageView fx:id="scannerQR" fitHeight="319.0" fitWidth="337.0" pickOnBounds="true">
                <image>
                   <Image url="@assets/demoQR.png" />
                </image>
@@ -118,7 +118,7 @@
                   <Rectangle2D />
                </viewport>
             </ImageView>
-            <Pane prefHeight="319.0" prefWidth="49.0" />
+            <Pane prefHeight="319.0" prefWidth="18.0" />
             <VBox alignment="TOP_CENTER" prefHeight="319.0" prefWidth="331.0" spacing="20.0">
                <opaqueInsets>
                   <Insets />

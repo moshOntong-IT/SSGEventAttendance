@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="440.0" styleClass="body" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox prefHeight="111.0" prefWidth="440.0">
+         <children>
+            <Label text="CREATE EVENT">
+               <styleClass>
+                  <String fx:value="createEvent-header" />
+                  <String fx:value="txt-euclid-bold" />
+               </styleClass>
+            </Label>
+            <Label text="Manage the availability of the event">
+               <styleClass>
+                  <String fx:value="txt-euclid-semibold" />
+                  <String fx:value="subtitle2" />
+               </styleClass>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Label>
+         </children>
+         <padding>
+            <Insets left="51.0" top="59.0" />
+         </padding>
+      </VBox>
+      <HBox prefHeight="62.0" prefWidth="440.0">
+         <children>
+            <VBox prefHeight="169.0" prefWidth="231.0">
+               <children>
+                  <Label text="Date">
+                     <styleClass>
+                        <String fx:value="txt-euclid-semibold" />
+                        <String fx:value="txt" />
+                     </styleClass>
+                  </Label>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets left="51.0" top="59.0" />
+               </padding>
+            </VBox>
+            <VBox prefHeight="80.0" prefWidth="498.0">
+               <padding>
+                  <Insets left="50.0" top="55.0" />
+               </padding>
+               <children>
+                  <DatePicker />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox prefHeight="69.0" prefWidth="440.0">
+         <children>
+            <VBox prefHeight="44.0" prefWidth="440.0">
+               <children>
+                  <Label text="Available day of the event">
+                     <styleClass>
+                        <String fx:value="txt-euclid-semibold" />
+                        <String fx:value="txt" />
+                     </styleClass>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets left="51.0" top="35.0" />
+               </padding>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="59.0" prefWidth="440.0">
+         <children>
+            <Button mnemonicParsing="false" prefHeight="52.0" prefWidth="225.0" text="Morning">
+               <styleClass>
+                  <String fx:value="MorningButton" />
+                  <String fx:value="EventTitle" />
+               </styleClass>
+            </Button>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="122.0" prefWidth="440.0">
+         <children>
+            <Button mnemonicParsing="false" prefHeight="52.0" prefWidth="225.0" styleClass="AfterButton" text="Afternoon" />
+         </children>
+      </HBox>
+      <HBox prefHeight="133.0" prefWidth="440.0">
+         <children>
+            <VBox alignment="BOTTOM_CENTER" prefHeight="125.0" prefWidth="222.0">
+               <children>
+                  <Button alignment="CENTER" mnemonicParsing="false" prefHeight="80.0" prefWidth="233.0" styleClass="BackButton" text="Back" />
+               </children>
+            </VBox>
+            <VBox alignment="BOTTOM_CENTER" prefHeight="125.0" prefWidth="266.0">
+               <children>
+                  <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="261.0" styleClass="SubmitButton" text="Submit" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+   <stylesheets>
+      <URL value="@style.css" />
+      <URL value="@createEventPage2.css" />
+   </stylesheets>
+</VBox>

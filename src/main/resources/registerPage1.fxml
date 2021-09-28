@@ -12,12 +12,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="855.0" styleClass="body" stylesheets="@style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.codx.Controller.RegisterController">
    <children>
       <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Button mnemonicParsing="false">
+            <Button mnemonicParsing="false" onAction="#backButton">
                <graphic>
                   <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -33,7 +32,7 @@
             <HBox prefHeight="90.0" prefWidth="690.0" HBox.hgrow="ALWAYS" />
             <HBox alignment="CENTER" prefHeight="73.0" prefWidth="200.0" spacing="20.0">
                <children>
-                  <Button mnemonicParsing="false" styleClass="system_button">
+                  <Button mnemonicParsing="false" onAction="#minimize" styleClass="system_button">
                      <graphic>
                         <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -42,7 +41,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" styleClass="system_button">
+                  <Button mnemonicParsing="false" onAction="#exit" styleClass="system_button">
                      <graphic>
                         <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -77,21 +76,21 @@
                   </Text>
                   <VBox spacing="8.0">
                      <children>
-                        <TextField prefHeight="50.0" prefWidth="318.0" promptText="ID" styleClass="field" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="message" text="ID is already exist*" />
-                        <TextField prefHeight="50.0" prefWidth="318.0" promptText="Email" styleClass="field" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="message" text="ID is already exist*" />
-                        <TextField prefHeight="50.0" prefWidth="318.0" promptText="Phone Number" styleClass="field" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="message" text="ID is already exist*" />
-                        <PasswordField prefHeight="50.0" promptText="Password" styleClass="field" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="message" text="ID is already exist*" />
-                        <PasswordField prefHeight="50.0" promptText="Confirm Password" styleClass="field" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="message" text="ID is already exist*" />
+                        <TextField fx:id="idField" prefHeight="50.0" prefWidth="318.0" promptText="ID" styleClass="field" />
+                        <Text fx:id="studentID_lbl" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="message" text="ID is already exist*" />
+                        <TextField fx:id="emailField" prefHeight="50.0" prefWidth="318.0" promptText="Email" styleClass="field" />
+                        <Text fx:id="email_lbl" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="message" text="Email is already exist*" />
+                        <TextField fx:id="phoneField" prefHeight="50.0" prefWidth="318.0" promptText="Phone Number" styleClass="field" />
+                        <Text fx:id="phone_lbl" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="message" text="Phone Number is empty*" />
+                        <PasswordField fx:id="passwordField" prefHeight="50.0" promptText="Password" styleClass="field" />
+                        <Text fx:id="password_label" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="message" text="Passwword is empty*" />
+                        <PasswordField fx:id="confirmPasswordField" prefHeight="50.0" promptText="Confirm Password" styleClass="field" />
+                        <Text fx:id="confirmPasswordLabel" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="message" text="Confirm password is empty*" />
                      </children>
                   </VBox>
                   <HBox alignment="CENTER_RIGHT" prefHeight="41.0" prefWidth="415.0">
                      <children>
-                        <Button contentDisplay="RIGHT" mnemonicParsing="false" text="NEXT">
+                        <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#nextPage2" text="NEXT">
                            <graphic>
                               <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
