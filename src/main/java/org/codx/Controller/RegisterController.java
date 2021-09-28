@@ -16,9 +16,11 @@ import java.util.ResourceBundle;
 
 public class RegisterController implements Initializable {
 
+
     private Student student;
     private ObservableList<Student> studentObservableList;
     private boolean isReady = true;
+
     @FXML
     private TextField idField;
 
@@ -72,12 +74,18 @@ public class RegisterController implements Initializable {
 
 
     @FXML
-    void nextPage2(ActionEvent event) {
+    void nextPage(ActionEvent event) {
+
+
         if (validatorPage1()) {
+
             StageTool next = new StageTool("registerPage2.fxml");
-            next.hide((Stage)password_label.getScene().getWindow());
-            next.setOnMovable();
+            next.hide((Stage) password_label.getScene().getWindow());
+//            next.setOnMovable();
+
         }
+
+
     }
 
 
@@ -86,11 +94,17 @@ public class RegisterController implements Initializable {
 //            void/function
 
     private void hideMessage() {
-        studentID_lbl.setVisible(false);
-        email_lbl.setVisible(false);
-        phone_lbl.setVisible(false);
-        password_label.setVisible(false);
-        confirmPasswordLabel.setVisible(false);
+
+        if (studentID_lbl != null && email_lbl != null && phone_lbl != null
+                && password_label != null && confirmPasswordLabel != null) {
+
+            studentID_lbl.setVisible(false);
+            email_lbl.setVisible(false);
+            phone_lbl.setVisible(false);
+            password_label.setVisible(false);
+            confirmPasswordLabel.setVisible(false);
+        }
+
 
     }
 
@@ -105,7 +119,6 @@ public class RegisterController implements Initializable {
 /////////////////id Field
 
 
-
         if (!idField.getText().equals("")) {
 
             if (!studentObservableList.isEmpty()) {
@@ -116,13 +129,12 @@ public class RegisterController implements Initializable {
                         idField.getStyleClass().add("field-wrong");
                         studentID_lbl.setText("ID is already exist*");
                         studentID_lbl.setVisible(true);
-                    }else{
+                    } else {
                         idField.getStyleClass().add("field");
                         studentID_lbl.setVisible(false);
                     }
                 });
             }
-
 
 
         } else {
