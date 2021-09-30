@@ -14,7 +14,7 @@ targetCompatibility = '1.8'
 // Create a single Jar with all dependencies
 jar {
     manifest {
-        attributes 'Main-Class': 'org.codx.MainApp',
+        attributes 'Main-Class': 'org.codx.Launcher',
                 'Implementation-Title': 'Avanti',
                 'Implementation-Version': archiveVersion
     }
@@ -60,10 +60,10 @@ dependencies {
 
 }
 javafx {
-    version = "16"
+    version = "17"
     modules = [ 'javafx.controls', 'javafx.fxml' , 'javafx.swing']
 }
-mainClassName = 'org.codx.MainApp'
+mainClassName = 'org.codx.Launcher'
 
 test {
     useJUnitPlatform()

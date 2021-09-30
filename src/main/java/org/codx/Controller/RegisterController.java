@@ -1,6 +1,8 @@
 package org.codx.Controller;
 
 import animatefx.animation.FadeIn;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -8,10 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -95,6 +94,9 @@ public class RegisterController implements Initializable {
     @FXML
     private RadioButton femaleRadioBtn;
 
+    @FXML
+    private TextField schoolNameField;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         student = new Student();
@@ -105,7 +107,26 @@ public class RegisterController implements Initializable {
 
     @FXML
     void backButton(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource("landingPage.fxml")));
+            Parent root = loader.load();
+            LandingController landingController = loader.getController();
+            landingController.setStudentObservableList(studentObservableList);
 
+            Stage stage = new Stage();
+            stage.initStyle(StageStyle.UNDECORATED);
+
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            StageTool.setOnMovable(root, stage);
+
+            stage.show();
+            password_label.getScene().getWindow().hide();
+
+            new FadeIn(root).play();
+        } catch (IOException exception) {
+            Logger.getLogger(StageTool.class.getName()).log(Level.SEVERE, "Cannot switch to another Page", exception);
+        }
     }
 
     @FXML
@@ -131,6 +152,40 @@ public class RegisterController implements Initializable {
 
             stage.show();
             fNameField.getScene().getWindow().hide();
+
+            new FadeIn(root).play();
+        } catch (IOException exception) {
+            Logger.getLogger(StageTool.class.getName()).log(Level.SEVERE, "Cannot switch to another Page", exception);
+        }
+    }
+
+    @FXML
+    void backPage3(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource("registerPage2.fxml")));
+            Parent root = loader.load();
+            RegisterController regController = loader.getController();
+            regController.setStudentObservableList(studentObservableList);
+            regController.setStudent(student);
+            regController.setfNameField(student.getfName());
+            regController.setmNameField(student.getmName());
+            regController.setlNameField(student.getlName());
+            regController.setAgeField(student.getAge() + "");
+            if (student.getGender().equals("Male")) {
+                regController.setMaleRadioBtn(true);
+            } else {
+                regController.setFemaleRadioBtn(true);
+            }
+
+            Stage stage = new Stage();
+            stage.initStyle(StageStyle.UNDECORATED);
+
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            StageTool.setOnMovable(root, stage);
+
+            stage.show();
+            schoolNameField.getScene().getWindow().hide();
 
             new FadeIn(root).play();
         } catch (IOException exception) {
@@ -165,6 +220,19 @@ public class RegisterController implements Initializable {
                 RegisterController regController = loader.getController();
                 regController.setStudentObservableList(studentObservableList);
                 regController.setStudent(student);
+                if (student.getfName() != null && student.getmName() != null &&
+                        student.getlName() != null && student.getAge() != 0 &&
+                        student.getGender() != null) {
+                    regController.setfNameField(student.getfName());
+                    regController.setmNameField(student.getmName());
+                    regController.setlNameField(student.getlName());
+                    regController.setAgeField(student.getAge() + "");
+                    if (student.getGender().equals("Male")) {
+                        regController.setMaleRadioBtn(true);
+                    } else {
+                        regController.setFemaleRadioBtn(true);
+                    }
+                }
 
                 Stage stage = new Stage();
                 stage.initStyle(StageStyle.UNDECORATED);
@@ -195,13 +263,11 @@ public class RegisterController implements Initializable {
             student.setmName(mNameField.getText());
             student.setlName(lNameField.getText());
             student.setAge(Integer.parseInt(ageField.getText()));
-
-
-            gender.selectedToggleProperty().addListener(observable -> {
-                if (gender.selectedToggleProperty() != null) {
-                    student.setGender(gender.getSelectedToggle().getUserData().toString());
-                }
-            });
+            if (maleRadioBtn.isSelected()) {
+                student.setGender("Male");
+            } else {
+                student.setGender("Female");
+            }
 
 
             try {
@@ -390,15 +456,15 @@ public class RegisterController implements Initializable {
             ageLabel.setText("Age field is empty*");
             ageLabel.setVisible(true);
         } else {
-           if(ageField.getText().matches("[0-9]+")){
-               ageField.getStyleClass().add("field");
-               ageLabel.setVisible(false);
-           }else{
-               isReady = false;
-               ageField.getStyleClass().add("field-wrong");
-               ageLabel.setText("Age field is should be number");
-               ageLabel.setVisible(true);
-           }
+            if (ageField.getText().matches("[0-9]+")) {
+                ageField.getStyleClass().add("field");
+                ageLabel.setVisible(false);
+            } else {
+                isReady = false;
+                ageField.getStyleClass().add("field-wrong");
+                ageLabel.setText("Age field is should be number");
+                ageLabel.setVisible(true);
+            }
         }
 
         return isReady;
@@ -434,5 +500,29 @@ public class RegisterController implements Initializable {
 
     public void setConfirmPasswordField(String confirmPasswordField) {
         this.confirmPasswordField.setText(confirmPasswordField);
+    }
+
+    public void setfNameField(String fNameField) {
+        this.fNameField.setText(fNameField);
+    }
+
+    public void setmNameField(String mNameField) {
+        this.mNameField.setText(mNameField);
+    }
+
+    public void setlNameField(String lNameField) {
+        this.lNameField.setText(lNameField);
+    }
+
+    public void setAgeField(String ageField) {
+        this.ageField.setText(ageField);
+    }
+
+    public void setMaleRadioBtn(boolean isActive) {
+        this.maleRadioBtn.setSelected(isActive);
+    }
+
+    public void setFemaleRadioBtn(boolean isActive) {
+        this.femaleRadioBtn.setSelected(isActive);
     }
 }

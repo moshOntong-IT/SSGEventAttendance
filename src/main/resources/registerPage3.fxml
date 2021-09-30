@@ -17,7 +17,7 @@
    <children>
       <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Button mnemonicParsing="false">
+            <Button mnemonicParsing="false" onAction="#backPage3">
                <graphic>
                   <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -33,7 +33,7 @@
             <HBox prefHeight="90.0" prefWidth="690.0" HBox.hgrow="ALWAYS" />
             <HBox alignment="CENTER" prefHeight="73.0" prefWidth="200.0" spacing="20.0">
                <children>
-                  <Button fx:id="minimize" mnemonicParsing="false" styleClass="system_button">
+                  <Button mnemonicParsing="false" onAction="#minimize" styleClass="system_button">
                      <graphic>
                         <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -42,7 +42,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="exit" mnemonicParsing="false" styleClass="system_button">
+                  <Button mnemonicParsing="false" onAction="#exit" styleClass="system_button">
                      <graphic>
                         <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -77,7 +77,7 @@
                   </Text>
                   <VBox spacing="8.0">
                      <children>
-                        <TextField prefHeight="50.0" prefWidth="318.0" promptText="School Name" styleClass="field" />
+                        <TextField fx:id="schoolNameField" prefHeight="50.0" prefWidth="318.0" promptText="School Name" styleClass="field" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="message" text="ID is already exist*" />
                         <ComboBox prefHeight="50.0" prefWidth="315.0" promptText="Department" styleClass="field" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="message" text="ID is already exist*" />
