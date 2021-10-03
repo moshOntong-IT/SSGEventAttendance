@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -15,10 +16,16 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.codx.Model.Student;
+import org.codx.Services.DbConnection;
 import org.codx.StageTool;
 
+import javax.xml.transform.Result;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -48,9 +55,55 @@ public class LoginController implements Initializable {
 
     @FXML
     void submitButton(ActionEvent event) {
-        StageTool mainPage = new StageTool("mainPage.fxml");
-        mainPage.hide((Stage)loginBTN.getScene().getWindow());
-        mainPage.setOnMovable();
+        if(validator()){
+            Connection conn = DbConnection.connectDb();
+            try {
+                PreparedStatement stmt = conn.prepareStatement("Select u.user_id, u.password, \n" +
+                        "sys.admin_pos \n" +
+                        "from user_info u\n" +
+                        "inner join public.\"SYSTEM_INFO\" sys\n" +
+                        "on u.user_id = sys.user_id\n" +
+                        "where sys.user_id = ? and u.password = ? ;");
+                stmt.setLong(1, Long.parseLong(loginField.getText()));
+                stmt.setString(2, passwordField.getText());
+                ResultSet rst = stmt.executeQuery();
+                if(rst.next()){
+                    StageTool proceed = new StageTool("mainPage.fxml");
+                    proceed.setOnMovable();
+                    proceed.hide((Stage) loginBTN.getScene().getWindow());
+
+
+                }else{
+                    Alert invalid = new Alert(Alert.AlertType.ERROR);
+                    invalid.setTitle("Invalid Account");
+                    invalid.setContentText("This account is invalid");
+                    invalid.showAndWait();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private boolean validator (){
+        boolean isReady = true;
+        Alert message = new Alert(Alert.AlertType.WARNING);
+        message.setTitle("Message");
+        String contentMessage = "Invalid:";
+        if(loginField.getText().equals("")){
+            contentMessage+="\nUser field is empty";
+            isReady = false;
+        }
+
+        if (passwordField.getText().equals("")){
+            contentMessage+="\nPassword field is empty";
+            isReady = false;
+        }
+        if(!isReady){
+            message.setContentText(contentMessage);
+            message.showAndWait();
+        }
+        return isReady;
     }
 
 
