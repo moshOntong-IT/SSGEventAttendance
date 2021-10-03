@@ -19,6 +19,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.apache.commons.validator.routines.EmailValidator;
 import org.codx.Model.Department;
 import org.codx.Model.Student;
 import org.codx.Services.DbConnection;
@@ -29,6 +30,8 @@ import org.codx.StageTool;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.*;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -42,6 +45,7 @@ public class RegisterController implements Initializable {
     private ObservableList<Student> studentObservableList;
     private ObservableList<Department> departmentObservableList;
     private String qrFilePath;
+    private String tempName;
     private boolean isReady = true;
 
     @FXML
@@ -415,8 +419,9 @@ public class RegisterController implements Initializable {
     @FXML
     void submit(ActionEvent event) {
 
-        Connection conn = DbConnection.connectDb();
+
         if (validatorPage3()) {
+            Connection conn = DbConnection.connectDb();
             student.setSchoolName(schoolNameField.getText());
             departmentObservableList.forEach((department -> {
                 if (department.getName().equals(departmentComboBox.getValue())) {
@@ -462,9 +467,11 @@ public class RegisterController implements Initializable {
 
 
             try {
-                String tempName = QRCodeService.generateName(student.getUserID() + "");
+                tempName = QRCodeService.generateName(student.getUserID() + "");
                 qrFilePath = FileService.defaultPath(tempName);
-                String qrID = student.getUserID() + "";
+                String qrID = student.getUserID() +
+                        "\n" +
+                        student.getfName() + "";
                 QRCodeService.generateQRCode(qrID, 300, 300, qrFilePath);
             } catch (WriterException e) {
                 e.printStackTrace();
@@ -482,8 +489,10 @@ public class RegisterController implements Initializable {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("signUpSuccessfully.fxml"));
                 Parent form = loader.load();
-                SignUpSuccessfullController message = new SignUpSuccessfullController();
-                message.setQrImage(qrFilePath + ".jpg");
+                SignUpSuccessfullController message = loader.getController();
+                message.setQrImage(qrFilePath);
+                message.setStudent(student);
+                message.setFileName(tempName);
                 Stage stage = new Stage();
                 Scene scene = new Scene(form);
                 form.requestFocus();
@@ -495,21 +504,45 @@ public class RegisterController implements Initializable {
 
                 root.setEffect(null);
 
+
             } catch (IOException ex) {
                 Logger.getLogger(MainPageController.class.getName()).log(Level.SEVERE, null, ex);
             }
 
 
-//            EmailService emailService = new EmailService("montong_200000000677@uic.edu.ph","2O5NqRJKkjYI4xLf");
-//            try {
-//                emailService.sendMessage("jgacote_200000000402@uic.edu.ph","James Gacote",FileService.defaultPath(tempName));
-//            } catch (URISyntaxException e) {
-//                e.printStackTrace();
-//            }
-
-
         }
 
+        switchWindow();
+        try {
+            Files.delete(Paths.get(qrFilePath));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void switchWindow() {
+        Parent root;
+        try {
+            FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource("landingPage.fxml")));
+            root = loader.load();
+            LandingController controller = loader.getController();
+            controller.setStudentObservableList(studentObservableList);
+
+            Stage stage = new Stage();
+            stage.initStyle(StageStyle.UNDECORATED);
+
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            StageTool.setOnMovable(root, stage);
+
+            stage.show();
+            schoolYearCombox.getScene().getWindow().hide();
+
+
+            new FadeIn(root).play();
+        } catch (IOException exception) {
+            Logger.getLogger(StageTool.class.getName()).log(Level.SEVERE, "Cannot switch to another Page", exception);
+        }
     }
 //
 //    non-injectable
@@ -596,8 +629,17 @@ public class RegisterController implements Initializable {
             email_lbl.setText("Email field is empty*");
             email_lbl.setVisible(true);
         } else {
-            emailField.getStyleClass().add("field");
-            email_lbl.setVisible(false);
+            EmailValidator validator = EmailValidator.getInstance();
+            if (validator.isValid(emailField.getText())) {
+                emailField.getStyleClass().add("field");
+                email_lbl.setVisible(false);
+            } else {
+                isReady = false;
+
+                emailField.getStyleClass().add("field-wrong");
+                email_lbl.setText("Invalid Email");
+                email_lbl.setVisible(true);
+            }
         }
 /////////////////phone Number field
         if (phoneField.getText().equals("")) {
@@ -607,8 +649,17 @@ public class RegisterController implements Initializable {
             phone_lbl.setText("Phone Number field is empty*");
             phone_lbl.setVisible(true);
         } else {
-            phoneField.getStyleClass().add("field");
-            phone_lbl.setVisible(false);
+            if (idField.getText().matches("[0-9]+")) {
+                phoneField.getStyleClass().add("field");
+                phone_lbl.setVisible(false);
+            } else {
+                isReady = false;
+
+                phoneField.getStyleClass().add("field-wrong");
+                phone_lbl.setText("Phone Number should be a number*");
+                phone_lbl.setVisible(true);
+            }
+
         }
 
 //////////////////password Number field
@@ -637,7 +688,8 @@ public class RegisterController implements Initializable {
                 confirmPasswordLabel.setText("Password not match*");
                 confirmPasswordLabel.setVisible(true);
             } else {
-
+                confirmPasswordField.getStyleClass().add("field");
+                confirmPasswordLabel.setVisible(false);
             }
 
         }

@@ -9,7 +9,9 @@ public class FileService {
 
     private static String generatePath() throws URISyntaxException {
         File file = new File(FileService.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
-        String result = getParentFile(4, file).replace('\\', '/');
+        System.out.println("Project Path"+file.toString());
+        String result = getParentFile(1, file).replace('\\', '/');
+        System.out.println("Project parent"+result);
         return result;
     }
 
@@ -18,6 +20,7 @@ public class FileService {
         String downloadPath = "";
 
         File folder = new File( getProjectPath()+ "/AvantiQrCode");
+        System.out.print(getProjectPath());
 
         if (!folder.exists()) {
             folder.mkdir();
