@@ -78,8 +78,8 @@ public class EmailService {
         }
 
         ///delete file
-        File deleteQrFile = new File(qrFilePath);
-        deleteQrFile.delete();
+//        File deleteQrFile = new File(qrFilePath);
+//        deleteQrFile.delete();
     }
 
     public String getUserMaill() {

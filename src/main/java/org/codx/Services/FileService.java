@@ -9,7 +9,7 @@ public class FileService {
 
     private static String generatePath() throws URISyntaxException {
         File file = new File(FileService.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
-        String result = getParentFile(3, file).replace('\\', '/');
+        String result = getParentFile(4, file).replace('\\', '/');
         return result;
     }
 

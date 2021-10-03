@@ -19,13 +19,13 @@ import org.slf4j.impl.StaticLoggerBinder;
 public class QRCodeService {
 
     //generate random name
-    public static String generateName(){
+    public static String generateName(String idNumber){
         String result = "";
         SimpleDateFormat formatter = new SimpleDateFormat("ddMMyyyyhhmmss");
 
         Date date = new Date();
         String toStringDate = formatter.format(date);
-        result = "AvantiQRCode_"+toStringDate+".jpg";
+        result = "AvantiQRCode_"+idNumber+"_"+toStringDate+".jpg";
         return result;
 
     }

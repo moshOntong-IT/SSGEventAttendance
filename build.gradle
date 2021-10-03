@@ -58,6 +58,9 @@ dependencies {
     //postgre jdbc
     implementation 'org.postgresql:postgresql:42.2.23'
 
+    //email validator
+    implementation 'commons-validator:commons-validator:1.7'
+
 }
 javafx {
     version = "17"

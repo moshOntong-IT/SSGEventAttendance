@@ -1,8 +1,10 @@
 package org.codx.Controller;
 
 import animatefx.animation.FadeIn;
+import com.google.zxing.WriterException;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,14 +13,23 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.effect.ColorAdjust;
+import javafx.scene.effect.GaussianBlur;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.codx.Model.Department;
 import org.codx.Model.Student;
+import org.codx.Services.DbConnection;
+import org.codx.Services.FileService;
+import org.codx.Services.QRCodeService;
 import org.codx.StageTool;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URL;
+import java.sql.*;
 import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -29,6 +40,8 @@ public class RegisterController implements Initializable {
 
     private Student student;
     private ObservableList<Student> studentObservableList;
+    private ObservableList<Department> departmentObservableList;
+    private String qrFilePath;
     private boolean isReady = true;
 
     @FXML
@@ -94,15 +107,68 @@ public class RegisterController implements Initializable {
     @FXML
     private RadioButton femaleRadioBtn;
 
+
     @FXML
     private TextField schoolNameField;
 
+    @FXML
+    private Text schoolNameLBL;
+
+    @FXML
+    private ComboBox<String> departmentComboBox;
+
+    @FXML
+    private Text depLBL;
+
+    @FXML
+    private ComboBox<String> schoolYearCombox;
+
+    @FXML
+    private Text schoolYearlbl;
+
+    @FXML
+    private TextField sectionField;
+
+    @FXML
+    private Text sectionLBL;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        departmentObservableList = FXCollections.observableArrayList();
         student = new Student();
         hideMessage();
+        init_combo_items();
 
 
+    }
+
+    private void init_combo_items() {
+
+        if (schoolYearCombox != null && departmentComboBox != null) {
+            Connection conn = DbConnection.connectDb();
+            ObservableList<String> schoolYear = FXCollections.observableArrayList();
+            for (int year = 2021; year < 2030; year++) {
+                int schoolYearEnd = year + 1;
+                schoolYear.add(year + "-" + schoolYearEnd);
+            }
+            schoolYearCombox.setItems(schoolYear);
+
+            //fetching all department table from database
+            try {
+                PreparedStatement stmt = conn.prepareStatement("SELECT * FROM public.\"department\"");
+                ResultSet rst = stmt.executeQuery();
+                while (rst.next()) {
+                    Department dep = new Department(rst.getInt("dep_id"),
+                            rst.getString("dep_name"));
+                    departmentObservableList.add(dep);
+                    departmentComboBox.getItems().add(dep.getName());
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+
+        }
     }
 
     @FXML
@@ -131,13 +197,26 @@ public class RegisterController implements Initializable {
 
     @FXML
     void backPage2(ActionEvent event) {
+        student.setfName(fNameField.getText());
+        student.setmName(mNameField.getText());
+        student.setlName(lNameField.getText());
+        if (ageField.getText().equals("")) {
+            student.setAge(0);
+        } else {
+            student.setAge(Integer.parseInt(ageField.getText()));
+        }
+        if (maleRadioBtn.isSelected()) {
+            student.setGender("Male");
+        } else {
+            student.setGender("Female");
+        }
         try {
             FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource("registerPage1.fxml")));
             Parent root = loader.load();
             RegisterController regController = loader.getController();
             regController.setStudentObservableList(studentObservableList);
             regController.setStudent(student);
-            regController.setIdField(student.getUserID());
+            regController.setIdField(student.getUserID() + "");
             regController.setEmailField(student.getEmail());
             regController.setPhoneField(student.getPhoneNumber());
             regController.setPasswordField(student.getPassword());
@@ -159,8 +238,25 @@ public class RegisterController implements Initializable {
         }
     }
 
+
     @FXML
     void backPage3(ActionEvent event) {
+        student.setSchoolName(schoolNameField.getText());
+//        System.out.println(schoolNameField.getText());
+        if (departmentComboBox.getValue() != null) {
+            departmentObservableList.forEach((department -> {
+                if (department.getName().equals(departmentComboBox.getValue())) {
+                    student.setDepartment(department);
+                }
+            }));
+
+        }
+        if (schoolYearCombox.getValue() != null) {
+            student.setSchoolYear(schoolYearCombox.getValue());
+        }
+
+        student.setSection(sectionField.getText());
+
         try {
             FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource("registerPage2.fxml")));
             Parent root = loader.load();
@@ -210,7 +306,7 @@ public class RegisterController implements Initializable {
 
 
         if (validatorPage1()) {
-            student.setUserID(idField.getText());
+            student.setUserID(Long.parseLong(idField.getText()));
             student.setEmail(emailField.getText());
             student.setPhoneNumber(phoneField.getText());
             student.setPassword(confirmPasswordField.getText());
@@ -220,18 +316,26 @@ public class RegisterController implements Initializable {
                 RegisterController regController = loader.getController();
                 regController.setStudentObservableList(studentObservableList);
                 regController.setStudent(student);
-                if (student.getfName() != null && student.getmName() != null &&
-                        student.getlName() != null && student.getAge() != 0 &&
-                        student.getGender() != null) {
+                if (student.getfName() != null) {
                     regController.setfNameField(student.getfName());
+                }
+                if (student.getmName() != null) {
                     regController.setmNameField(student.getmName());
+                }
+                if (student.getlName() != null) {
                     regController.setlNameField(student.getlName());
+                }
+                if (student.getAge() != 0) {
                     regController.setAgeField(student.getAge() + "");
+                }
+
+                if (student.getGender() != null) {
                     if (student.getGender().equals("Male")) {
                         regController.setMaleRadioBtn(true);
                     } else {
                         regController.setFemaleRadioBtn(true);
                     }
+
                 }
 
                 Stage stage = new Stage();
@@ -276,6 +380,19 @@ public class RegisterController implements Initializable {
                 RegisterController regController = loader.getController();
                 regController.setStudentObservableList(studentObservableList);
                 regController.setStudent(student);
+                if (student.getSchoolName() != null) {
+                    regController.setSchoolNameField(student.getSchoolName());
+                }
+                if (student.getDepartment() != null) {
+                    regController.setDepartmentComboBox(student.getDepartment().getName());
+                }
+                if (student.getSchoolYear() != null) {
+                    regController.setSchoolYearCombox(student.getSchoolYear());
+                }
+                if (student.getSection() != null) {
+                    regController.setSectionField(student.getSection());
+                }
+
 
                 Stage stage = new Stage();
                 stage.initStyle(StageStyle.UNDECORATED);
@@ -295,6 +412,105 @@ public class RegisterController implements Initializable {
         }
     }
 
+    @FXML
+    void submit(ActionEvent event) {
+
+        Connection conn = DbConnection.connectDb();
+        if (validatorPage3()) {
+            student.setSchoolName(schoolNameField.getText());
+            departmentObservableList.forEach((department -> {
+                if (department.getName().equals(departmentComboBox.getValue())) {
+                    student.setDepartment(department);
+                }
+            }));
+
+            student.setSchoolYear(schoolYearCombox.getValue());
+            student.setSection(sectionField.getText());
+
+//            try {
+//                PreparedStatement stmt = conn.prepareStatement("Insert into public.\"user_info\" (user_id,password)" +
+//                        " VALUES (?,?)");
+//                stmt.setObject(1, student.getUserID(), Types.BIGINT);
+//                stmt.setString(2, student.getPassword());
+//
+//                int status = stmt.executeUpdate();
+//                if (status > 0) {
+//                    PreparedStatement stmtStudentInfo = conn.prepareStatement("Insert into \"student_info\" " +
+//                            "(user_id,dep_id,user_id,first_name,middle_name,last_name,age,gender,email,phone_number," +
+//                            "section,school_name,school_year)");
+//                    stmtStudentInfo.setLong(1, student.getUserID());
+//                    stmtStudentInfo.setInt(2, student.getDepartment().getId());
+//                    stmtStudentInfo.setObject(3, student.getUserID(), Types.BIGINT);
+//                    stmtStudentInfo.setString(4, student.getfName());
+//                    stmtStudentInfo.setString(5, student.getmName());
+//                    stmtStudentInfo.setString(6, student.getlName());
+//                    stmtStudentInfo.setInt(7, student.getAge());
+//                    stmtStudentInfo.setString(8, student.getGender());
+//                    stmtStudentInfo.setString(9, student.getEmail());
+//                    stmtStudentInfo.setObject(10, student.getPhoneNumber(), Types.BIGINT);
+//                    stmtStudentInfo.setString(11, student.getSection());
+//                    stmtStudentInfo.setString(12, student.getSchoolName());
+//                    stmtStudentInfo.setString(13, student.getSchoolYear());
+//
+//                    int statusStudent = stmtStudentInfo.executeUpdate();
+//                    if (statusStudent > 0) {
+//                    }
+//                }
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//            }
+
+
+            try {
+                String tempName = QRCodeService.generateName(student.getUserID() + "");
+                qrFilePath = FileService.defaultPath(tempName);
+                String qrID = student.getUserID() + "";
+                QRCodeService.generateQRCode(qrID, 300, 300, qrFilePath);
+            } catch (WriterException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (URISyntaxException e) {
+                e.printStackTrace();
+            }
+            Parent root = schoolYearCombox.getScene().getRoot();
+            ColorAdjust adj = new ColorAdjust(0, 0, -0.8, 0);
+            GaussianBlur blur = new GaussianBlur(10);
+            adj.setInput(blur);
+            root.setEffect(adj);
+
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("signUpSuccessfully.fxml"));
+                Parent form = loader.load();
+                SignUpSuccessfullController message = new SignUpSuccessfullController();
+                message.setQrImage(qrFilePath + ".jpg");
+                Stage stage = new Stage();
+                Scene scene = new Scene(form);
+                form.requestFocus();
+                stage.setScene(scene);
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.initStyle(StageStyle.UNDECORATED);
+
+                stage.showAndWait();
+
+                root.setEffect(null);
+
+            } catch (IOException ex) {
+                Logger.getLogger(MainPageController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+
+//            EmailService emailService = new EmailService("montong_200000000677@uic.edu.ph","2O5NqRJKkjYI4xLf");
+//            try {
+//                emailService.sendMessage("jgacote_200000000402@uic.edu.ph","James Gacote",FileService.defaultPath(tempName));
+//            } catch (URISyntaxException e) {
+//                e.printStackTrace();
+//            }
+
+
+        }
+
+    }
 //
 //    non-injectable
 //            void/function
@@ -318,6 +534,13 @@ public class RegisterController implements Initializable {
             ageLabel.setVisible(false);
         }
 
+        if (schoolNameLBL != null && depLBL != null && schoolYearlbl != null && sectionLBL != null) {
+            schoolNameLBL.setVisible(false);
+            depLBL.setVisible(false);
+            schoolYearlbl.setVisible(false);
+            sectionLBL.setVisible(false);
+        }
+
 
     }
 
@@ -333,20 +556,28 @@ public class RegisterController implements Initializable {
 
 
         if (!idField.getText().equals("")) {
+            if (idField.getText().matches("[0-9]+")) {
+                idField.getStyleClass().add("field");
+                studentID_lbl.setVisible(false);
+                if (!studentObservableList.isEmpty()) {
+                    studentObservableList.forEach(student1 -> {
+                        if (idField.getText().equals(student1.getUserID() + "")) {
+                            isReady = false;
 
-            if (!studentObservableList.isEmpty()) {
-                studentObservableList.forEach(student1 -> {
-                    if (idField.getText().equals(student1.getUserID().toString())) {
-                        isReady = false;
-
-                        idField.getStyleClass().add("field-wrong");
-                        studentID_lbl.setText("ID is already exist*");
-                        studentID_lbl.setVisible(true);
-                    } else {
-                        idField.getStyleClass().add("field");
-                        studentID_lbl.setVisible(false);
-                    }
-                });
+                            idField.getStyleClass().add("field-wrong");
+                            studentID_lbl.setText("ID is already exist*");
+                            studentID_lbl.setVisible(true);
+                        } else {
+                            idField.getStyleClass().add("field");
+                            studentID_lbl.setVisible(false);
+                        }
+                    });
+                }
+            } else {
+                isReady = false;
+                idField.getStyleClass().add("field-wrong");
+                studentID_lbl.setText("ID field is should be number");
+                studentID_lbl.setVisible(true);
             }
 
 
@@ -399,8 +630,16 @@ public class RegisterController implements Initializable {
             confirmPasswordLabel.setText("Confirm Password field is empty*");
             confirmPasswordLabel.setVisible(true);
         } else {
-            confirmPasswordField.getStyleClass().add("field");
-            confirmPasswordLabel.setVisible(false);
+            if (!confirmPasswordField.getText().equals(passwordField.getText())) {
+                isReady = false;
+//                System.out.println(confirmPasswordField.getText());
+                confirmPasswordField.getStyleClass().add("field-wrong");
+                confirmPasswordLabel.setText("Password not match*");
+                confirmPasswordLabel.setVisible(true);
+            } else {
+
+            }
+
         }
 
         return isReady;
@@ -430,7 +669,7 @@ public class RegisterController implements Initializable {
             isReady = false;
 
             mNameField.getStyleClass().add("field-wrong");
-            mNamelbl.setText("Phone Number field is empty*");
+            mNamelbl.setText("Middle Name field is empty*");
             mNamelbl.setVisible(true);
         } else {
             mNameField.getStyleClass().add("field");
@@ -442,7 +681,7 @@ public class RegisterController implements Initializable {
             isReady = false;
 
             lNameField.getStyleClass().add("field-wrong");
-            lNameLbl.setText("Password field is empty*");
+            lNameLbl.setText("Last Name field is empty*");
             lNameLbl.setVisible(true);
         } else {
             lNameField.getStyleClass().add("field");
@@ -465,6 +704,66 @@ public class RegisterController implements Initializable {
                 ageLabel.setText("Age field is should be number");
                 ageLabel.setVisible(true);
             }
+        }
+
+        return isReady;
+    }
+
+    private boolean validatorPage3() {
+        isReady = true;
+        schoolNameField.getStyleClass().clear();
+        departmentComboBox.getStyleClass().removeAll("field", "field-wrong");
+        schoolYearCombox.getStyleClass().removeAll("field", "field-wrong");
+        sectionField.getStyleClass().clear();
+
+
+//////////////////school name
+        if (schoolNameField.getText().equals("")) {
+            isReady = false;
+
+            schoolNameField.getStyleClass().add("field-wrong");
+            schoolNameLBL.setText("School Name field is empty*");
+            schoolNameLBL.setVisible(true);
+        } else {
+            schoolNameField.getStyleClass().add("field");
+            schoolNameLBL.setVisible(false);
+        }
+/////////////////department
+//        System.out.println(departmentComboBox.getValue());
+        if (departmentComboBox.getValue() == null) {
+            isReady = false;
+
+            departmentComboBox.getStyleClass().add("field-wrong");
+            depLBL.setText("Department field is empty*");
+            depLBL.setVisible(true);
+        } else {
+            departmentComboBox.getStyleClass().add("field");
+            depLBL.setVisible(false);
+        }
+
+//////////////////school year
+        if (schoolYearCombox.getValue() == null) {
+            isReady = false;
+
+            schoolYearCombox.getStyleClass().add("field-wrong");
+            schoolYearlbl.setText("School Year field is empty*");
+            schoolYearlbl.setVisible(true);
+        } else {
+            schoolYearCombox.getStyleClass().add("field");
+            schoolYearlbl.setVisible(false);
+        }
+/////////////////////section
+        if (sectionField.getText().equals("")) {
+            isReady = false;
+
+            sectionField.getStyleClass().add("field-wrong");
+            sectionLBL.setText("Section field is empty*");
+            sectionLBL.setVisible(true);
+        } else {
+
+            sectionField.getStyleClass().add("field");
+            sectionLBL.setVisible(false);
+
         }
 
         return isReady;
@@ -524,5 +823,21 @@ public class RegisterController implements Initializable {
 
     public void setFemaleRadioBtn(boolean isActive) {
         this.femaleRadioBtn.setSelected(isActive);
+    }
+
+    public void setSchoolNameField(String schoolNameField) {
+        this.schoolNameField.setText(schoolNameField);
+    }
+
+    public void setDepartmentComboBox(String depValue) {
+        this.departmentComboBox.setValue(depValue);
+    }
+
+    public void setSchoolYearCombox(String yearValue) {
+        this.schoolYearCombox.setValue(yearValue);
+    }
+
+    public void setSectionField(String sectionField) {
+        this.sectionField.setText(sectionField);
     }
 }
