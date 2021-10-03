@@ -2,11 +2,10 @@
 
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
@@ -19,7 +18,7 @@
    <children>
       <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Button mnemonicParsing="false">
+            <Button mnemonicParsing="false" onAction="#backPage2">
                <graphic>
                   <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -35,7 +34,7 @@
             <HBox prefHeight="90.0" prefWidth="690.0" HBox.hgrow="ALWAYS" />
             <HBox alignment="CENTER" prefHeight="73.0" prefWidth="200.0" spacing="20.0">
                <children>
-                  <Button mnemonicParsing="false" styleClass="system_button">
+                  <Button mnemonicParsing="false" onAction="#minimize" styleClass="system_button">
                      <graphic>
                         <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -44,7 +43,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" styleClass="system_button">
+                  <Button mnemonicParsing="false" onAction="#exit" styleClass="system_button">
                      <graphic>
                         <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -79,14 +78,14 @@
                   </Text>
                   <VBox spacing="8.0">
                      <children>
-                        <TextField prefHeight="50.0" prefWidth="318.0" promptText="First Name" styleClass="field" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="message" text="ID is already exist*" />
-                        <TextField prefHeight="50.0" prefWidth="318.0" promptText="Middle Name" styleClass="field" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="message" text="ID is already exist*" />
-                        <TextField prefHeight="50.0" prefWidth="318.0" promptText="Last Name" styleClass="field" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="message" text="ID is already exist*" />
-                        <PasswordField prefHeight="50.0" promptText="Age" styleClass="field" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="message" text="ID is already exist*" />
+                        <TextField fx:id="fNameField" prefHeight="50.0" prefWidth="318.0" promptText="First Name" styleClass="field" />
+                        <Text fx:id="fNameLbl" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="message" text="ID is already exist*" />
+                        <TextField fx:id="mNameField" prefHeight="50.0" prefWidth="318.0" promptText="Middle Name" styleClass="field" />
+                        <Text fx:id="mNamelbl" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="message" text="ID is already exist*" />
+                        <TextField fx:id="lNameField" prefHeight="50.0" prefWidth="318.0" promptText="Last Name" styleClass="field" />
+                        <Text fx:id="lNameLbl" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="message" text="ID is already exist*" />
+                        <TextField fx:id="ageField" prefHeight="50.0" prefWidth="318.0" promptText="Age" styleClass="field" />
+                        <Text fx:id="ageLabel" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="message" text="Age Field is Empty*" />
                         <HBox alignment="CENTER_LEFT" prefHeight="49.0" prefWidth="318.0" styleClass="gender-box">
                            <children>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Gender">
@@ -99,21 +98,22 @@
                                  </styleClass>
                               </Text>
                               <Pane prefHeight="49.0" prefWidth="49.0" />
-                              <Group />
-                              <RadioButton mnemonicParsing="false" text="Male" />
+                              <RadioButton fx:id="maleRadioBtn" mnemonicParsing="false" selected="true" text="Male">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="gender" />
+                                 </toggleGroup></RadioButton>
                               <Pane prefHeight="49.0" prefWidth="28.0" />
-                              <RadioButton mnemonicParsing="false" text="Female" />
+                              <RadioButton fx:id="femaleRadioBtn" mnemonicParsing="false" text="Female" toggleGroup="$gender" />
                            </children>
                            <padding>
                               <Insets left="10.0" right="10.0" />
                            </padding>
                         </HBox>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="message" text="ID is already exist*" />
                      </children>
                   </VBox>
                   <HBox alignment="CENTER_RIGHT" prefHeight="41.0" prefWidth="415.0">
                      <children>
-                        <Button contentDisplay="RIGHT" mnemonicParsing="false" text="NEXT">
+                        <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#nextPage2" text="NEXT">
                            <graphic>
                               <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>

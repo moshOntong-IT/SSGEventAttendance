@@ -2,7 +2,7 @@ package org.codx.Model;
 
 public class Student extends UserCredentials {
 
-    private int studentID;
+    private long studentID;
     private String fName;
     private String mName;
     private String lName;
@@ -11,15 +11,19 @@ public class Student extends UserCredentials {
     private String email;
     private String phoneNumber;
     private String section;
-    private String department;
+    private Department department;
     private String schoolName;
     private String schoolYear;
 
-    public Student(String userID, int studentID,
+
+    public  Student (){
+
+    }
+    public Student(long userID, String password, long studentID,
                    String fName, String mName, String lName,
                    int age, String gender, String email, String phoneNumber,
-                   String section, String department, String schoolName, String schoolYear) {
-        super(userID);
+                   String section, Department department, String schoolName, String schoolYear) {
+        super(userID,password);
         this.studentID = studentID;
         this.fName = fName;
         this.mName = mName;
@@ -34,11 +38,11 @@ public class Student extends UserCredentials {
         this.schoolYear = schoolYear;
     }
 
-    public int getStudentID() {
+    public long getStudentID() {
         return studentID;
     }
 
-    public void setStudentID(int studentID) {
+    public void setStudentID(long studentID) {
         this.studentID = studentID;
     }
 
@@ -106,11 +110,11 @@ public class Student extends UserCredentials {
         this.section = section;
     }
 
-    public String getDepartment() {
+    public Department getDepartment() {
         return department;
     }
 
-    public void setDepartment(String department) {
+    public void setDepartment(Department department) {
         this.department = department;
     }
 

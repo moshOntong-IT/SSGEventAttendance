@@ -20,59 +20,57 @@ public class StageTool {
     private double y;
 
     private static double xStatic;
-    private static  double yStatic;
+    private static double yStatic;
     private Stage stage;
     private Parent root;
 
 
-
-    public StageTool(){
+    public StageTool() {
 
     }
-    public StageTool(String fxmlPath){
+
+    public StageTool(String fxmlPath) {
 
 
         try {
-            FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource(fxmlPath)));
-            root = loader.load();
-
-
+            root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource(fxmlPath)));
             stage = new Stage();
             stage.initStyle(StageStyle.UNDECORATED);
 
-            Scene scene = new Scene (root);
+            Scene scene = new Scene(root);
             stage.setScene(scene);
+
 
             stage.show();
 
             new FadeIn(root).play();
-        }catch (IOException exception){
+        } catch (IOException exception) {
             Logger.getLogger(StageTool.class.getName()).log(Level.SEVERE, "Cannot switch to another Page", exception);
         }
     }
 
-    public void setOnMovable (){
+    public void setOnMovable() {
 
-            this.root.setOnMousePressed(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent mouseEvent) {
-                    x = mouseEvent.getSceneX();
-                    y = mouseEvent.getSceneY();
-                }
-            });
+        this.root.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                x = mouseEvent.getSceneX();
+                y = mouseEvent.getSceneY();
+            }
+        });
 
-            root.setOnMouseDragged(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent mouseEvent) {
-                    stage.setX(mouseEvent.getScreenX() - x);
-                    stage.setY(mouseEvent.getScreenY()- y);
+        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                stage.setX(mouseEvent.getScreenX() - x);
+                stage.setY(mouseEvent.getScreenY() - y);
 
-                }
-            });
+            }
+        });
 
     }
 
-    public static void setOnMovable (Parent root, Stage stage){
+    public static void setOnMovable(Parent root, Stage stage) {
 
         root.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
@@ -86,7 +84,7 @@ public class StageTool {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 stage.setX(mouseEvent.getScreenX() - xStatic);
-                stage.setY(mouseEvent.getScreenY()- yStatic);
+                stage.setY(mouseEvent.getScreenY() - yStatic);
 
             }
         });
@@ -94,27 +92,28 @@ public class StageTool {
     }
 
 
-    public void hide(Stage stage){
+    public void hide(Stage stage) {
         stage.hide();
     }
 
     //method for Stop all running including stage
-    public void setSystemStop(){
+    public void setSystemStop() {
         System.exit(0);
     }
+
     public Stage getStage() {
         return stage;
     }
+
     public void setStage(Stage stage) {
-        this.stage= stage;
+        this.stage = stage;
     }
 
 
-
-    public void setFullSized (Boolean maximized){
+    public void setFullSized(Boolean maximized) {
         try {
             stage.setMaximized(maximized);
-        }catch (NullPointerException x){
+        } catch (NullPointerException x) {
             Logger.getLogger(StageTool.class.getName()).log(Level.SEVERE, "Stage is not initialized");
         }
     }

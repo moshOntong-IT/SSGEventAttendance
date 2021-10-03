@@ -1,29 +1,53 @@
 package org.codx.Model;
 
+import org.codx.Services.DbConnection;
+
+import java.sql.*;
+
 public class Department {
 
-    private String dep_id;
-    private String dep_name;
+    private long id;
+    private String name;
 
-    public Department(String dep_id, String dep_name) {
-        this.dep_id = dep_id;
-        this.dep_name = dep_name;
+    public Department(long id, String name) {
+        this.id = id;
+        this.name = name;
     }
 
-    public String getDep_id() {
-        return dep_id;
+    public long getId() {
+        return id;
     }
 
-    public void setDep_id(String dep_id) {
-        this.dep_id = dep_id;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getDep_name() {
-        return dep_name;
+    public String getName() {
+        return name;
     }
 
-    public void setDep_name(String dep_name) {
-        this.dep_name = dep_name;
+    public void setName(String name) {
+        this.name = name;
     }
 
+    public static Department department(long depID){
+        Connection conn = DbConnection.connectDb();
+       Department dep = null;
+        try {
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM public.\"department\" where dep_id=?");
+            stmt.setObject(1,depID, Types.BIGINT);
+            ResultSet rst = stmt.executeQuery();
+            while(rst.next()){
+                int id =  rst.getInt("dep_id");
+                String name = rst.getString("dep_name");
+
+                dep = new Department(id,name);
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return  dep;
+
+    }
 }

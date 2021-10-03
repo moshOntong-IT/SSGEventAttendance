@@ -2,19 +2,22 @@ package org.codx.Model;
 
 public class UserCredentials {
 
-    private String userID;
+    private long userID;
     private String password;
 
-    public UserCredentials(String userID) {
+    public UserCredentials(){
+
+    }
+    public UserCredentials(long userID, String password) {
         this.userID = userID;
     }
 
-    public Long getUserID() {
-        return Long.parseLong(userID);
+    public long getUserID() {
+        return userID;
     }
 
-    public void setUserID(Long userID) {
-        this.userID = userID.toString();
+    public void setUserID(long userID) {
+        this.userID = userID;
     }
 
     public String getPassword() {
