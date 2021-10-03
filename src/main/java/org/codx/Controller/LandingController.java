@@ -82,9 +82,27 @@ public class LandingController implements Initializable {
 
     @FXML
     void loginAction(ActionEvent event) {
-        StageTool loginPanel = new StageTool("loginPage.fxml");
-        loginPanel.hide((Stage) systemHeader.getScene().getWindow());
-        loginPanel.setOnMovable();
+        Parent root = null;
+        try {
+            FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource("loginPage.fxml")));
+            root = loader.load();
+            LoginController controller = loader.getController();
+            controller.setStudentObservableList(studentObservableList);
+
+            stage = new Stage();
+            stage.initStyle(StageStyle.UNDECORATED);
+
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            StageTool.setOnMovable(root,stage);
+
+            stage.show();
+            systemHeader.getScene().getWindow().hide();
+
+            new FadeIn(root).play();
+        } catch (IOException exception) {
+            Logger.getLogger(StageTool.class.getName()).log(Level.SEVERE, "Cannot switch to another Page", exception);
+        }
     }
 
 

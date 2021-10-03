@@ -432,38 +432,38 @@ public class RegisterController implements Initializable {
             student.setSchoolYear(schoolYearCombox.getValue());
             student.setSection(sectionField.getText());
 
-//            try {
-//                PreparedStatement stmt = conn.prepareStatement("Insert into public.\"user_info\" (user_id,password)" +
-//                        " VALUES (?,?)");
-//                stmt.setObject(1, student.getUserID(), Types.BIGINT);
-//                stmt.setString(2, student.getPassword());
-//
-//                int status = stmt.executeUpdate();
-//                if (status > 0) {
-//                    PreparedStatement stmtStudentInfo = conn.prepareStatement("Insert into \"student_info\" " +
-//                            "(user_id,dep_id,user_id,first_name,middle_name,last_name,age,gender,email,phone_number," +
-//                            "section,school_name,school_year)");
-//                    stmtStudentInfo.setLong(1, student.getUserID());
-//                    stmtStudentInfo.setInt(2, student.getDepartment().getId());
-//                    stmtStudentInfo.setObject(3, student.getUserID(), Types.BIGINT);
-//                    stmtStudentInfo.setString(4, student.getfName());
-//                    stmtStudentInfo.setString(5, student.getmName());
-//                    stmtStudentInfo.setString(6, student.getlName());
-//                    stmtStudentInfo.setInt(7, student.getAge());
-//                    stmtStudentInfo.setString(8, student.getGender());
-//                    stmtStudentInfo.setString(9, student.getEmail());
-//                    stmtStudentInfo.setObject(10, student.getPhoneNumber(), Types.BIGINT);
-//                    stmtStudentInfo.setString(11, student.getSection());
-//                    stmtStudentInfo.setString(12, student.getSchoolName());
-//                    stmtStudentInfo.setString(13, student.getSchoolYear());
-//
-//                    int statusStudent = stmtStudentInfo.executeUpdate();
-//                    if (statusStudent > 0) {
-//                    }
-//                }
-//            } catch (SQLException e) {
-//                e.printStackTrace();
-//            }
+            try {
+                PreparedStatement stmt = conn.prepareStatement("Insert into public.\"user_info\" (user_id,password)" +
+                        " VALUES (?,?)");
+                stmt.setObject(1, student.getUserID(), Types.BIGINT);
+                stmt.setString(2, student.getPassword());
+
+                int status = stmt.executeUpdate();
+                if (status > 0) {
+                    PreparedStatement stmtStudentInfo = conn.prepareStatement("Insert into \"student_info\" " +
+                            "(user_id,dep_id,user_id,first_name,middle_name,last_name,age,gender,email,phone_number," +
+                            "section,school_name,school_year)");
+                    stmtStudentInfo.setLong(1, student.getUserID());
+                    stmtStudentInfo.setLong(2, student.getDepartment().getId());
+                    stmtStudentInfo.setObject(3, student.getUserID(), Types.BIGINT);
+                    stmtStudentInfo.setString(4, student.getfName());
+                    stmtStudentInfo.setString(5, student.getmName());
+                    stmtStudentInfo.setString(6, student.getlName());
+                    stmtStudentInfo.setInt(7, student.getAge());
+                    stmtStudentInfo.setString(8, student.getGender());
+                    stmtStudentInfo.setString(9, student.getEmail());
+                    stmtStudentInfo.setObject(10, student.getPhoneNumber(), Types.BIGINT);
+                    stmtStudentInfo.setString(11, student.getSection());
+                    stmtStudentInfo.setString(12, student.getSchoolName());
+                    stmtStudentInfo.setString(13, student.getSchoolYear());
+
+                    int statusStudent = stmtStudentInfo.executeUpdate();
+                    if (statusStudent > 0) {
+                    }
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
 
 
             try {
