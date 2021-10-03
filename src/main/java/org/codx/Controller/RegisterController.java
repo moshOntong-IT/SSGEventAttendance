@@ -441,24 +441,74 @@ public class RegisterController implements Initializable {
                 int status = stmt.executeUpdate();
                 if (status > 0) {
                     PreparedStatement stmtStudentInfo = conn.prepareStatement("Insert into \"student_info\" " +
-                            "(user_id,dep_id,user_id,first_name,middle_name,last_name,age,gender,email,phone_number," +
-                            "section,school_name,school_year)");
+                            "(user_id,dep_id,first_name,middle_name,last_name,age,gender,email,phone_number," +
+                            "section,school_name,school_year) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
                     stmtStudentInfo.setLong(1, student.getUserID());
                     stmtStudentInfo.setLong(2, student.getDepartment().getId());
-                    stmtStudentInfo.setObject(3, student.getUserID(), Types.BIGINT);
-                    stmtStudentInfo.setString(4, student.getfName());
-                    stmtStudentInfo.setString(5, student.getmName());
-                    stmtStudentInfo.setString(6, student.getlName());
-                    stmtStudentInfo.setInt(7, student.getAge());
-                    stmtStudentInfo.setString(8, student.getGender());
-                    stmtStudentInfo.setString(9, student.getEmail());
-                    stmtStudentInfo.setObject(10, student.getPhoneNumber(), Types.BIGINT);
-                    stmtStudentInfo.setString(11, student.getSection());
-                    stmtStudentInfo.setString(12, student.getSchoolName());
-                    stmtStudentInfo.setString(13, student.getSchoolYear());
+                    stmtStudentInfo.setString(3, student.getfName());
+                    stmtStudentInfo.setString(4, student.getmName());
+                    stmtStudentInfo.setString(5, student.getlName());
+                    stmtStudentInfo.setInt(6, student.getAge());
+                    stmtStudentInfo.setString(7, student.getGender());
+                    stmtStudentInfo.setString(8, student.getEmail());
+                    stmtStudentInfo.setObject(9, student.getPhoneNumber(), Types.BIGINT);
+                    stmtStudentInfo.setString(10, student.getSection());
+                    stmtStudentInfo.setString(11, student.getSchoolName());
+                    stmtStudentInfo.setString(12, student.getSchoolYear());
 
                     int statusStudent = stmtStudentInfo.executeUpdate();
                     if (statusStudent > 0) {
+
+                        PreparedStatement stmtStudentID = conn.prepareStatement("Select" +
+                                " student_id from student_info where user_id = ?");
+                        stmtStudentID.setLong(1,student.getUserID());
+                        ResultSet rstId = stmtStudentID.executeQuery();
+
+                        while (rstId.next()){
+                            try {
+                                tempName = QRCodeService.generateName(student.getUserID() + "");
+                                qrFilePath = FileService.defaultPath(tempName);
+                                String qrID = student.getUserID() +
+                                        "\n" +
+                                        student.getPassword()+"\n"+
+                                        rstId.getLong("student_id");
+                                QRCodeService.generateQRCode(qrID, 300, 300, qrFilePath);
+                            } catch (WriterException e) {
+                                e.printStackTrace();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            } catch (URISyntaxException e) {
+                                e.printStackTrace();
+                            }
+                            Parent root = schoolYearCombox.getScene().getRoot();
+                            ColorAdjust adj = new ColorAdjust(0, 0, -0.8, 0);
+                            GaussianBlur blur = new GaussianBlur(10);
+                            adj.setInput(blur);
+                            root.setEffect(adj);
+
+                            try {
+                                FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("signUpSuccessfully.fxml"));
+                                Parent form = loader.load();
+                                SignUpSuccessfullController message = loader.getController();
+                                message.setQrImage(qrFilePath);
+                                message.setStudent(student);
+                                message.setFileName(tempName);
+                                Stage stage = new Stage();
+                                Scene scene = new Scene(form);
+                                form.requestFocus();
+                                stage.setScene(scene);
+                                stage.initModality(Modality.APPLICATION_MODAL);
+                                stage.initStyle(StageStyle.UNDECORATED);
+
+                                stage.showAndWait();
+
+                                root.setEffect(null);
+
+
+                            } catch (IOException ex) {
+                                Logger.getLogger(MainPageController.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        }
                     }
                 }
             } catch (SQLException e) {
@@ -466,58 +516,13 @@ public class RegisterController implements Initializable {
             }
 
 
-            try {
-                tempName = QRCodeService.generateName(student.getUserID() + "");
-                qrFilePath = FileService.defaultPath(tempName);
-                String qrID = student.getUserID() +
-                        "\n" +
-                        student.getfName() + "";
-                QRCodeService.generateQRCode(qrID, 300, 300, qrFilePath);
-            } catch (WriterException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (URISyntaxException e) {
-                e.printStackTrace();
-            }
-            Parent root = schoolYearCombox.getScene().getRoot();
-            ColorAdjust adj = new ColorAdjust(0, 0, -0.8, 0);
-            GaussianBlur blur = new GaussianBlur(10);
-            adj.setInput(blur);
-            root.setEffect(adj);
 
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("signUpSuccessfully.fxml"));
-                Parent form = loader.load();
-                SignUpSuccessfullController message = loader.getController();
-                message.setQrImage(qrFilePath);
-                message.setStudent(student);
-                message.setFileName(tempName);
-                Stage stage = new Stage();
-                Scene scene = new Scene(form);
-                form.requestFocus();
-                stage.setScene(scene);
-                stage.initModality(Modality.APPLICATION_MODAL);
-                stage.initStyle(StageStyle.UNDECORATED);
-
-                stage.showAndWait();
-
-                root.setEffect(null);
-
-
-            } catch (IOException ex) {
-                Logger.getLogger(MainPageController.class.getName()).log(Level.SEVERE, null, ex);
-            }
 
 
         }
 
         switchWindow();
-        try {
-            Files.delete(Paths.get(qrFilePath));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
     }
 
     private void switchWindow() {
@@ -594,18 +599,18 @@ public class RegisterController implements Initializable {
                 studentID_lbl.setVisible(false);
                 if (!studentObservableList.isEmpty()) {
                     studentObservableList.forEach(student1 -> {
+                        System.out.println(student1.getUserID());
                         if (idField.getText().equals(student1.getUserID() + "")) {
                             isReady = false;
 
                             idField.getStyleClass().add("field-wrong");
                             studentID_lbl.setText("ID is already exist*");
                             studentID_lbl.setVisible(true);
-                        } else {
-                            idField.getStyleClass().add("field");
-                            studentID_lbl.setVisible(false);
+
                         }
                     });
                 }
+
             } else {
                 isReady = false;
                 idField.getStyleClass().add("field-wrong");

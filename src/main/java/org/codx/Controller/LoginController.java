@@ -69,7 +69,7 @@ public class LoginController implements Initializable {
     @FXML
     void back(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource("registerPage1.fxml")));
+            FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource("landingPage.fxml")));
             Parent root = loader.load();
             LandingController controller = loader.getController();
             controller.setStudentObservableList(studentObservableList);
