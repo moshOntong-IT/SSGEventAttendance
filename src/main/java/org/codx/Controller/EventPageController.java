@@ -50,7 +50,7 @@ public class EventPageController implements Initializable {
         Task<Void> webCamTask = new Task<Void>() {
             @Override
             protected Void call() {
-                //TODO logger found on LoggerFactory.java
+
                 webcam = Webcam.getDefault();
                 System.out.println("[INFO]" + webcam);
                 if (webcam != null) {

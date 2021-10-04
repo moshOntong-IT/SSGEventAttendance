@@ -104,6 +104,12 @@ public class LoadingController implements Initializable {
 
         };
 
+
+
+        Thread runProgress = new Thread(loadingData);
+        runProgress.setDaemon(true);
+        runProgress.start();
+
         loadingData.setOnSucceeded(event -> {
             try {
                 FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource("landingPage.fxml")));
@@ -121,6 +127,7 @@ public class LoadingController implements Initializable {
                 stage.show();
 
                 progressBarIndicator.getScene().getWindow().hide();
+                runProgress.interrupt();
 
                 new FadeIn(root).play();
             } catch (IOException exception) {
@@ -130,10 +137,6 @@ public class LoadingController implements Initializable {
 
         progressBarIndicator.progressProperty().unbind();
         progressBarIndicator.progressProperty().bind(loadingData.progressProperty());
-
-        Thread runProgress = new Thread(loadingData);
-        runProgress.setDaemon(true);
-        runProgress.start();
     }
 
 

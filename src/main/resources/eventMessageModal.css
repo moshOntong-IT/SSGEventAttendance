@@ -1,0 +1,37 @@
+@font-face {
+  font-family: 'EuclidCircularA-Bold';
+  src: url('assets/fonts/Euclid-Circular-A-Bold.ttf');
+}
+@font-face {
+  font-family: 'EuclidCircularA-Regular';
+  src: url('assets/fonts/Euclid-Circular-A-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'EuclidCircularA-SemiBold';
+  src: url('assets/fonts/Euclid-Circular-A-SemiBold.ttf');
+}
+@font-face {
+  font-family: 'EuclidCircularA-Medium';
+  src: url('assets/fonts/Euclid-Circular-A-Medium.ttf');
+
+}
+
+.title{
+    -fx-text-fill: #ACACAC;
+    -fx-font-family:'EuclidCircularA-Bold';
+    -fx-font-size: 20px;
+}
+
+.time{
+
+    -fx-font-family:'EuclidCircularA-Bold';
+    -fx-font-size: 64px;
+}
+
+.btn-okay{
+    -fx-background-color: #1F28CF;
+    -fx-font-family:'EuclidCircularA-Bold';
+        -fx-font-size: 16px;
+    -fx-text-fill: white;
+}
