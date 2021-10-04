@@ -2,7 +2,9 @@ package org.codx.Model;
 
 public class Attendance {
 
-    private String attendance_id;
+    private long attendance_id;
+    private long event_id;
+    private long student_id;
 
     private String morning_entrance;
     private String afternoon_entrance;
@@ -10,15 +12,15 @@ public class Attendance {
     private String afternoon_exit;
 
 
-    public Attendance(String attendance_id) {
+    public Attendance(long attendance_id) {
         this.attendance_id = attendance_id;
     }
 
-    public String getAttendance_id() {
+    public long getAttendance_id() {
         return attendance_id;
     }
 
-    public void setAttendance_id(String attendance_id) {
+    public void setAttendance_id(long attendance_id) {
         this.attendance_id = attendance_id;
     }
 
@@ -54,4 +56,19 @@ public class Attendance {
         this.afternoon_exit = afternoon_exit;
     }
 
+    public long getEvent_id() {
+        return event_id;
+    }
+
+    public void setEvent_id(long event_id) {
+        this.event_id = event_id;
+    }
+
+    public long getStudent_id() {
+        return student_id;
+    }
+
+    public void setStudent_id(long student_id) {
+        this.student_id = student_id;
+    }
 }

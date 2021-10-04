@@ -20,7 +20,7 @@ public class FileService {
         String downloadPath = "";
 
         File folder = new File( getProjectPath()+ "/AvantiQrCode");
-        System.out.print(getProjectPath());
+//        System.out.print(getProjectPath());
 
         if (!folder.exists()) {
             folder.mkdir();

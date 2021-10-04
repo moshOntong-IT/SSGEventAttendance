@@ -37,14 +37,22 @@ public class SignUpSuccessfullController implements Initializable {
     }
 
     public void setQrImage(String path) {
-
+        InputStream stream = null;
         try {
-            InputStream stream = new FileInputStream(path);
+            stream = new FileInputStream(path);
             Image image = new Image(stream);
             qrImage.setImage(image);
             this.pathImage = path;
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+        }
+        finally {
+            try {
+                stream.close();
+                Files.delete(new File(path).toPath());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
     }

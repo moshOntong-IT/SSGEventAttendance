@@ -599,7 +599,7 @@ public class RegisterController implements Initializable {
                 studentID_lbl.setVisible(false);
                 if (!studentObservableList.isEmpty()) {
                     studentObservableList.forEach(student1 -> {
-                        System.out.println(student1.getUserID());
+//                        System.out.println(student1.getUserID());
                         if (idField.getText().equals(student1.getUserID() + "")) {
                             isReady = false;
 
