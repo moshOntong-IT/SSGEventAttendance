@@ -135,6 +135,7 @@ public class MainPageController implements Initializable {
                 VBox box = loader.load();
                 AttendanceCardController controller = loader.getController();
                 controller.setConn(conn);
+                controller.setMain(this);
 //                System.out.println(controller);
                 controller.setEventInfo(eventInfoObservableList.get(i));
                 attendanceBox.getChildren().add(box);

@@ -17,22 +17,21 @@
 
 }
 
+.header{
+
+    -fx-font-family:'EuclidCircularA-Medium';
+    -fx-font-size: 16px;
+}
 .title{
-    -fx-text-fill: #ACACAC;
     -fx-font-family:'EuclidCircularA-Bold';
-    -fx-font-size: 20px;
+    -fx-font-size: 40px;
 }
 
-.time{
-
-    -fx-font-family:'EuclidCircularA-Bold';
-    -fx-font-size: 64px;
-}
 
 .btn-okay{
     -fx-background-color: #1F28CF;
     -fx-font-family:'EuclidCircularA-Bold';
-        -fx-font-size: 16px;
+    -fx-font-size: 18px;
     -fx-text-fill: white;
     -fx-cursor: hand;
 }

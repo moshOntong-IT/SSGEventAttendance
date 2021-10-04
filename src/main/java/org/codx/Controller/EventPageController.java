@@ -164,14 +164,8 @@ public class EventPageController implements Initializable {
     }
 
     @FXML
-    void minimize(ActionEvent event) {
-        Stage stage = (Stage) scannerQR.getScene().getWindow();
-        stage.setIconified(true);
-    }
-
-    @FXML
-    void exit(ActionEvent event) {
-        System.exit(0);
+    void back(ActionEvent event) {
+        scannerQR.getScene().getWindow().hide();
     }
 
 }

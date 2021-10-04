@@ -101,9 +101,8 @@ public class AttendanceCardController implements Initializable {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("eventMessageModal.fxml"));
             Parent form = loader.load();
-//            AnnounceFormController controller = loader.getController();
-//            controller.setUserInformation(userinfo);
-//            controller.SetFullName(userinfo.getFullName());
+            EventMessageModalController controller = loader.getController();
+            controller.setTime(eventTime);
             Stage stage = new Stage();
             Scene scene = new Scene(form);
             form.requestFocus();
@@ -112,7 +111,7 @@ public class AttendanceCardController implements Initializable {
             stage.initStyle(StageStyle.UNDECORATED);
 
             stage.showAndWait();
-            main.init_attendanceList();
+
 
             root.setEffect(null);
 
@@ -131,9 +130,8 @@ public class AttendanceCardController implements Initializable {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("eventPage.fxml"));
             Parent form = loader.load();
-//            AnnounceFormController controller = loader.getController();
-//            controller.setUserInformation(userinfo);
-//            controller.SetFullName(userinfo.getFullName());
+            EventPageController controller = loader.getController();
+
             Stage stage = new Stage();
             Scene scene = new Scene(form);
             form.requestFocus();
@@ -172,7 +170,7 @@ public class AttendanceCardController implements Initializable {
             attendanceButton.setDisable(true);
 
             attendanceButton.setText(durationDate + (durationDateInteger == 1 ?
-                    " Day" : "  Days"));
+                    " Day" : "  Days")+" left");
 
         } else if (durationDateInteger > 5) {
             attendanceButton.setDisable(true);
