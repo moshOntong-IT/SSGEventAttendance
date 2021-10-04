@@ -14,6 +14,7 @@ import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -24,6 +25,7 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -63,13 +65,27 @@ public class MainPageController implements Initializable {
     @FXML
     private VBox eventPane;
 
+    @FXML
+    private HBox attendanceBox;
+
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        init_attendanceList();
     }
 
+    private void init_attendanceList(){
+        for(int i = 0; i < 5; i++){
+            FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource("attendanceCard.fxml")));
+            try {
+                VBox  box = loader.load();
+                attendanceBox.getChildren().add(box);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
     @FXML
     void menuNavAction(ActionEvent event) {
 
@@ -139,35 +155,7 @@ public class MainPageController implements Initializable {
         System.exit(0);
     }
 
-    @FXML
-    void attend(ActionEvent event) {
-        Parent root = departmentButton.getScene().getRoot();
-        ColorAdjust adj = new ColorAdjust(0, 0, -0.8, 0);
-        GaussianBlur blur = new GaussianBlur(10);
-        adj.setInput(blur);
-        root.setEffect(adj);
 
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("eventPage.fxml"));
-            Parent form = loader.load();
-//            AnnounceFormController controller = loader.getController();
-//            controller.setUserInformation(userinfo);
-//            controller.SetFullName(userinfo.getFullName());
-            Stage stage = new Stage();
-            Scene scene = new Scene(form);
-            form.requestFocus();
-            stage.setScene(scene);
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initStyle(StageStyle.UNDECORATED);
-
-            stage.showAndWait();
-
-            root.setEffect(null);
-
-        } catch (IOException ex) {
-            Logger.getLogger(MainPageController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
 
 
 }

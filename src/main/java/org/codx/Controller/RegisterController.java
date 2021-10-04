@@ -472,7 +472,7 @@ public class RegisterController implements Initializable {
                                         "\n" +
                                         student.getPassword()+"\n"+
                                         rstId.getLong("student_id");
-                                QRCodeService.generateQRCode(qrID, 300, 300, qrFilePath);
+                                QRCodeService.generateQRCode(qrID, 350, 350, qrFilePath);
                             } catch (WriterException e) {
                                 e.printStackTrace();
                             } catch (IOException e) {

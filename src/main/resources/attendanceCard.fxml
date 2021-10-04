@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<VBox alignment="CENTER" maxHeight="324.0" maxWidth="264.0" minHeight="324.0" minWidth="264.0" prefHeight="324.0" prefWidth="264.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.codx.Controller.AttendanceCardController">
+   <children>
+      <VBox maxHeight="310.0" maxWidth="250.0" prefHeight="310.0" prefWidth="150.0" styleClass="event-items" stylesheets="@mainPage.css">
+         <children>
+            <VBox prefHeight="248.0" prefWidth="255.0" styleClass="bar">
+               <padding>
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+               </padding>
+               <children>
+                  <Label alignment="TOP_LEFT" prefHeight="60.0" prefWidth="225.0" styleClass="event-items-title" text="AMACC DAVAO Intramurals 2020" wrapText="true" />
+                  <HBox alignment="CENTER" prefHeight="23.0" prefWidth="225.0">
+                     <children>
+                        <Label styleClass="event-items-subtitle" text="Attendance Available" />
+                     </children>
+                  </HBox>
+                  <HBox fx:id="availabilityBox" alignment="CENTER" prefHeight="48.0" prefWidth="225.0" spacing="5.0">
+                     <children>
+                        <HBox alignment="CENTER" maxHeight="30.0" maxWidth="80.0" prefHeight="30.0" prefWidth="80.0" styleClass="event-available-items">
+                           <children>
+                              <Label styleClass="event-available-items-label" text="Morning" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="83.0" layoutY="19.0" maxHeight="30.0" maxWidth="80.0" prefHeight="30.0" prefWidth="80.0" styleClass="event-available-items">
+                           <children>
+                              <Label styleClass="event-available-items-label" text="Afternoon" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" layoutX="25.0" layoutY="85.0" prefHeight="23.0" prefWidth="225.0">
+                     <children>
+                        <Label styleClass="event-items-subtitle" text="Students" />
+                     </children>
+                  </HBox>
+                  <Pane prefHeight="10.0" prefWidth="225.0" />
+                  <HBox prefHeight="79.0" prefWidth="225.0" spacing="5.0">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="75.0" prefWidth="115.0">
+                           <children>
+                              <TextField alignment="CENTER" editable="false" prefHeight="38.0" prefWidth="115.0" styleClass="event-status-field" text="230" />
+                              <Label fx:id="activeStatus" styleClass="event-status" text="Active">
+                                 <VBox.margin>
+                                    <Insets top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="75.0" prefWidth="115.0">
+                           <children>
+                              <TextField alignment="CENTER" editable="false" prefHeight="38.0" prefWidth="115.0" styleClass="event-status-field" text="230" />
+                              <Label fx:id="absentStatus" styleClass="event-status" text="Absent">
+                                 <VBox.margin>
+                                    <Insets top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <Button mnemonicParsing="false" onAction="#attend" prefHeight="63.0" prefWidth="255.0" styleClass="event-btn" text="ATTENDANCE" />
+         </children>
+      </VBox>
+   </children>
+</VBox>
