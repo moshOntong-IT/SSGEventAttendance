@@ -23,6 +23,7 @@
     -fx-text-fill: #3641B7;
     -fx-font-family: 'EuclidCircularA-SemiBold';
     -fx-font-size: 15px;
+    -fx-cursor: hand;
 }
 
 .NextButton{
@@ -30,6 +31,7 @@
     -fx-text-fill: white;
     -fx-font-family: 'EuclidCircularA-Bold';
     -fx-font-size: 16px;
+    -fx-cursor: hand;
 }
 
 .EventTitle{
@@ -44,4 +46,14 @@
 
 .EventBackground{
     -fx-background-color: transparent;
+}
+
+.createEvent-header{
+    -fx-font-family: 'EuclidCircularA-Bold';
+    -fx-font-size: 40px;
+}
+
+.subtitle2{
+    -fx-font-family: 'EuclidCircularA-SemiBold';
+    -fx-font-size: 18px;
 }

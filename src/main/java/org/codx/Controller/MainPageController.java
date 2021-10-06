@@ -1,6 +1,7 @@
 package org.codx.Controller;
 
-import javafx.beans.Observable;
+import animatefx.animation.FadeIn;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
@@ -8,7 +9,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -17,15 +17,16 @@ import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.codx.Model.EventInfo;
+import org.codx.Model.LoginHistory;
 import org.codx.Model.Student;
 import org.codx.Services.DbConnection;
+import org.codx.StageTool;
 
 import java.io.IOException;
 import java.net.URL;
@@ -43,6 +44,8 @@ public class MainPageController implements Initializable {
 
     private ObservableList<Student> studentObservableList;
     private ObservableList<EventInfo> eventInfoObservableList;
+    private Connection conn;
+    private LoginHistory adminInfo;
 
     @FXML
     private Button eventButton;
@@ -69,7 +72,7 @@ public class MainPageController implements Initializable {
     private ImageView departmentIcon;
 
     @FXML
-    private StackPane stackLayout;
+    public StackPane stackLayout;
 
     @FXML
     private VBox systemRole;
@@ -80,20 +83,27 @@ public class MainPageController implements Initializable {
     @FXML
     private HBox attendanceBox;
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         studentObservableList = FXCollections.observableArrayList();
-        eventInfoObservableList = FXCollections.observableArrayList();
-        init_attendanceList();
+
+
     }
 
     public void init_attendanceList() {
-        Connection conn = DbConnection.connectDb();
+        eventInfoObservableList = FXCollections.observableArrayList();
+        if (!attendanceBox.getChildren().isEmpty()) {
+            attendanceBox.getChildren().clear();
+        }
+
+        if (!eventInfoObservableList.isEmpty()) {
+            eventInfoObservableList.clear();
+        }
 
         try {
-            PreparedStatement stmt = conn.prepareStatement("Select * from event_info where event_date > Now()::timestamp"+
-                    " ORDER BY event_date ASC;");
+            PreparedStatement stmt = conn.prepareStatement("Select * from event_info where event_date > CURRENT_DATE\n" +
+                    "ORDER BY event_date;");
+
             ResultSet rst = stmt.executeQuery();
             while (rst.next()) {
                 EventInfo info;
@@ -107,19 +117,19 @@ public class MainPageController implements Initializable {
                 //morning
 //                System.out.println(rst.getTimestamp("morning_begin") == null ? author:"");
                 String morningStart = rst.getTimestamp("morning_begin")
-                        == null ? "": rst.getTimestamp("morning_begin").toString() ;
-                String morningEnd = rst.getTimestamp("morning_begin")
-                        == null ? "": rst.getTimestamp("morning_begin").toString() ;
+                        == null ? "" : rst.getTimestamp("morning_begin").toString();
+                String morningEnd = rst.getTimestamp("morning_end")
+                        == null ? "" : rst.getTimestamp("morning_end").toString();
                 //afternoon
                 String afternoonStart = rst.getTimestamp("afternoon_begin")
-                        == null ? "": rst.getTimestamp("afternoon_begin").toString() ;
-                String afternoonEnd =rst.getTimestamp("afternoon_end")
-                        == null ? "": rst.getTimestamp("afternoon_end").toString() ;
+                        == null ? "" : rst.getTimestamp("afternoon_begin").toString();
+                String afternoonEnd = rst.getTimestamp("afternoon_end")
+                        == null ? "" : rst.getTimestamp("afternoon_end").toString();
 
                 String eventSchoolYear = rst.getString("event_school_year");
 
-                info = new EventInfo(id,name,event_date,desc,author,morningStart,morningEnd,afternoonStart
-                ,afternoonEnd,eventSchoolYear);
+                info = new EventInfo(id, name, event_date, desc, author, morningStart, morningEnd, afternoonStart
+                        , afternoonEnd, eventSchoolYear);
 
                 eventInfoObservableList.add(info);
             }
@@ -136,6 +146,7 @@ public class MainPageController implements Initializable {
                 AttendanceCardController controller = loader.getController();
                 controller.setConn(conn);
                 controller.setMain(this);
+                controller.setLog(adminInfo);
 //                System.out.println(controller);
                 controller.setEventInfo(eventInfoObservableList.get(i));
                 attendanceBox.getChildren().add(box);
@@ -144,6 +155,13 @@ public class MainPageController implements Initializable {
             }
 
         }
+    }
+
+    @FXML
+    void sync(ActionEvent event) {
+        Platform.runLater(
+                () -> init_attendanceList()
+        );
     }
 
     @FXML
@@ -211,8 +229,71 @@ public class MainPageController implements Initializable {
 
     @FXML
     void exit(ActionEvent event) {
+        try {
+            LoginController.setLogout(adminInfo, conn);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         System.exit(0);
     }
 
+    public void setAdminLog(LoginHistory adminLog) {
+        this.adminInfo = adminLog;
+    }
+
+    public void setConnection(Connection conn) {
+        this.conn = conn;
+        runEvent();
+    }
+
+    public void runEvent() {
+        Platform.runLater(() -> init_attendanceList());
+    }
+
+    @FXML
+    void logout(ActionEvent event) {
+        try {
+            LoginController.setLogout(adminInfo, conn);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        StageTool tool = new StageTool("landingPage.fxml");
+        tool.setOnMovable();
+
+        tool.hide((Stage) this.attendanceBox.getScene().getWindow());
+    }
+
+    @FXML
+    void addEvent(ActionEvent event) {
+        Parent root = attendanceBox.getScene().getRoot();
+        ColorAdjust adj = new ColorAdjust(0, 0, -0.8, 0);
+        GaussianBlur blur = new GaussianBlur(10);
+        adj.setInput(blur);
+        root.setEffect(adj);
+//        System.out.print("asa  "+ eventInfo.getMorning_begin());
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("createEventPage1.fxml"));
+            Parent form = loader.load();
+
+            CreateEventPageController controller = loader.getController();
+            controller.setAdminLog(adminInfo);
+
+
+            Stage stage = new Stage();
+            Scene scene = new Scene(form);
+            form.requestFocus();
+            stage.setScene(scene);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initStyle(StageStyle.UNDECORATED);
+
+            stage.showAndWait();
+            init_attendanceList();
+
+            root.setEffect(null);
+
+        } catch (IOException ex) {
+            Logger.getLogger(MainPageController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
 }

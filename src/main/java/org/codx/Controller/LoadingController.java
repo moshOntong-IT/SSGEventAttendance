@@ -37,12 +37,19 @@ public class LoadingController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        studentObservableList = FXCollections.observableArrayList();
+
 
         loadProgress();
     }
 
-    private void init_student_list() {
+    public ObservableList<Student> getStudentObservableList() {
+        return studentObservableList;
+    }
+
+
+
+    public  void init_student_list() {
+        studentObservableList = FXCollections.observableArrayList();
         Connection conn = DbConnection.connectDb();
         String statement = "Select u.user_id, u.password,\n" +
                 "s.student_id ,s.first_name, s.middle_name, s.last_name,\n" +
@@ -85,6 +92,8 @@ public class LoadingController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+
     }
 
     private void loadProgress() {
@@ -114,8 +123,7 @@ public class LoadingController implements Initializable {
             try {
                 FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource("landingPage.fxml")));
                 Parent root = loader.load();
-                LandingController landingController = loader.getController();
-                landingController.setStudentObservableList(studentObservableList);
+
 
                 Stage stage = new Stage();
                 stage.initStyle(StageStyle.UNDECORATED);

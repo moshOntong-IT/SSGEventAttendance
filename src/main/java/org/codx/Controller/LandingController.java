@@ -35,7 +35,9 @@ public class LandingController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+       LoadingController controller =  new LoadingController();
+       controller.init_student_list();
+        this.studentObservableList = controller.getStudentObservableList();
 
     }
 
@@ -110,7 +112,5 @@ public class LandingController implements Initializable {
         return studentObservableList;
     }
 
-    public void setStudentObservableList(ObservableList<Student> studentObservableList) {
-        this.studentObservableList = studentObservableList;
-    }
+
 }

@@ -14,112 +14,93 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <VBox prefHeight="600.0" prefWidth="900.0" styleClass="body" stylesheets="@eventPage.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.codx.Controller.EventPageController">
-   <children>
-      <HBox alignment="CENTER_LEFT" prefHeight="57.0" prefWidth="900.0">
-         <children>
-            <Button mnemonicParsing="false" onAction="#back" styleClass="system_button">
-               <graphic>
-                  <ImageView fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@assets/back.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-         </children>
-         <padding>
-            <Insets bottom="10.0" left="30.0" right="30.0" top="20.0" />
-         </padding>
-      </HBox>
-      <HBox prefHeight="162.0" prefWidth="900.0">
-         <children>
-            <VBox prefHeight="162.0" prefWidth="1049.0">
-               <children>
-                  <Label alignment="TOP_LEFT" prefHeight="113.0" prefWidth="606.0" styleClass="title" text="AMACC DAVAO INTRAMURALS 2020" wrapText="true" />
-                  <Label styleClass="subtitle" text="This page contains the attendace for this event." />
-               </children>
-               <padding>
-                  <Insets left="90.0" top="20.0" />
-               </padding>
-            </VBox>
-            <VBox alignment="BASELINE_LEFT" prefHeight="162.0" prefWidth="568.0" HBox.hgrow="ALWAYS">
-               <children>
-                  <Pane prefHeight="67.0" prefWidth="210.0" />
-                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="120.0" styleClass="btn" text="Create Report" />
-               </children>
-            </VBox>
-         </children>
-      </HBox>
-      <HBox prefHeight="360.0" prefWidth="900.0">
-         <padding>
-            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-         </padding>
-         <children>
-            <Pane prefHeight="318.0" prefWidth="66.0" />
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="availability-pane">
-               <opaqueInsets>
-                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-               </opaqueInsets>
-               <children>
-                  <Label text="Morning">
-                     <styleClass>
-                        <String fx:value="label-availability" />
-                        <String fx:value="label-availability-day" />
-                     </styleClass>
-                  </Label>
-                  <Line endX="-100.0" endY="30.0" startX="-100.0" styleClass="line-availability" />
-                  <Label styleClass="label-availability" text="Entrance" />
-                  <Line endX="-100.0" endY="30.0" startX="-100.0" styleClass="line-availability" />
-                  <Label styleClass="label-availability" text="Exit" />
-                  <Line endX="-100.0" endY="30.0" startX="-100.0" />
-                  <Label text="Afternoon">
-                     <styleClass>
-                        <String fx:value="label-availability" />
-                        <String fx:value="label-availability-day" />
-                     </styleClass>
-                  </Label>
-                  <Line endX="-100.0" endY="30.0" startX="-100.0" styleClass="line-availability" />
-                  <Label styleClass="label-availability" text="Entrance" />
-                  <Line endX="-100.0" endY="30.0" startX="-100.0" styleClass="line-availability" />
-                  <Label styleClass="label-availability" text="Exit" />
-               </children>
-            </VBox>
-            <Pane prefHeight="319.0" prefWidth="39.0" />
-            <ImageView fx:id="scannerQR" fitHeight="319.0" fitWidth="337.0" pickOnBounds="true">
-               <image>
-                  <Image url="@assets/demoQR.png" />
-               </image>
-               <viewport>
-                  <Rectangle2D />
-               </viewport>
+   <HBox alignment="CENTER_LEFT" prefHeight="57.0" prefWidth="900.0">
+      <padding>
+         <Insets bottom="10.0" left="30.0" right="30.0" top="20.0" />
+      </padding>
+      <Button mnemonicParsing="false" onAction="#back" styleClass="system_button">
+         <graphic>
+            <ImageView fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+               <Image url="@assets/back.png" />
             </ImageView>
-            <Pane prefHeight="319.0" prefWidth="18.0" />
-            <VBox alignment="TOP_CENTER" prefHeight="319.0" prefWidth="331.0" spacing="20.0">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <children>
-                  <Label prefHeight="63.0" prefWidth="181.0" styleClass="text-login-title" text="Student Account Form" textAlignment="CENTER" wrapText="true" />
-                  <TextField prefHeight="50.0" promptText="ID" styleClass="field" />
-                  <PasswordField prefHeight="50.0" promptText="Password" styleClass="field" />
-                  <Button mnemonicParsing="false" prefHeight="54.0" prefWidth="289.0" text="Present">
-                     <font>
-                        <Font name="EuclidCircularA-SemiBold" size="12.0" />
-                     </font>
-                     <styleClass>
-                        <String fx:value="btn" />
-                        <String fx:value="present-btn" />
-                     </styleClass>
-                  </Button>
-               </children>
-               <padding>
-                  <Insets bottom="20.0" left="20.0" right="20.0" top="10.0" />
-               </padding>
-            </VBox>
-         </children>
-      </HBox>
-   </children>
+         </graphic>
+      </Button>
+      <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+   </HBox>
+   <HBox prefHeight="162.0" prefWidth="900.0">
+      <VBox prefHeight="162.0" prefWidth="1049.0">
+         <padding>
+            <Insets left="90.0" top="20.0" />
+         </padding>
+         <Label fx:id="title" alignment="TOP_LEFT" prefHeight="113.0" prefWidth="606.0" styleClass="title" text="AMACC DAVAO INTRAMURALS 2020" wrapText="true" />
+         <Label styleClass="subtitle" text="This page contains the attendace for this event." />
+      </VBox>
+      <VBox alignment="BASELINE_LEFT" prefHeight="162.0" prefWidth="568.0" HBox.hgrow="ALWAYS">
+         <Pane prefHeight="67.0" prefWidth="210.0" />
+         <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="120.0" styleClass="btn" text="Create Report" />
+      </VBox>
+   </HBox>
+   <HBox prefHeight="360.0" prefWidth="900.0">
+      <padding>
+         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+      </padding>
+      <Pane prefHeight="318.0" prefWidth="66.0" />
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="availability-pane">
+         <opaqueInsets>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </opaqueInsets>
+         <Label fx:id="morningLabel" text="Morning">
+            <styleClass>
+               <String fx:value="label-availability" />
+               <String fx:value="label-availability-day" />
+            </styleClass>
+         </Label>
+         <Line fx:id="morningEntranceLine" endX="-100.0" endY="30.0" startX="-100.0" styleClass="line-availability" />
+         <Text fx:id="morningEntranceLabel" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label-availability" text="Entrance" />
+         <Line fx:id="morningExitLine" endX="-100.0" endY="30.0" startX="-100.0" styleClass="line-availability" />
+         <Text fx:id="morningExitLabel" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label-availability" text="Exit" />
+         <Line fx:id="afternoonLine" endX="-100.0" endY="30.0" startX="-100.0" />
+         <Label fx:id="afternoonLabel" text="Afternoon">
+            <styleClass>
+               <String fx:value="label-availability" />
+               <String fx:value="label-availability-day" />
+            </styleClass>
+         </Label>
+         <Line fx:id="entranceNoonLine" endX="-100.0" endY="30.0" startX="-100.0" styleClass="line-availability" />
+         <Text fx:id="entranceNoonLabel" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label-availability" text="Entrance" />
+         <Line fx:id="exitNoonLine" endX="-100.0" endY="30.0" startX="-100.0" styleClass="line-availability" />
+         <Text fx:id="exitNoonLabel" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label-availability" text="Exit" />
+      </VBox>
+      <Pane prefHeight="319.0" prefWidth="39.0" />
+      <ImageView fx:id="scannerQR" fitHeight="319.0" fitWidth="337.0" pickOnBounds="true">
+         <viewport>
+            <Rectangle2D />
+         </viewport>
+         <Image url="@assets/demoQR.png" />
+      </ImageView>
+      <Pane prefHeight="319.0" prefWidth="18.0" />
+      <VBox alignment="TOP_CENTER" prefHeight="319.0" prefWidth="331.0" spacing="20.0">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="10.0" />
+         </padding>
+         <Label prefHeight="63.0" prefWidth="181.0" styleClass="text-login-title" text="Student Account Form" textAlignment="CENTER" wrapText="true" />
+         <TextField prefHeight="50.0" promptText="ID" styleClass="field" />
+         <PasswordField prefHeight="50.0" promptText="Password" styleClass="field" />
+         <Button mnemonicParsing="false" prefHeight="54.0" prefWidth="289.0" text="Present">
+            <font>
+               <Font name="EuclidCircularA-SemiBold" size="12.0" />
+            </font>
+            <styleClass>
+               <String fx:value="btn" />
+               <String fx:value="present-btn" />
+            </styleClass>
+         </Button>
+      </VBox>
+   </HBox>
 </VBox>

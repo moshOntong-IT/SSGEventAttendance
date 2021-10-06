@@ -1,6 +1,6 @@
 package org.codx.Model;
 
-public class UserCredentials {
+public class UserCredentials { // superclass
 
     private long userID;
     private String password;

@@ -180,8 +180,8 @@ public class RegisterController implements Initializable {
         try {
             FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource("landingPage.fxml")));
             Parent root = loader.load();
-            LandingController landingController = loader.getController();
-            landingController.setStudentObservableList(studentObservableList);
+
+
 
             Stage stage = new Stage();
             stage.initStyle(StageStyle.UNDECORATED);
@@ -468,10 +468,7 @@ public class RegisterController implements Initializable {
                             try {
                                 tempName = QRCodeService.generateName(student.getUserID() + "");
                                 qrFilePath = FileService.defaultPath(tempName);
-                                String qrID = student.getUserID() +
-                                        "\n" +
-                                        student.getPassword()+"\n"+
-                                        rstId.getLong("student_id");
+                                String qrID = student.getUserID() +"";
                                 QRCodeService.generateQRCode(qrID, 350, 350, qrFilePath);
                             } catch (WriterException e) {
                                 e.printStackTrace();
@@ -530,8 +527,8 @@ public class RegisterController implements Initializable {
         try {
             FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource("landingPage.fxml")));
             root = loader.load();
-            LandingController controller = loader.getController();
-            controller.setStudentObservableList(studentObservableList);
+
+
 
             Stage stage = new Stage();
             stage.initStyle(StageStyle.UNDECORATED);
@@ -826,9 +823,7 @@ public class RegisterController implements Initializable {
         return isReady;
     }
 
-    public ObservableList<Student> getStudentObservableList() {
-        return studentObservableList;
-    }
+
 
     public void setStudent(Student student) {
         this.student = student;

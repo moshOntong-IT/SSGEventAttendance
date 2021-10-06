@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
-public class EventConvert {
+public class EventConvert { // superclass
 
     public static void parseAATime(String date, EventDateTimeBuilder builder) throws ParseException {
         SimpleDateFormat dateFormat
@@ -21,7 +21,7 @@ public class EventConvert {
         builder.formatterParseDateTime(dF.format(pre_format) + "");
     }
 
-    public static void greaterTime(String time1, String time2, EventDateTimeBuilder builder) throws ParseException {
+    public static void greaterThan(String time1, String time2, EventDateTimeBuilder builder) throws ParseException {
         DateFormat dF = new SimpleDateFormat("hh:mm aa");
         Date d = dF.parse(time1);
         Date d2 = dF.parse(time2);
@@ -37,6 +37,23 @@ public class EventConvert {
         }
 
         builder.formatterParseDateTime(result);
+    }
+
+    public static boolean lessThan(String time1, String time2) throws ParseException {
+        DateFormat dF = new SimpleDateFormat("hh:mm aa");
+        Date d = dF.parse(time1);
+        Date d2 = dF.parse(time2);
+
+        long t = d.getTime();
+        long t2 = d2.getTime();
+//        System.out.println(t +"\n"+t2);
+        String result = "";
+        if (t < t2) {
+            return true;
+        } else {
+           return false;
+        }
+
     }
 
     public static void parseDate(EventDateTimeBuilder builder) {

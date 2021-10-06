@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 
-public class EventInfo extends EventConvert {
+public class EventInfo extends  EventConvert{//subclass
     private long event_id;
     private String event_name;
 
@@ -158,6 +158,7 @@ public class EventInfo extends EventConvert {
         return absent;
     }
     public String getDurationDate(){
+
         parseDate((date)-> this.todayDate = date);
         try {
             getDuration(todayDate,event_date,(date)-> this.durationDate = date);

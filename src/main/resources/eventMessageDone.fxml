@@ -8,8 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="300.0" styleClass="body" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="300.0" styleClass="body" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.codx.Controller.EventMessageDoneController">
    <stylesheets>
       <URL value="@style.css" />
       <URL value="@eventMessageDone.css" />
@@ -24,8 +23,8 @@
       <Pane prefHeight="24.0" prefWidth="300.0" />
       <Label styleClass="header" text="Thank you!" />
       <Pane prefHeight="34.0" prefWidth="300.0" />
-      <Label fx:id="name" styleClass="title" text="James Dope" />
-      <Pane prefHeight="65.0" prefWidth="300.0" />
-      <Button mnemonicParsing="false" prefHeight="66.0" prefWidth="300.0" styleClass="btn-okay" text="Okay" />
+      <Label fx:id="name" alignment="CENTER" prefHeight="106.0" prefWidth="292.0" styleClass="title" text="James Dope" wrapText="true" />
+      <Pane prefHeight="26.0" prefWidth="300.0" />
+      <Button mnemonicParsing="false" onAction="#okayAction" prefHeight="66.0" prefWidth="300.0" styleClass="btn-okay" text="Okay" />
    </children>
 </VBox>

@@ -24,7 +24,7 @@
 }
 .title{
     -fx-font-family:'EuclidCircularA-Bold';
-    -fx-font-size: 40px;
+    -fx-font-size: 30px;
 }
 
 
@@ -35,3 +35,4 @@
     -fx-text-fill: white;
     -fx-cursor: hand;
 }
+

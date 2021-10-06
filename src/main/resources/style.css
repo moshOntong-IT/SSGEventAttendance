@@ -154,14 +154,9 @@
     -fx-cursor: hand;
 }
 
-.createEvent-header{
-    -fx-font-size: 40px;
-}
 
-.subtitle2{
-    -fx-font-size: 18px;
-}
+
 
 .txt{
     -fx-font-size: 15px;
-}}
+}

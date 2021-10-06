@@ -25,7 +25,7 @@ public class MainApp extends Application {
             root = FXMLLoader.load(getClass().getClassLoader().getResource("loadingPage.fxml"));
         }catch (IOException e){
             e.printStackTrace();
-            System.out.println(e);
+//            System.out.println(e);
         }
         primaryStage.initStyle(StageStyle.UNDECORATED);
         Scene scene = new Scene(root);

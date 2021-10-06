@@ -1,5 +1,6 @@
 package org.codx.Controller;
 
+import Builder.EventConvert;
 import animatefx.animation.FadeIn;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,17 +16,16 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.codx.Model.LoginHistory;
 import org.codx.Model.Student;
+import org.codx.Model.SystemInfo;
 import org.codx.Services.DbConnection;
 import org.codx.StageTool;
 
 import javax.xml.transform.Result;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -34,6 +34,12 @@ import java.util.logging.Logger;
 public class LoginController implements Initializable {
 
     private ObservableList<Student> studentObservableList;
+    private LoginHistory info;
+
+    private  Connection conn;
+
+    private String loginDate;
+    private static String logoutDate;
 
 
     @FXML
@@ -55,25 +61,45 @@ public class LoginController implements Initializable {
 
     @FXML
     void submitButton(ActionEvent event) {
-        if(validator()){
-            Connection conn = DbConnection.connectDb();
+        if (validator()) {
+           conn = DbConnection.connectDb();
             try {
                 PreparedStatement stmt = conn.prepareStatement("Select u.user_id, u.password, \n" +
-                        "sys.admin_pos \n" +
+                        "sys.admin_pos, sys.admin_id\n" +
                         "from user_info u\n" +
-                        "inner join public.\"SYSTEM_INFO\" sys\n" +
+                        "inner join public.\"system_info\" sys\n" +
                         "on u.user_id = sys.user_id\n" +
                         "where sys.user_id = ? and u.password = ? ;");
                 stmt.setLong(1, Long.parseLong(loginField.getText()));
                 stmt.setString(2, passwordField.getText());
                 ResultSet rst = stmt.executeQuery();
-                if(rst.next()){
-                    StageTool proceed = new StageTool("mainPage.fxml");
-                    proceed.setOnMovable();
-                    proceed.hide((Stage) loginBTN.getScene().getWindow());
+                if (rst.next()) {
+                    EventConvert.parseDate((date) -> this.loginDate = date);
+                    info = new LoginHistory(Long.parseLong(loginField.getText()));
+                    info.setAdminID(rst.getLong("admin_id"));
+                    info.setPosition(rst.getString("admin_pos"));
+                    info.setLoginDate(loginDate);
 
 
-                }else{
+                    PreparedStatement stmt2 = conn.prepareStatement("" +
+                            "Insert into login_history (login_date,admin_id) VALUES (?,?)" +
+                            " RETURNING history_id");
+//                    System.out.println(info.getLoginDate());
+                    stmt2.setObject(1, info.getLoginDate(), Types.TIMESTAMP);
+                    stmt2.setObject(2, info.getAdminID());
+
+                    stmt2.execute();
+
+
+                    ResultSet rst2 = stmt2.getResultSet();
+                    if (rst2.next()) {
+                        info.setHistoryId(rst2.getLong("history_id"));
+//                        System.out.println(info.getHistoryId());
+                        switchWindow();
+
+
+                    }
+                } else {
                     Alert invalid = new Alert(Alert.AlertType.ERROR);
                     invalid.setTitle("Invalid Account");
                     invalid.setContentText("This account is invalid");
@@ -82,30 +108,68 @@ public class LoginController implements Initializable {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+
+
         }
     }
 
-    private boolean validator (){
+    public static void setLogout(LoginHistory adminLog, Connection conn) throws SQLException {
+        EventConvert.parseDate((date) -> logoutDate = date);
+        PreparedStatement stmt = conn.prepareStatement("UPDATE login_history" +
+                " SET logout_date = ? where history_id = ?");
+
+        stmt.setObject(1,logoutDate, Types.TIMESTAMP);
+        stmt.setLong(2, adminLog.getHistoryId());
+        stmt.execute();
+    }
+
+    private boolean validator() {
         boolean isReady = true;
         Alert message = new Alert(Alert.AlertType.WARNING);
         message.setTitle("Message");
         String contentMessage = "Invalid:";
-        if(loginField.getText().equals("")){
-            contentMessage+="\nUser field is empty";
+        if (loginField.getText().equals("")) {
+            contentMessage += "\nUser field is empty";
             isReady = false;
         }
 
-        if (passwordField.getText().equals("")){
-            contentMessage+="\nPassword field is empty";
+        if (passwordField.getText().equals("")) {
+            contentMessage += "\nPassword field is empty";
             isReady = false;
         }
-        if(!isReady){
+        if (!isReady) {
             message.setContentText(contentMessage);
             message.showAndWait();
         }
         return isReady;
     }
 
+    private void switchWindow() {
+        try {
+            FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource("mainPage.fxml")));
+            Parent root = loader.load();
+            MainPageController controller = loader.getController();
+            controller.setConnection(this.conn);
+            controller.setAdminLog(info);
+
+            Stage stage = new Stage();
+            stage.initStyle(StageStyle.UNDECORATED);
+
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            StageTool.setOnMovable(root, stage);
+
+            stage.show();
+
+            loginField.getScene().getWindow().hide();
+
+
+            new FadeIn(root).play();
+        } catch (IOException exception) {
+            Logger.getLogger(StageTool.class.getName()).log(Level.SEVERE, "Cannot switch to another Page", exception);
+        }
+
+    }
 
     @FXML
     void exitBTN(ActionEvent event) {
@@ -125,14 +189,14 @@ public class LoginController implements Initializable {
             FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource("landingPage.fxml")));
             Parent root = loader.load();
             LandingController controller = loader.getController();
-            controller.setStudentObservableList(studentObservableList);
+
 
             Stage stage = new Stage();
             stage.initStyle(StageStyle.UNDECORATED);
 
             Scene scene = new Scene(root);
             stage.setScene(scene);
-            StageTool.setOnMovable(root,stage);
+            StageTool.setOnMovable(root, stage);
 
             stage.show();
             loginBTN.getScene().getWindow().hide();

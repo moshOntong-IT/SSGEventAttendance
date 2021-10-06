@@ -19,6 +19,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.codx.Model.EventInfo;
+import org.codx.Model.LoginHistory;
 
 import java.io.IOException;
 import java.net.URL;
@@ -31,6 +32,7 @@ import java.util.logging.Logger;
 
 public class AttendanceCardController implements Initializable {
 
+
     private EventInfo eventInfo;
     private Connection conn;
     private MainPageController main;
@@ -38,6 +40,7 @@ public class AttendanceCardController implements Initializable {
     private String eventTime;
     private String result;
     private String dateNow;
+    private LoginHistory log;
 
     @FXML
     private Label title;
@@ -76,14 +79,17 @@ public class AttendanceCardController implements Initializable {
     void attend(ActionEvent event) {
 
         try {
-            EventConvert.parseDate((date)-> this.dateNow = date);
-            EventConvert.parseAATime( dateNow, (time) -> this.timeNow = time);
-            EventConvert.parseAATime(eventInfo.getEvent_date(), (time) -> this.eventTime = time);
-
-            EventConvert.greaterTime(timeNow, eventTime, (result) -> this.result = result);
-            if(result.equals("Ready")){
+            EventConvert.parseDate((date) -> this.dateNow = date);
+            EventConvert.parseAATime(dateNow, (time) -> this.timeNow = time);
+            if (!eventInfo.getMorning_begin().equals("")) {
+                EventConvert.parseAATime(eventInfo.getMorning_begin(), (time) -> this.eventTime = time);
+            } else {
+                EventConvert.parseAATime(eventInfo.getAfternoon_begin(), (time) -> this.eventTime = time);
+            }
+            EventConvert.greaterThan(timeNow, eventTime, (result) -> this.result = result);
+            if (result.equals("Ready")) {
                 showAttendancePage();
-            }else{
+            } else {
                 showMessage();
             }
         } catch (ParseException e) {
@@ -91,8 +97,9 @@ public class AttendanceCardController implements Initializable {
         }
 
     }
-    private void showMessage(){
-        Parent root = absentStatus.getScene().getRoot();
+
+    private void showMessage() {
+        Parent root = main.stackLayout.getScene().getRoot();
         ColorAdjust adj = new ColorAdjust(0, 0, -0.8, 0);
         GaussianBlur blur = new GaussianBlur(10);
         adj.setInput(blur);
@@ -126,11 +133,14 @@ public class AttendanceCardController implements Initializable {
         GaussianBlur blur = new GaussianBlur(10);
         adj.setInput(blur);
         root.setEffect(adj);
-
+//        System.out.print("asa  "+ eventInfo.getMorning_begin());
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("eventPage.fxml"));
             Parent form = loader.load();
+
             EventPageController controller = loader.getController();
+            controller.setAdminLog(log);
+            controller.setEventInfo(eventInfo);
 
             Stage stage = new Stage();
             Scene scene = new Scene(form);
@@ -170,7 +180,7 @@ public class AttendanceCardController implements Initializable {
             attendanceButton.setDisable(true);
 
             attendanceButton.setText(durationDate + (durationDateInteger == 1 ?
-                    " Day" : "  Days")+" left");
+                    " Day" : "  Days") + " left");
 
         } else if (durationDateInteger > 5) {
             attendanceButton.setDisable(true);
@@ -180,6 +190,10 @@ public class AttendanceCardController implements Initializable {
         }
 
 
+    }
+
+    public void setLog(LoginHistory log) {
+        this.log = log;
     }
 
     public void setMain(MainPageController main) {

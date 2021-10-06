@@ -1,6 +1,6 @@
 package org.codx.Model;
 
-public class Student extends UserCredentials {
+public class Student extends UserCredentials { // subclass  and superclass
 
     private long studentID;
     private String fName;

@@ -49,7 +49,7 @@ public class SignUpSuccessfullController implements Initializable {
         finally {
             try {
                 stream.close();
-                Files.delete(new File(path).toPath());
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -98,6 +98,11 @@ public class SignUpSuccessfullController implements Initializable {
 
     @FXML
     void done(ActionEvent event) {
+        try {
+            Files.delete(new File(pathImage).toPath());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         qrImage.setImage(null);
         qrImage.getScene().getWindow().hide();
     }
