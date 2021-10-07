@@ -121,16 +121,58 @@
     -fx-effect: dropshadow(gaussian,#FFD175, 25, 5%, 0, 0);
 }
 
-.system-items-title-lbl{
+.system-items-title-lbl , .student-preview{
     -fx-font-family: 'EuclidCircularA-SemiBold';
     -fx-font-size: 20px;
 }
 
 .system-items-name-lbl{
     -fx-font-family: 'EuclidCircularA-Medium';
+    -fx-text-fill:"darkgrey";
+    -fx-font-size: 14px;
+}
+.system-items-priv-lbl{
+    -fx-font-family: 'EuclidCircularA-Medium';
     -fx-font-size: 14px;
 }
 .system-items-sub-lbl{
     -fx-font-family: 'EuclidCircularA-SemiBold';
     -fx-font-size: 15px;
+}
+
+#searchStudentField{
+    -fx-background-color:transparent;
+}
+
+.search-btn{
+    -fx-background-color:transparent;
+    -fx-cursor: hand;
+}
+
+.search-box{
+    -fx-border-color: #1F28CF;
+}
+
+.student-card{
+    -fx-background-color: white;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 5, 0.1, 0, 0);
+    -fx-text-alignment: center;
+}
+
+.student-preview-item-lbl{
+    -fx-font-family: 'EuclidCircularA-Medium';
+    -fx-font-size: 15px;
+}
+
+.student-preview-item-values{
+    -fx-font-family: 'EuclidCircularA-Bold';
+    -fx-font-size: 15px;
+}
+
+.change-password{
+    -fx-background-color: #1F28CF;
+    -fx-font-family: 'EuclidCircularA-Bold';
+    -fx-font-size: 12px;
+    -fx-text-fill: white;
+    -fx-cursor: hand;
 }

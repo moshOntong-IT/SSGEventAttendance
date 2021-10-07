@@ -21,7 +21,7 @@
          </image>
       </ImageView>
       <Pane prefHeight="24.0" prefWidth="300.0" />
-      <Label styleClass="header" text="Thank you!" />
+      <Label fx:id="message" styleClass="header" text="Thank you!" />
       <Pane prefHeight="34.0" prefWidth="300.0" />
       <Label fx:id="name" alignment="CENTER" prefHeight="106.0" prefWidth="292.0" styleClass="title" text="James Dope" wrapText="true" />
       <Pane prefHeight="26.0" prefWidth="300.0" />

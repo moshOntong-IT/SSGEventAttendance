@@ -18,9 +18,9 @@ import javafx.fxml.Initializable;
 
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
+import javafx.scene.control.*;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.Image;
@@ -37,6 +37,7 @@ import javafx.util.Duration;
 import org.codx.Model.AttendanceSchedule;
 import org.codx.Model.EventInfo;
 import org.codx.Model.LoginHistory;
+import org.codx.Model.StudentAttendance;
 import org.codx.Services.DbConnection;
 import org.codx.Services.EmailService;
 import org.codx.Services.QRCodeService;
@@ -80,6 +81,9 @@ public class EventPageController implements Initializable {
     private String unActiveColor = "#969696";
 
 
+    private StudentAttendance studentAttendance;
+
+
     @FXML
     private Label morningLabel;
 
@@ -119,6 +123,11 @@ public class EventPageController implements Initializable {
     @FXML
     private Label title;
 
+    @FXML
+    private TextField idField;
+
+    @FXML
+    private PasswordField passwordField;
 
 
     private Webcam webcam;
@@ -199,13 +208,13 @@ public class EventPageController implements Initializable {
 
                 //pero pag mag morning exit lang if less than pa sya sa afternoon begin
                 // if active ang afternoon
-                if(isNoonActive){
+                if (isNoonActive) {
                     getSched(eventInfo.getAfternoon_begin());
-                    if(schedResult){
+                    if (schedResult) {
                         sched = AttendanceSchedule.MorningExit;
                         morningExitLabel.setFill(Color.web(activeColor));
                         morningExitLine.setStroke(Color.web(activeColor));
-                    }else{
+                    } else {
                         morningExitLabel.setFill(Color.web(activeColor));
                         morningExitLabel.setStrikethrough(true);
                         morningExitLine.setStroke(Color.web(unActiveColor));
@@ -216,18 +225,18 @@ public class EventPageController implements Initializable {
                     }
                 }
             }
-        }else{
+        } else {
             afternoonProccessSched();
         }
     }
 
-    private void afternoonProccessSched(){
+    private void afternoonProccessSched() {
         getSched(eventInfo.getAfternoon_end());
-        if(schedResult){
+        if (schedResult) {
             sched = AttendanceSchedule.NoonEntrance;
             entranceNoonLabel.setFill(Color.web(activeColor));
             entranceNoonLine.setStroke(Color.web(activeColor));
-        }else{
+        } else {
             sched = AttendanceSchedule.NoonExit;
             entranceNoonLabel.setFill(Color.web(activeColor));
             entranceNoonLabel.setStrikethrough(true);
@@ -242,11 +251,11 @@ public class EventPageController implements Initializable {
         try {
             EventConvert.parseDate((date) -> this.dateNow = date);
             EventConvert.parseAATime(dateNow, (timeNow) -> this.timeNow = timeNow);
-            EventConvert.parseAATime(eventTime,(target)-> this.eventTimeTarget = target);
+            EventConvert.parseAATime(eventTime, (target) -> this.eventTimeTarget = target);
 
             schedResult = EventConvert.lessThan(timeNow, eventTimeTarget);
 //            System.out.println(timeNow +" < "+ eventTimeTarget+":"+ schedResult);
-        }catch (ParseException ex){
+        } catch (ParseException ex) {
             ex.printStackTrace();
         }
     }
@@ -325,13 +334,25 @@ public class EventPageController implements Initializable {
 
                                     System.out.println("[INFO] QR Code Result:" + scanResult);
                                     Platform.runLater(() -> {
-                                        String preReplace = scanResult.replaceAll("[^0-9]", "");
-                                        String replace = preReplace.replaceAll("[\\t\\n\\r]+", " ");
+                                        try {
+                                            String[] credentials = scanResult.split(",");
 
-                                        System.out.println("[INFO] QR Code Number formatted Result:" + replace);
-                                        long userID = Long.parseLong(replace.equals("") ? "0" : replace);
+                                            String preReplace = credentials[0].replaceAll("[^0-9]", "");
+                                            String replace = preReplace.replaceAll("[\\t\\n\\r]+", " ");
 
-                                        present(userID);
+                                            System.out.println("[INFO] QR Code Number formatted Result:" + replace);
+                                            long userID = Long.parseLong(replace.equals("") ? "0" : replace);
+
+                                            present(userID, credentials[1]);
+                                        } catch (ArrayIndexOutOfBoundsException e) {
+                                            e.printStackTrace();
+                                            showErrorMessage();
+                                            scannerQR.getScene().getWindow().hide();
+                                        } catch (NumberFormatException e1) {
+                                            e1.printStackTrace();
+                                            showErrorMessage();
+                                            scannerQR.getScene().getWindow().hide();
+                                        }
 
                                     });
 
@@ -360,38 +381,108 @@ public class EventPageController implements Initializable {
         scannerQR.imageProperty().bind(imageProperty);
     }
 
-    private void present(long userId) {
+    private String scheduleToAttend() {
+        switch (sched) {
+            case MorningEntrance:
+                return "morning_entrance";
+            case MorningExit:
+                return "morning_exit";
+            case NoonEntrance:
+                return "afternoon_entrance";
+            case NoonExit:
+                return "afternoon_exit";
+            default:
+                return "";
+        }
+    }
 
-//        System.out.println("run...");
-        if (checkStudent(userId)) {
-            Parent root = scannerQR.getScene().getRoot();
-            ColorAdjust adj = new ColorAdjust(0, 0, -0.8, 0);
-            GaussianBlur blur = new GaussianBlur(10);
-            adj.setInput(blur);
-            root.setEffect(adj);
-            FXMLLoader loader = new FXMLLoader(EventPageController.class.getClassLoader().getResource("eventMessageDone.fxml"));
+    private boolean isAttend() {
+        boolean isAlreadyAttend = false;
+        switch (sched) {
+            case MorningEntrance:
+                if (studentAttendance.getMorningEntrance() != null) {
+                    if (!studentAttendance.getMorningEntrance().equals("")) {
+                        isAlreadyAttend = true;
+                    }
+                }
+
+                break;
+            case MorningExit:
+                if (studentAttendance.getMorningExit() != null) {
+                    if (!studentAttendance.getMorningExit().equals("")) {
+                        isAlreadyAttend = true;
+                    }
+                }
+
+                break;
+            case NoonEntrance:
+                if (studentAttendance.getAfternoonEntrance() != null) {
+                    if (!studentAttendance.getAfternoonEntrance().equals("")) {
+                        isAlreadyAttend = true;
+                    }
+                }
+
+                break;
+            case NoonExit:
+                if (studentAttendance.getAfternoonExit() != null) {
+                    if (!studentAttendance.getAfternoonExit().equals("")) {
+                        isAlreadyAttend = true;
+                    }
+                }
+                break;
+            default:
+                break;
+        }
+
+        return isAlreadyAttend;
+    }
+
+    private void insertRecord(long user_id) {
+        try {
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO attendance" +
+                    "(" + scheduleToAttend() + ",event_id,user_id) VALUES(CURRENT_TIMESTAMP,?,?) " +
+                    "RETURNING *");
+            stmt.setLong(1, eventInfo.getEvent_id());
+            stmt.setLong(2, user_id);
+            stmt.execute();
+            ResultSet rst = stmt.getResultSet();
+            if (rst.next()) {
+                studentAttendance.setAttendance_id(rst.getLong("attendance_id"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void updateRecord() {
+        if (!isAttend()) {
             try {
-                Parent form = loader.load();
-                form.requestFocus();
+                PreparedStatement stmt = conn.prepareStatement("UPDATE attendance " +
+                        "SET " + scheduleToAttend() + "= CURRENT_TIMESTAMP where attendance_id = ?");
+                stmt.setLong(1, studentAttendance.getAttendance_id());
+                stmt.execute();
 
-                EventMessageDoneController controller = loader.getController();
-                controller.setText(studentName);
-
-                Scene scene = new Scene(form);
-
-                Stage stage = new Stage();
-                stage.setScene(scene);
-
-                stage.initModality(Modality.APPLICATION_MODAL);
-                stage.initStyle(StageStyle.UNDECORATED);
-
-                stage.showAndWait();
-                root.setEffect(null);
-
-
-            } catch (IOException e) {
+            } catch (SQLException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    private void present(long userId, String password) {
+        studentAttendance = new StudentAttendance();
+//        System.out.println("run...");
+        if (checkStudent(userId, password)) {
+            if (isAttendAlready(userId)) {
+
+                if (!isAttend()) {
+                    updateRecord();
+                    insertEventAttendanceHandler();
+                }
+            } else {
+                insertRecord(userId);
+                insertEventAttendanceHandler();
+            }
+            showMessage();
         } else {
             showErrorMessage();
         }
@@ -401,23 +492,99 @@ public class EventPageController implements Initializable {
 
     }
 
+    private void insertEventAttendanceHandler() {
+        try {
+            PreparedStatement stmt = conn.prepareStatement("Insert into attendance_handler" +
+                    " (history_id,attendance_id) VALUES (?,?)");
+            stmt.setLong(1, adminLog.getHistoryId());
+            stmt.setLong(2, studentAttendance.getAttendance_id());
+            stmt.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private void showMessage() {
+        Parent root = scannerQR.getScene().getRoot();
+        ColorAdjust adj = new ColorAdjust(0, 0, -0.8, 0);
+        GaussianBlur blur = new GaussianBlur(10);
+        adj.setInput(blur);
+        root.setEffect(adj);
+        FXMLLoader loader = new FXMLLoader(EventPageController.class.getClassLoader().getResource("eventMessageDone.fxml"));
+        try {
+            Parent form = loader.load();
+            form.requestFocus();
+
+            EventMessageDoneController controller = loader.getController();
+            controller.setText(studentName);
+            if (isAttend()) {
+                controller.setMessage("You've already been recorded.");
+            }
+
+            Scene scene = new Scene(form);
+
+            Stage stage = new Stage();
+            stage.setScene(scene);
+
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initStyle(StageStyle.UNDECORATED);
+
+            stage.showAndWait();
+            root.setEffect(null);
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //check nya kung naka attendance niya ang event therefore i update ra sya
+    private boolean isAttendAlready(long user_id) {
+        boolean isExist = false;
+        try {
+            PreparedStatement stmt = conn.prepareStatement("Select * from " +
+                    "attendance where user_id = ? and event_id = ?");
+            stmt.setLong(1, user_id);
+            stmt.setLong(2, eventInfo.getEvent_id());
+            ResultSet rst = stmt.executeQuery();
+            if (rst.next()) {
+                studentAttendance.setAttendance_id(rst.getLong("attendance_id"));
+                studentAttendance.setMorningEntrance(rst.getTimestamp("morning_entrance") == null
+                        ? "" : rst.getTimestamp("morning_entrance").toString());
+                studentAttendance.setMorningExit(rst.getTimestamp("morning_exit") == null
+                        ? "" : rst.getTimestamp("morning_exit").toString());
+                studentAttendance.setAfternoonEntrance(rst.getTimestamp("afternoon_entrance") == null
+                        ? "" : rst.getTimestamp("afternoon_entrance").toString());
+                studentAttendance.setAfternoonExit(rst.getTimestamp("afternoon_exit") == null
+                        ? "" : rst.getTimestamp("afternoon_exit").toString());
+
+                isExist = true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return isExist;
+    }
+
     private void showErrorMessage() {
         Alert message = new Alert(Alert.AlertType.ERROR);
         message.setTitle("Invalid");
-        message.setContentText("Qr code is invalid");
+        message.setContentText("Account is not exist");
 
         message.showAndWait();
     }
 
-    private boolean checkStudent(long userId) {
+    private boolean checkStudent(long userId, String password) {
         boolean isExist = false;
         try {
-            PreparedStatement stmt = conn.prepareStatement("Select u.user_id, s.first_name," +
+            PreparedStatement stmt = conn.prepareStatement("Select u.user_id,u.password, s.first_name," +
                     " s.last_name from user_info u" +
                     " inner join student_info s " +
                     " on u.user_id = s.user_id " +
-                    "where u.user_id =?");
+                    "where u.user_id =? and u.password= ?");
             stmt.setLong(1, userId);
+            stmt.setString(2, password);
             ResultSet rst = stmt.executeQuery();
             if (rst.next()) {
                 studentName = rst.getString("first_name") + " " + rst.getString("last_name");
@@ -428,6 +595,13 @@ public class EventPageController implements Initializable {
             e.printStackTrace();
         }
         return isExist;
+    }
+
+
+    @FXML
+    void submit(ActionEvent event) {
+        webcam.close();
+        present(Long.parseLong(idField.getText()),passwordField.getText());
     }
 
     @FXML

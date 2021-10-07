@@ -6,6 +6,9 @@ public class SystemInfo extends Student {
     private long adminID;
     private String position;
 
+    //optional
+    private boolean fill =false;
+
     public SystemInfo(long userID) {
         this.userID = userID;
 
@@ -40,4 +43,6 @@ public class SystemInfo extends Student {
     public void setPosition(String position) {
         this.position = position;
     }
+
+
 }

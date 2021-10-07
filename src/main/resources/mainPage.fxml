@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
@@ -75,9 +76,9 @@
                </graphic>
             </Button>
          </children></VBox>
-      <VBox prefHeight="600.0" prefWidth="811.0">
+      <VBox prefHeight="600.0" prefWidth="811.0" HBox.hgrow="ALWAYS">
          <children>
-            <HBox alignment="CENTER_RIGHT" prefHeight="44.0" prefWidth="811.0">
+            <HBox alignment="CENTER_RIGHT" prefHeight="44.0" prefWidth="811.0" VBox.vgrow="ALWAYS">
                <children>
                   <HBox alignment="CENTER" prefHeight="44.0" prefWidth="129.0" spacing="20.0">
                      <children>
@@ -105,244 +106,6 @@
             </HBox>
             <StackPane fx:id="stackLayout" prefHeight="557.0" prefWidth="811.0">
                <children>
-                  <VBox fx:id="systemRole" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" styleClass="paneStack">
-                     <children>
-                        <Pane prefHeight="24.0" prefWidth="811.0" />
-                        <HBox prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <VBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="613.0">
-                                 <children>
-                                    <Label styleClass="eventPaneTitle" text="System Role" />
-                                    <Label styleClass="eventPaneSubtitle" text="You can modify the System Role's privileges." />
-                                 </children>
-                                 <padding>
-                                    <Insets left="50.0" />
-                                 </padding>
-                              </VBox>
-                           </children>
-                        </HBox>
-                        <HBox prefHeight="436.0" prefWidth="811.0" spacing="10.0">
-                           <padding>
-                              <Insets bottom="20.0" left="50.0" right="10.0" top="10.0" />
-                           </padding>
-                           <children>
-                              <VBox prefHeight="405.0" prefWidth="324.0" spacing="30.0">
-                                 <children>
-                                    <VBox prefHeight="200.0" prefWidth="100.0" styleClass="system-item-m">
-                                       <padding>
-                                          <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-                                       </padding>
-                                       <children>
-                                          <HBox alignment="CENTER_LEFT" prefHeight="18.0" prefWidth="318.0">
-                                             <children>
-                                                <Label styleClass="system-items-title-lbl" text="Administrator" />
-                                             </children>
-                                          </HBox>
-                                          <HBox alignment="CENTER_LEFT" prefHeight="18.0" prefWidth="318.0">
-                                             <children>
-                                                <Label prefHeight="18.0" prefWidth="321.0" styleClass="system-items-name-lbl" text="Josh Dope" HBox.hgrow="ALWAYS" />
-                                             </children>
-                                             <VBox.margin>
-                                                <Insets top="5.0" />
-                                             </VBox.margin>
-                                          </HBox>
-                                          <Pane prefHeight="29.0" prefWidth="318.0" />
-                                          <HBox alignment="CENTER_LEFT" prefHeight="18.0" prefWidth="318.0">
-                                             <children>
-                                                <Label styleClass="system-items-sub-lbl" text="Privileges:" />
-                                             </children>
-                                          </HBox>
-                                          <Pane prefHeight="8.0" prefWidth="318.0" />
-                                          <HBox alignment="CENTER_LEFT" prefHeight="65.0" prefWidth="318.0">
-                                             <children>
-                                                <Label alignment="TOP_LEFT" prefHeight="49.0" prefWidth="311.0" styleClass="system-items-name-lbl" text="Add, Delete, Update, View, Export/Import and Create report" wrapText="true" HBox.hgrow="ALWAYS" />
-                                             </children>
-                                          </HBox>
-                                       </children>
-                                    </VBox>
-                                    <VBox layoutX="20.0" layoutY="20.0" prefHeight="200.0" prefWidth="100.0" styleClass="system-item-m">
-                                       <padding>
-                                          <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-                                       </padding>
-                                       <children>
-                                          <HBox alignment="CENTER_LEFT" prefHeight="18.0" prefWidth="318.0">
-                                             <children>
-                                                <Label styleClass="system-items-title-lbl" text="Moderator" />
-                                             </children>
-                                          </HBox>
-                                          <HBox alignment="CENTER_LEFT" prefHeight="18.0" prefWidth="318.0">
-                                             <children>
-                                                <Label prefHeight="18.0" prefWidth="321.0" styleClass="system-items-name-lbl" text="Josh Dope" HBox.hgrow="ALWAYS" />
-                                             </children>
-                                             <VBox.margin>
-                                                <Insets top="5.0" />
-                                             </VBox.margin>
-                                          </HBox>
-                                          <Pane prefHeight="29.0" prefWidth="318.0" />
-                                          <HBox alignment="CENTER_LEFT" prefHeight="18.0" prefWidth="318.0">
-                                             <children>
-                                                <Label styleClass="system-items-sub-lbl" text="Privileges:" />
-                                             </children>
-                                          </HBox>
-                                          <Pane prefHeight="8.0" prefWidth="318.0" />
-                                          <HBox alignment="CENTER_LEFT" prefHeight="65.0" prefWidth="318.0">
-                                             <children>
-                                                <Label alignment="TOP_LEFT" prefHeight="49.0" prefWidth="311.0" styleClass="system-items-name-lbl" text="Add, Delete, Update, View, Export/Import and Create report" wrapText="true" HBox.hgrow="ALWAYS" />
-                                             </children>
-                                          </HBox>
-                                       </children>
-                                    </VBox>
-                                 </children>
-                                 <padding>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                 </padding>
-                              </VBox>
-                              <VBox prefHeight="405.0" prefWidth="199.0" spacing="30.0">
-                                 <children>
-                                    <VBox maxWidth="200.0" prefHeight="200.0" prefWidth="257.0" styleClass="system-item-m">
-                                       <padding>
-                                          <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-                                       </padding>
-                                       <children>
-                                          <HBox alignment="CENTER_LEFT" prefHeight="18.0" prefWidth="318.0">
-                                             <children>
-                                                <Label styleClass="system-items-title-lbl" text="Editor" />
-                                             </children>
-                                          </HBox>
-                                          <HBox alignment="CENTER_LEFT" prefHeight="18.0" prefWidth="318.0">
-                                             <children>
-                                                <Label prefHeight="18.0" prefWidth="321.0" styleClass="system-items-name-lbl" text="Josh Dope" HBox.hgrow="ALWAYS" />
-                                             </children>
-                                             <VBox.margin>
-                                                <Insets top="5.0" />
-                                             </VBox.margin>
-                                          </HBox>
-                                          <Pane prefHeight="29.0" prefWidth="318.0" />
-                                          <HBox alignment="CENTER_LEFT" prefHeight="18.0" prefWidth="318.0">
-                                             <children>
-                                                <Label styleClass="system-items-sub-lbl" text="Privileges:" />
-                                             </children>
-                                          </HBox>
-                                          <Pane prefHeight="8.0" prefWidth="318.0" />
-                                          <HBox alignment="CENTER_LEFT" prefHeight="65.0" prefWidth="318.0">
-                                             <children>
-                                                <Label alignment="TOP_LEFT" prefHeight="49.0" prefWidth="311.0" styleClass="system-items-name-lbl" text="View, Export/Import and Create report" wrapText="true" HBox.hgrow="ALWAYS" />
-                                             </children>
-                                          </HBox>
-                                       </children>
-                                    </VBox>
-                                    <VBox layoutX="20.0" layoutY="20.0" maxWidth="200.0" prefHeight="200.0" prefWidth="257.0" styleClass="system-item-m">
-                                       <padding>
-                                          <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-                                       </padding>
-                                       <children>
-                                          <HBox alignment="CENTER_LEFT" prefHeight="18.0" prefWidth="318.0">
-                                             <children>
-                                                <Label styleClass="system-items-title-lbl" text="Editor" />
-                                             </children>
-                                          </HBox>
-                                          <HBox alignment="CENTER_LEFT" prefHeight="18.0" prefWidth="318.0">
-                                             <children>
-                                                <Label prefHeight="18.0" prefWidth="321.0" styleClass="system-items-name-lbl" text="Josh Dope" HBox.hgrow="ALWAYS" />
-                                             </children>
-                                             <VBox.margin>
-                                                <Insets top="5.0" />
-                                             </VBox.margin>
-                                          </HBox>
-                                          <Pane prefHeight="29.0" prefWidth="318.0" />
-                                          <HBox alignment="CENTER_LEFT" prefHeight="18.0" prefWidth="318.0">
-                                             <children>
-                                                <Label styleClass="system-items-sub-lbl" text="Privileges:" />
-                                             </children>
-                                          </HBox>
-                                          <Pane prefHeight="8.0" prefWidth="318.0" />
-                                          <HBox alignment="CENTER_LEFT" prefHeight="65.0" prefWidth="318.0">
-                                             <children>
-                                                <Label alignment="TOP_LEFT" prefHeight="49.0" prefWidth="311.0" styleClass="system-items-name-lbl" text="View, Export/Import and Create report" wrapText="true" HBox.hgrow="ALWAYS" />
-                                             </children>
-                                          </HBox>
-                                       </children>
-                                    </VBox>
-                                 </children>
-                                 <padding>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                 </padding>
-                              </VBox>
-                              <VBox layoutX="384.0" layoutY="20.0" prefHeight="405.0" prefWidth="199.0" spacing="30.0">
-                                 <children>
-                                    <VBox maxWidth="200.0" prefHeight="200.0" prefWidth="257.0" styleClass="system-item-m">
-                                       <padding>
-                                          <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-                                       </padding>
-                                       <children>
-                                          <HBox alignment="CENTER_LEFT" prefHeight="18.0" prefWidth="318.0">
-                                             <children>
-                                                <Label styleClass="system-items-title-lbl" text="Editor" />
-                                             </children>
-                                          </HBox>
-                                          <HBox alignment="CENTER_LEFT" prefHeight="18.0" prefWidth="318.0">
-                                             <children>
-                                                <Label prefHeight="18.0" prefWidth="321.0" styleClass="system-items-name-lbl" text="Josh Dope" HBox.hgrow="ALWAYS" />
-                                             </children>
-                                             <VBox.margin>
-                                                <Insets top="5.0" />
-                                             </VBox.margin>
-                                          </HBox>
-                                          <Pane prefHeight="29.0" prefWidth="318.0" />
-                                          <HBox alignment="CENTER_LEFT" prefHeight="18.0" prefWidth="318.0">
-                                             <children>
-                                                <Label styleClass="system-items-sub-lbl" text="Privileges:" />
-                                             </children>
-                                          </HBox>
-                                          <Pane prefHeight="8.0" prefWidth="318.0" />
-                                          <HBox alignment="CENTER_LEFT" prefHeight="65.0" prefWidth="318.0">
-                                             <children>
-                                                <Label alignment="TOP_LEFT" prefHeight="49.0" prefWidth="311.0" styleClass="system-items-name-lbl" text="View, Export/Import and Create report" wrapText="true" HBox.hgrow="ALWAYS" />
-                                             </children>
-                                          </HBox>
-                                       </children>
-                                    </VBox>
-                                    <VBox layoutX="20.0" layoutY="20.0" maxWidth="200.0" prefHeight="200.0" prefWidth="257.0" styleClass="system-item-m">
-                                       <padding>
-                                          <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-                                       </padding>
-                                       <children>
-                                          <HBox alignment="CENTER_LEFT" prefHeight="18.0" prefWidth="318.0">
-                                             <children>
-                                                <Label styleClass="system-items-title-lbl" text="Editor" />
-                                             </children>
-                                          </HBox>
-                                          <HBox alignment="CENTER_LEFT" prefHeight="18.0" prefWidth="318.0">
-                                             <children>
-                                                <Label prefHeight="18.0" prefWidth="321.0" styleClass="system-items-name-lbl" text="Josh Dope" HBox.hgrow="ALWAYS" />
-                                             </children>
-                                             <VBox.margin>
-                                                <Insets top="5.0" />
-                                             </VBox.margin>
-                                          </HBox>
-                                          <Pane prefHeight="29.0" prefWidth="318.0" />
-                                          <HBox alignment="CENTER_LEFT" prefHeight="18.0" prefWidth="318.0">
-                                             <children>
-                                                <Label styleClass="system-items-sub-lbl" text="Privileges:" />
-                                             </children>
-                                          </HBox>
-                                          <Pane prefHeight="8.0" prefWidth="318.0" />
-                                          <HBox alignment="CENTER_LEFT" prefHeight="65.0" prefWidth="318.0">
-                                             <children>
-                                                <Label alignment="TOP_LEFT" prefHeight="49.0" prefWidth="311.0" styleClass="system-items-name-lbl" text="View, Export/Import and Create report" wrapText="true" HBox.hgrow="ALWAYS" />
-                                             </children>
-                                          </HBox>
-                                       </children>
-                                    </VBox>
-                                 </children>
-                                 <padding>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                 </padding>
-                              </VBox>
-                           </children>
-                        </HBox>
-                     </children>
-                  </VBox>
                   <VBox fx:id="eventPane" prefHeight="200.0" prefWidth="100.0" styleClass="paneStack">
                      <children>
                         <Pane prefHeight="24.0" prefWidth="811.0" />
@@ -404,6 +167,479 @@
                                     <HBox fx:id="attendanceBox" alignment="CENTER" prefHeight="435.0" prefWidth="811.0" />
                                  </content>
                               </ScrollPane>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox fx:id="systemRole" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" styleClass="paneStack">
+                     <children>
+                        <Pane prefHeight="24.0" prefWidth="811.0" />
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <VBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="613.0">
+                                 <children>
+                                    <Label styleClass="eventPaneTitle" text="System Role" />
+                                    <Label styleClass="eventPaneSubtitle" text="You can modify the System Role's privileges." />
+                                 </children>
+                                 <padding>
+                                    <Insets left="50.0" />
+                                 </padding>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="436.0" prefWidth="811.0" spacing="10.0">
+                           <padding>
+                              <Insets bottom="20.0" left="50.0" right="10.0" top="10.0" />
+                           </padding>
+                           <children>
+                              <VBox prefHeight="405.0" prefWidth="324.0" spacing="30.0">
+                                 <children>
+                                    <VBox fx:id="admin" onMouseClicked="#systemRoleChanged" prefHeight="200.0" prefWidth="100.0" styleClass="system-item-m">
+                                       <padding>
+                                          <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                                       </padding>
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT" prefHeight="18.0" prefWidth="318.0">
+                                             <children>
+                                                <Label styleClass="system-items-title-lbl" text="Administrator" />
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" prefHeight="18.0" prefWidth="318.0">
+                                             <children>
+                                                <Label fx:id="adminName" prefHeight="18.0" prefWidth="321.0" styleClass="system-items-name-lbl" text="(Available)" HBox.hgrow="ALWAYS" />
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets top="5.0" />
+                                             </VBox.margin>
+                                          </HBox>
+                                          <Pane prefHeight="29.0" prefWidth="318.0" />
+                                          <HBox alignment="CENTER_LEFT" prefHeight="18.0" prefWidth="318.0">
+                                             <children>
+                                                <Label styleClass="system-items-sub-lbl" text="Privileges:" />
+                                             </children>
+                                          </HBox>
+                                          <Pane prefHeight="8.0" prefWidth="318.0" />
+                                          <HBox alignment="CENTER_LEFT" prefHeight="65.0" prefWidth="318.0">
+                                             <children>
+                                                <Label alignment="TOP_LEFT" prefHeight="49.0" prefWidth="311.0" styleClass="system-items-priv-lbl" text="Add, Delete, Update, View, Export/Import and Create report" wrapText="true" HBox.hgrow="ALWAYS" />
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    <VBox fx:id="moderator" layoutX="20.0" layoutY="20.0" onMouseClicked="#systemRoleChanged" prefHeight="200.0" prefWidth="100.0" styleClass="system-item-m">
+                                       <padding>
+                                          <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                                       </padding>
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT" prefHeight="18.0" prefWidth="318.0">
+                                             <children>
+                                                <Label styleClass="system-items-title-lbl" text="Moderator" />
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" prefHeight="18.0" prefWidth="318.0">
+                                             <children>
+                                                <Label fx:id="moderatorName" prefHeight="18.0" prefWidth="321.0" styleClass="system-items-name-lbl" text="(Available)" HBox.hgrow="ALWAYS" />
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets top="5.0" />
+                                             </VBox.margin>
+                                          </HBox>
+                                          <Pane prefHeight="29.0" prefWidth="318.0" />
+                                          <HBox alignment="CENTER_LEFT" prefHeight="18.0" prefWidth="318.0">
+                                             <children>
+                                                <Label styleClass="system-items-sub-lbl" text="Privileges:" />
+                                             </children>
+                                          </HBox>
+                                          <Pane prefHeight="8.0" prefWidth="318.0" />
+                                          <HBox alignment="CENTER_LEFT" prefHeight="65.0" prefWidth="318.0">
+                                             <children>
+                                                <Label alignment="TOP_LEFT" prefHeight="49.0" prefWidth="311.0" styleClass="system-items-priv-lbl" text="Add, Delete, Update, View, Export/Import and Create report" wrapText="true" HBox.hgrow="ALWAYS" />
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </VBox>
+                              <VBox prefHeight="405.0" prefWidth="199.0" spacing="30.0">
+                                 <children>
+                                    <VBox fx:id="editor1" maxWidth="200.0" onMouseClicked="#systemRoleChanged" prefHeight="200.0" prefWidth="257.0" styleClass="system-item-m">
+                                       <padding>
+                                          <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                                       </padding>
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT" prefHeight="18.0" prefWidth="318.0">
+                                             <children>
+                                                <Label styleClass="system-items-title-lbl" text="Editor" />
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" prefHeight="18.0" prefWidth="318.0">
+                                             <children>
+                                                <Label fx:id="editorName1" prefHeight="18.0" prefWidth="321.0" styleClass="system-items-name-lbl" text="(Available)" HBox.hgrow="ALWAYS" />
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets top="5.0" />
+                                             </VBox.margin>
+                                          </HBox>
+                                          <Pane prefHeight="29.0" prefWidth="318.0" />
+                                          <HBox alignment="CENTER_LEFT" prefHeight="18.0" prefWidth="318.0">
+                                             <children>
+                                                <Label styleClass="system-items-sub-lbl" text="Privileges:" />
+                                             </children>
+                                          </HBox>
+                                          <Pane prefHeight="8.0" prefWidth="318.0" />
+                                          <HBox alignment="CENTER_LEFT" prefHeight="65.0" prefWidth="318.0">
+                                             <children>
+                                                <Label alignment="TOP_LEFT" prefHeight="49.0" prefWidth="311.0" styleClass="system-items-priv-lbl" text="View, Export/Import and Create report" wrapText="true" HBox.hgrow="ALWAYS" />
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    <VBox fx:id="editor3" layoutX="20.0" layoutY="20.0" maxWidth="200.0" onMouseClicked="#systemRoleChanged" prefHeight="200.0" prefWidth="257.0" styleClass="system-item-m">
+                                       <padding>
+                                          <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                                       </padding>
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT" prefHeight="18.0" prefWidth="318.0">
+                                             <children>
+                                                <Label styleClass="system-items-title-lbl" text="Editor" />
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" prefHeight="18.0" prefWidth="318.0">
+                                             <children>
+                                                <Label fx:id="editorName3" prefHeight="18.0" prefWidth="321.0" styleClass="system-items-name-lbl" text="(Available)" HBox.hgrow="ALWAYS" />
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets top="5.0" />
+                                             </VBox.margin>
+                                          </HBox>
+                                          <Pane prefHeight="29.0" prefWidth="318.0" />
+                                          <HBox alignment="CENTER_LEFT" prefHeight="18.0" prefWidth="318.0">
+                                             <children>
+                                                <Label styleClass="system-items-sub-lbl" text="Privileges:" />
+                                             </children>
+                                          </HBox>
+                                          <Pane prefHeight="8.0" prefWidth="318.0" />
+                                          <HBox alignment="CENTER_LEFT" prefHeight="65.0" prefWidth="318.0">
+                                             <children>
+                                                <Label alignment="TOP_LEFT" prefHeight="49.0" prefWidth="311.0" styleClass="system-items-priv-lbl" text="View, Export/Import and Create report" wrapText="true" HBox.hgrow="ALWAYS" />
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </VBox>
+                              <VBox layoutX="384.0" layoutY="20.0" prefHeight="405.0" prefWidth="199.0" spacing="30.0">
+                                 <children>
+                                    <VBox fx:id="editor2" maxWidth="200.0" onMouseClicked="#systemRoleChanged" prefHeight="200.0" prefWidth="257.0" styleClass="system-item-m">
+                                       <padding>
+                                          <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                                       </padding>
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT" prefHeight="18.0" prefWidth="318.0">
+                                             <children>
+                                                <Label styleClass="system-items-title-lbl" text="Editor" />
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" prefHeight="18.0" prefWidth="318.0">
+                                             <children>
+                                                <Label fx:id="editorName2" prefHeight="18.0" prefWidth="321.0" styleClass="system-items-name-lbl" text="(Available)" HBox.hgrow="ALWAYS" />
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets top="5.0" />
+                                             </VBox.margin>
+                                          </HBox>
+                                          <Pane prefHeight="29.0" prefWidth="318.0" />
+                                          <HBox alignment="CENTER_LEFT" prefHeight="18.0" prefWidth="318.0">
+                                             <children>
+                                                <Label styleClass="system-items-sub-lbl" text="Privileges:" />
+                                             </children>
+                                          </HBox>
+                                          <Pane prefHeight="8.0" prefWidth="318.0" />
+                                          <HBox alignment="CENTER_LEFT" prefHeight="65.0" prefWidth="318.0">
+                                             <children>
+                                                <Label alignment="TOP_LEFT" prefHeight="49.0" prefWidth="311.0" styleClass="system-items-priv-lbl" text="View, Export/Import and Create report" wrapText="true" HBox.hgrow="ALWAYS" />
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    <VBox fx:id="editor4" layoutX="20.0" layoutY="20.0" maxWidth="200.0" onMouseClicked="#systemRoleChanged" prefHeight="200.0" prefWidth="257.0" styleClass="system-item-m">
+                                       <padding>
+                                          <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                                       </padding>
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT" prefHeight="18.0" prefWidth="318.0">
+                                             <children>
+                                                <Label styleClass="system-items-title-lbl" text="Editor" />
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" prefHeight="18.0" prefWidth="318.0">
+                                             <children>
+                                                <Label fx:id="editorName4" prefHeight="18.0" prefWidth="321.0" styleClass="system-items-name-lbl" text="(Available)" HBox.hgrow="ALWAYS" />
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets top="5.0" />
+                                             </VBox.margin>
+                                          </HBox>
+                                          <Pane prefHeight="29.0" prefWidth="318.0" />
+                                          <HBox alignment="CENTER_LEFT" prefHeight="18.0" prefWidth="318.0">
+                                             <children>
+                                                <Label styleClass="system-items-sub-lbl" text="Privileges:" />
+                                             </children>
+                                          </HBox>
+                                          <Pane prefHeight="8.0" prefWidth="318.0" />
+                                          <HBox alignment="CENTER_LEFT" prefHeight="65.0" prefWidth="318.0">
+                                             <children>
+                                                <Label alignment="TOP_LEFT" prefHeight="49.0" prefWidth="311.0" styleClass="system-items-priv-lbl" text="View, Export/Import and Create report" wrapText="true" HBox.hgrow="ALWAYS" />
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox fx:id="studentRecord" prefHeight="200.0" prefWidth="100.0" styleClass="paneStack">
+                     <children>
+                        <Pane prefHeight="11.0" prefWidth="811.0" />
+                        <HBox prefHeight="72.0" prefWidth="811.0">
+                           <children>
+                              <VBox alignment="CENTER_LEFT" prefHeight="71.0" prefWidth="613.0">
+                                 <children>
+                                    <Label styleClass="eventPaneTitle" text="Student Record" />
+                                 </children>
+                                 <padding>
+                                    <Insets left="30.0" />
+                                 </padding>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="474.0" prefWidth="811.0">
+                           <children>
+                              <VBox prefHeight="472.0" prefWidth="388.0">
+                                 <padding>
+                                    <Insets left="30.0" top="20.0" />
+                                 </padding>
+                                 <children>
+                                    <HBox prefHeight="51.0" prefWidth="341.0" styleClass="search-box">
+                                       <children>
+                                          <HBox prefHeight="67.0" prefWidth="379.0">
+                                             <children>
+                                                <TextField fx:id="searchStudentField" prefHeight="57.0" prefWidth="312.0" promptText="Search Student's ID" />
+                                                <Button mnemonicParsing="false" prefHeight="57.0" prefWidth="65.0" styleClass="search-btn">
+                                                   <graphic>
+                                                      <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@assets/icon.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </Button>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </padding>
+                                    </HBox>
+                                    <ScrollPane hbarPolicy="NEVER" prefHeight="315.0" prefWidth="358.0" vbarPolicy="ALWAYS">
+                                       <content>
+                                          <VBox prefHeight="354.0" prefWidth="358.0" spacing="15.0">
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+                                             <children>
+                                                <HBox minHeight="71.0" minWidth="300.0" prefHeight="71.0" prefWidth="300.0" styleClass="student-card" />
+                                                <HBox minHeight="71.0" minWidth="300.0" prefHeight="71.0" prefWidth="300.0" styleClass="student-card" />
+                                                <HBox minHeight="71.0" minWidth="300.0" prefHeight="71.0" prefWidth="300.0" styleClass="student-card" />
+                                                <HBox minHeight="71.0" minWidth="300.0" prefHeight="71.0" prefWidth="300.0" styleClass="student-card" />
+                                                <HBox minHeight="71.0" minWidth="300.0" prefHeight="71.0" prefWidth="300.0" styleClass="student-card" />
+                                                <HBox minHeight="71.0" minWidth="300.0" prefHeight="71.0" prefWidth="300.0" styleClass="student-card" />
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="20.0" left="5.0" right="20.0" top="20.0" />
+                                             </padding>
+                                          </VBox>
+                                       </content>
+                                       <padding>
+                                          <Insets right="5.0" />
+                                       </padding>
+                                    </ScrollPane>
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="472.0" prefWidth="415.0">
+                                 <padding>
+                                    <Insets left="30.0" top="20.0" />
+                                 </padding>
+                                 <children>
+                                    <HBox prefHeight="50.0" prefWidth="385.0">
+                                       <children>
+                                          <Label styleClass="student-preview" text="Preview" />
+                                       </children>
+                                    </HBox>
+                                    <ScrollPane hbarPolicy="NEVER" prefHeight="322.0" prefWidth="385.0">
+                                       <content>
+                                          <VBox prefHeight="326.0" prefWidth="363.0">
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+                                             <children>
+                                                <HBox minHeight="49.0" minWidth="300.0" prefHeight="49.0" prefWidth="333.0" spacing="10.0">
+                                                   <children>
+                                                      <HBox alignment="CENTER_RIGHT" prefHeight="49.0" prefWidth="121.0">
+                                                         <children>
+                                                            <Label styleClass="student-preview-item-lbl" text="ID:" />
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER_LEFT" prefHeight="49.0" prefWidth="217.0">
+                                                         <children>
+                                                            <Label prefHeight="19.0" prefWidth="213.0" styleClass="student-preview-item-values" text="1231231313" />
+                                                         </children>
+                                                      </HBox>
+                                                   </children>
+                                                </HBox>
+                                                <HBox layoutX="15.0" layoutY="30.0" minHeight="49.0" minWidth="300.0" prefHeight="49.0" prefWidth="333.0" spacing="10.0">
+                                                   <children>
+                                                      <HBox alignment="CENTER_RIGHT" prefHeight="49.0" prefWidth="121.0">
+                                                         <children>
+                                                            <Label styleClass="student-preview-item-lbl" text="Full Name:" />
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER_LEFT" prefHeight="49.0" prefWidth="217.0">
+                                                         <children>
+                                                            <Label prefHeight="19.0" prefWidth="213.0" styleClass="student-preview-item-values" text="1231231313" />
+                                                         </children>
+                                                      </HBox>
+                                                   </children>
+                                                </HBox>
+                                                <HBox layoutX="15.0" layoutY="79.0" minHeight="49.0" minWidth="300.0" prefHeight="49.0" prefWidth="333.0" spacing="10.0">
+                                                   <children>
+                                                      <HBox alignment="CENTER_RIGHT" prefHeight="49.0" prefWidth="121.0">
+                                                         <children>
+                                                            <Label styleClass="student-preview-item-lbl" text="Email:" />
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER_LEFT" prefHeight="49.0" prefWidth="217.0">
+                                                         <children>
+                                                            <Label prefHeight="19.0" prefWidth="213.0" styleClass="student-preview-item-values" text="1231231313" />
+                                                         </children>
+                                                      </HBox>
+                                                   </children>
+                                                </HBox>
+                                                <HBox layoutX="15.0" layoutY="128.0" minHeight="49.0" minWidth="300.0" prefHeight="49.0" prefWidth="333.0" spacing="10.0">
+                                                   <children>
+                                                      <HBox alignment="CENTER_RIGHT" prefHeight="49.0" prefWidth="121.0">
+                                                         <children>
+                                                            <Label styleClass="student-preview-item-lbl" text="Phone Number:" />
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER_LEFT" prefHeight="49.0" prefWidth="217.0">
+                                                         <children>
+                                                            <Label prefHeight="19.0" prefWidth="213.0" styleClass="student-preview-item-values" text="1231231313" />
+                                                         </children>
+                                                      </HBox>
+                                                   </children>
+                                                </HBox>
+                                                <HBox layoutX="15.0" layoutY="177.0" minHeight="49.0" minWidth="300.0" prefHeight="49.0" prefWidth="333.0" spacing="10.0">
+                                                   <children>
+                                                      <HBox alignment="CENTER_RIGHT" prefHeight="49.0" prefWidth="121.0">
+                                                         <children>
+                                                            <Label styleClass="student-preview-item-lbl" text="Gender:" />
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER_LEFT" prefHeight="49.0" prefWidth="217.0">
+                                                         <children>
+                                                            <Label prefHeight="19.0" prefWidth="213.0" styleClass="student-preview-item-values" text="1231231313" />
+                                                         </children>
+                                                      </HBox>
+                                                   </children>
+                                                </HBox>
+                                                <HBox layoutX="15.0" layoutY="226.0" minHeight="49.0" minWidth="300.0" prefHeight="49.0" prefWidth="333.0" spacing="10.0">
+                                                   <children>
+                                                      <HBox alignment="CENTER_RIGHT" prefHeight="49.0" prefWidth="121.0">
+                                                         <children>
+                                                            <Label styleClass="student-preview-item-lbl" text="School Name:" />
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER_LEFT" prefHeight="49.0" prefWidth="217.0">
+                                                         <children>
+                                                            <Label prefHeight="19.0" prefWidth="213.0" styleClass="student-preview-item-values" text="1231231313" />
+                                                         </children>
+                                                      </HBox>
+                                                   </children>
+                                                </HBox>
+                                                <HBox layoutX="15.0" layoutY="275.0" minHeight="49.0" minWidth="300.0" prefHeight="49.0" prefWidth="333.0" spacing="10.0">
+                                                   <children>
+                                                      <HBox alignment="CENTER_RIGHT" prefHeight="49.0" prefWidth="121.0">
+                                                         <children>
+                                                            <Label styleClass="student-preview-item-lbl" text="Department:" />
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER_LEFT" prefHeight="49.0" prefWidth="217.0">
+                                                         <children>
+                                                            <Label prefHeight="19.0" prefWidth="213.0" styleClass="student-preview-item-values" text="1231231313" />
+                                                         </children>
+                                                      </HBox>
+                                                   </children>
+                                                </HBox>
+                                                <HBox layoutX="15.0" layoutY="324.0" minHeight="49.0" minWidth="300.0" prefHeight="49.0" prefWidth="333.0" spacing="10.0">
+                                                   <children>
+                                                      <HBox alignment="CENTER_RIGHT" prefHeight="49.0" prefWidth="121.0">
+                                                         <children>
+                                                            <Label styleClass="student-preview-item-lbl" text="Course/Strand:" />
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER_LEFT" prefHeight="49.0" prefWidth="217.0">
+                                                         <children>
+                                                            <Label prefHeight="19.0" prefWidth="213.0" styleClass="student-preview-item-values" text="1231231313" />
+                                                         </children>
+                                                      </HBox>
+                                                   </children>
+                                                </HBox>
+                                                <HBox minHeight="49.0" minWidth="300.0" prefHeight="49.0" prefWidth="333.0" spacing="10.0">
+                                                   <children>
+                                                      <HBox alignment="CENTER_RIGHT" prefHeight="49.0" prefWidth="121.0">
+                                                         <children>
+                                                            <Label styleClass="student-preview-item-lbl" text="Section:" />
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER_LEFT" prefHeight="49.0" prefWidth="217.0">
+                                                         <children>
+                                                            <Label prefHeight="19.0" prefWidth="213.0" styleClass="student-preview-item-values" text="1231231313" />
+                                                         </children>
+                                                      </HBox>
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="20.0" left="5.0" right="20.0" top="20.0" />
+                                             </padding>
+                                          </VBox>
+                                       </content>
+                                       <padding>
+                                          <Insets right="5.0" />
+                                       </padding>
+                                    </ScrollPane>
+                                    <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="385.0">
+                                       <padding>
+                                          <Insets right="30.0" />
+                                       </padding>
+                                       <children>
+                                          <Button mnemonicParsing="false" prefHeight="43.0" prefWidth="165.0" styleClass="change-password" text="Change Password" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
                            </children>
                         </HBox>
                      </children>

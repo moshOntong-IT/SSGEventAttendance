@@ -13,19 +13,23 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.codx.Model.EventInfo;
 import org.codx.Model.LoginHistory;
 import org.codx.Model.Student;
+import org.codx.Model.SystemInfo;
 import org.codx.Services.DbConnection;
 import org.codx.StageTool;
 
@@ -48,6 +52,7 @@ public class MainPageController implements Initializable {
     private Connection conn;
     private LoginHistory adminInfo;
     private EventInfo info;
+    private SystemInfo [] systemRoleArray;
     @FXML
     private Button eventButton;
 
@@ -83,10 +88,51 @@ public class MainPageController implements Initializable {
 
     @FXML
     private HBox attendanceBox;
+    @FXML
+    private VBox admin;
+
+    @FXML
+    private Label adminName;
+
+    @FXML
+    private VBox moderator;
+
+    @FXML
+    private Label moderatorName;
+
+    @FXML
+    private VBox editor1;
+
+    @FXML
+    private Label editorName1;
+
+    @FXML
+    private VBox editor3;
+
+    @FXML
+    private Label editorName3;
+
+    @FXML
+    private VBox editor2;
+
+    @FXML
+    private Label editorName2;
+
+    @FXML
+    private VBox editor4;
+
+    @FXML
+    private Label editorName4;
+
+
+    @FXML
+    private VBox studentRecord;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         studentObservableList = FXCollections.observableArrayList();
+        systemRoleArray = new SystemInfo[6];
 
 
     }
@@ -208,7 +254,9 @@ public class MainPageController implements Initializable {
             systemRoleButton.getStyleClass().clear();
             systemRoleButton.getStyleClass().add("menu-nav-left-btn-highlight");
 
+
         } else if (event.getSource() == studentButton) {
+            studentRecord.toFront();
             studentIcon.setImage(imageHighlightPath.get(2));
             studentButton.getStyleClass().clear();
             studentButton.getStyleClass().add("menu-nav-left-btn-highlight");
@@ -222,12 +270,67 @@ public class MainPageController implements Initializable {
 
     }
 
+
+    private void ini_system_role(){
+        try {
+            PreparedStatement stmt2 = conn.prepareStatement("Select u.user_id, s.admin_id " +
+                    ", s.admin_pos, stdt.first_name, stdt.last_name  from user_info u " +
+                    "Inner join system_info s " +
+                    "ON u.user_id = s.user_id " +
+                    "Inner join student_info stdt " +
+                    "ON s.user_id = stdt.user_id");
+            ResultSet rst = stmt2.executeQuery();
+
+           for (int i = 0; rst.next(); i++){
+               long userID = rst.getLong("user_id");
+               long admin_id = rst.getLong("admin_id");
+               String role = rst.getString("admin_pos");
+               String fName = rst.getString("first_name");
+               String lName = rst.getString("last_name");
+               SystemInfo info = new SystemInfo(userID,admin_id,role);
+               info.setfName(fName);
+               info.setlName(lName);
+               systemRoleArray[i] = info;
+           }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        for (int i = 0; i < systemRoleArray.length; i++){
+            SystemInfo target = systemRoleArray[i];
+            if(target != null){
+                if(target.getPosition().equals("Administrator") ){
+                    adminName.setText(target.getfName()+" "+target.getlName());
+                }
+                if(target.getPosition().equals("Moderator")){
+                    moderatorName.setText(target.getfName()+" "+target.getlName());
+                }
+                if(target.getPosition().equals("Editor")){
+                    if(editorName1.getText().equals("(Available)")){
+                        editorName1.setText(target.getfName()+" "+target.getlName());
+                    }else if(editorName2.getText().equals("(Available)")){
+                        editorName2.setText(target.getfName()+" "+target.getlName());
+                    }else if(editorName3.getText().equals("(Available)")){
+                        editorName3.setText(target.getfName()+" "+target.getlName());
+                    }else{
+                        editorName4.setText(target.getfName()+" "+target.getlName());
+                    }
+                }
+            }
+        }
+
+    }
+
     @FXML
     void minimize(ActionEvent event) {
         Stage stage = (Stage) eventButton.getScene().getWindow();
         stage.setIconified(true);
     }
 
+    @FXML
+    void systemRoleChanged(MouseEvent event) {
+        VBox box = (VBox) event.getSource();
+        System.out.println(box.getId());
+    }
     @FXML
     void exit(ActionEvent event) {
         try {
@@ -248,7 +351,10 @@ public class MainPageController implements Initializable {
     }
 
     public void runEvent() {
-        Platform.runLater(() -> init_attendanceList());
+        Platform.runLater(() -> {
+            init_attendanceList();
+            ini_system_role();
+        });
     }
 
     @FXML

@@ -166,6 +166,12 @@ public class AttendanceCardController implements Initializable {
     public void setEventInfo(EventInfo info) {
 
         this.eventInfo = info;
+        if (eventInfo.getMorning_begin().equals("") || eventInfo.getMorning_begin() == null){
+            availabilityBox.getChildren().remove(morningBox);
+        }
+        if (eventInfo.getAfternoon_begin().equals("") || eventInfo.getAfternoon_begin() == null){
+            availabilityBox.getChildren().remove(afternoonBox);
+        }
 
 
         title.setText(info.getEvent_name());

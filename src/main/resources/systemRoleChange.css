@@ -1,0 +1,57 @@
+@font-face {
+  font-family: 'EuclidCircularA-Bold';
+  src: url('assets/fonts/Euclid-Circular-A-Bold.ttf');
+}
+@font-face {
+  font-family: 'EuclidCircularA-Regular';
+  src: url('assets/fonts/Euclid-Circular-A-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'EuclidCircularA-SemiBold';
+  src: url('assets/fonts/Euclid-Circular-A-SemiBold.ttf');
+}
+@font-face {
+  font-family: 'EuclidCircularA-Medium';
+  src: url('assets/fonts/Euclid-Circular-A-Medium.ttf');
+}
+
+
+.title{
+    -fx-font-family:'EuclidCircularA-Bold';
+    -fx-font-size: 30px;
+}
+
+.subtitle{
+    -fx-font-family:'EuclidCircularA-Medium';
+    -fx-font-size: 15px;
+}
+
+.h2{
+    -fx-font-family:'EuclidCircularA-Semibold';
+    -fx-font-size: 20px;
+}
+
+.card{
+    -fx-background-color: white;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 20, 20%, 0, 7);
+    -fx-text-alignment: center;
+ }
+
+ .Update{
+    -fx-font-family:'EuclidCircularA-Bold';
+    -fx-font-size: 20px;
+    -fx-background-color: #1F28CF;
+    -fx-text-fill: white;
+ }
+
+ .Delete{
+     -fx-font-family:'EuclidCircularA-Bold';
+     -fx-font-size: 20px;
+     -fx-background-color: transparent;
+     -fx-text-fill: #FF4133;
+  }
+
+ .exit{
+    -fx-background-color: transparent;
+ }

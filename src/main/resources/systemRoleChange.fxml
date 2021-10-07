@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="500.0" styleClass="body" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.codx.Controller.SystemRoleChangeController">
+   <stylesheets>
+      <URL value="@systemRoleChange.css" />
+      <URL value="@style.css" />
+   </stylesheets>
+   <children>
+      <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#exit" styleClass="exit">
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@assets/exit_icon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+         <padding>
+            <Insets right="20.0" />
+         </padding>
+      </HBox>
+      <VBox prefHeight="539.0" prefWidth="500.0">
+         <padding>
+            <Insets bottom="20.0" left="50.0" right="50.0" />
+         </padding>
+         <children>
+            <Label styleClass="title" text="Edit Administrator" />
+            <Pane prefHeight="10.0" prefWidth="400.0" />
+            <Label prefHeight="73.0" prefWidth="414.0" styleClass="subtitle" text="Please be aware that you cannot delete this role. However, you can change the Administrator's name. " wrapText="true" />
+            <Pane prefHeight="29.0" prefWidth="400.0" />
+            <Label styleClass="h2" text="Current" />
+            <Pane prefHeight="19.0" prefWidth="400.0" />
+            <HBox prefHeight="66.0" prefWidth="400.0">
+               <children>
+                  <VBox prefHeight="66.0" prefWidth="183.0">
+                     <children>
+                        <Label styleClass="subtitle" text="Student ID" />
+                        <Pane prefHeight="10.0" prefWidth="183.0" />
+                        <Label fx:id="user_id" styleClass="h2" text="109820192837" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="66.0" prefWidth="183.0">
+                     <children>
+                        <Label styleClass="subtitle" text="Name" />
+                        <Pane prefHeight="10.0" prefWidth="183.0" />
+                        <Label fx:id="name" styleClass="h2" text="Josh Dope " />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <Pane prefHeight="11.0" prefWidth="400.0" />
+            <VBox prefHeight="163.0" prefWidth="400.0" styleClass="card">
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+               <children>
+                  <Label styleClass="h2" text="Change" />
+                  <Pane prefHeight="28.0" prefWidth="360.0" />
+                  <TextField fx:id="studentID" prefHeight="59.0" prefWidth="360.0" promptText="Enter Student ID" />
+               </children>
+            </VBox>
+         </children></VBox>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#delete" prefHeight="90.0" prefWidth="218.0" styleClass="Delete" text="DELETE" />
+            <Button mnemonicParsing="false" onAction="#save" prefHeight="90.0" prefWidth="282.0" styleClass="Update" text="SAVE" />
+         </children>
+      </HBox>
+   </children>
+</VBox>

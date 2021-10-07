@@ -182,7 +182,6 @@ public class RegisterController implements Initializable {
             Parent root = loader.load();
 
 
-
             Stage stage = new Stage();
             stage.initStyle(StageStyle.UNDECORATED);
 
@@ -442,7 +441,7 @@ public class RegisterController implements Initializable {
                 if (status > 0) {
                     PreparedStatement stmtStudentInfo = conn.prepareStatement("Insert into \"student_info\" " +
                             "(user_id,dep_id,first_name,middle_name,last_name,age,gender,email,phone_number," +
-                            "section,school_name,school_year) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
+                            "section,school_name,school_year) VALUES (?,?,?,?,?,?,?,?,?,?,?,?) RETURNING *");
                     stmtStudentInfo.setLong(1, student.getUserID());
                     stmtStudentInfo.setLong(2, student.getDepartment().getId());
                     stmtStudentInfo.setString(3, student.getfName());
@@ -456,64 +455,58 @@ public class RegisterController implements Initializable {
                     stmtStudentInfo.setString(11, student.getSchoolName());
                     stmtStudentInfo.setString(12, student.getSchoolYear());
 
-                    int statusStudent = stmtStudentInfo.executeUpdate();
-                    if (statusStudent > 0) {
+                    stmtStudentInfo.execute();
+                    ResultSet rst = stmtStudentInfo.getResultSet();
 
-                        PreparedStatement stmtStudentID = conn.prepareStatement("Select" +
-                                " student_id from student_info where user_id = ?");
-                        stmtStudentID.setLong(1,student.getUserID());
-                        ResultSet rstId = stmtStudentID.executeQuery();
-
-                        while (rstId.next()){
-                            try {
-                                tempName = QRCodeService.generateName(student.getUserID() + "");
-                                qrFilePath = FileService.defaultPath(tempName);
-                                String qrID = student.getUserID() +"";
-                                QRCodeService.generateQRCode(qrID, 350, 350, qrFilePath);
-                            } catch (WriterException e) {
-                                e.printStackTrace();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            } catch (URISyntaxException e) {
-                                e.printStackTrace();
-                            }
-                            Parent root = schoolYearCombox.getScene().getRoot();
-                            ColorAdjust adj = new ColorAdjust(0, 0, -0.8, 0);
-                            GaussianBlur blur = new GaussianBlur(10);
-                            adj.setInput(blur);
-                            root.setEffect(adj);
-
-                            try {
-                                FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("signUpSuccessfully.fxml"));
-                                Parent form = loader.load();
-                                SignUpSuccessfullController message = loader.getController();
-                                message.setQrImage(qrFilePath);
-                                message.setStudent(student);
-                                message.setFileName(tempName);
-                                Stage stage = new Stage();
-                                Scene scene = new Scene(form);
-                                form.requestFocus();
-                                stage.setScene(scene);
-                                stage.initModality(Modality.APPLICATION_MODAL);
-                                stage.initStyle(StageStyle.UNDECORATED);
-
-                                stage.showAndWait();
-
-                                root.setEffect(null);
+                    if (rst.next()) {
 
 
-                            } catch (IOException ex) {
-                                Logger.getLogger(MainPageController.class.getName()).log(Level.SEVERE, null, ex);
-                            }
+                        try {
+                            tempName = QRCodeService.generateName(student.getUserID() + "");
+                            qrFilePath = FileService.defaultPath(tempName);
+                            String qrID = student.getUserID() + ","+ student.getPassword();
+                            QRCodeService.generateQRCode(qrID, 350, 350, qrFilePath);
+                        } catch (WriterException e) {
+                            e.printStackTrace();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        } catch (URISyntaxException e) {
+                            e.printStackTrace();
+                        }
+                        Parent root = schoolYearCombox.getScene().getRoot();
+                        ColorAdjust adj = new ColorAdjust(0, 0, -0.8, 0);
+                        GaussianBlur blur = new GaussianBlur(10);
+                        adj.setInput(blur);
+                        root.setEffect(adj);
+
+                        try {
+                            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("signUpSuccessfully.fxml"));
+                            Parent form = loader.load();
+                            SignUpSuccessfullController message = loader.getController();
+                            message.setQrImage(qrFilePath);
+                            message.setStudent(student);
+                            message.setFileName(tempName);
+                            Stage stage = new Stage();
+                            Scene scene = new Scene(form);
+                            form.requestFocus();
+                            stage.setScene(scene);
+                            stage.initModality(Modality.APPLICATION_MODAL);
+                            stage.initStyle(StageStyle.UNDECORATED);
+
+                            stage.showAndWait();
+
+                            root.setEffect(null);
+
+
+                        } catch (IOException ex) {
+                            Logger.getLogger(MainPageController.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     }
                 }
+
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-
-
-
 
 
         }
@@ -527,7 +520,6 @@ public class RegisterController implements Initializable {
         try {
             FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource("landingPage.fxml")));
             root = loader.load();
-
 
 
             Stage stage = new Stage();
@@ -822,7 +814,6 @@ public class RegisterController implements Initializable {
 
         return isReady;
     }
-
 
 
     public void setStudent(Student student) {

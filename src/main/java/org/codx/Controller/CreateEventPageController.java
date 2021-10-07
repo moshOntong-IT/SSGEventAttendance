@@ -23,10 +23,7 @@ import org.codx.StageTool;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
@@ -105,7 +102,7 @@ public class CreateEventPageController implements Initializable {
                 info.setMorningActive(true);
 
             }
-            if (button.equals("Afternoon")) {
+            if (button.getText().equals("Afternoon")) {
 
                 info.setAfternoonActive(true);
             }
@@ -167,13 +164,12 @@ public class CreateEventPageController implements Initializable {
     private String getUserStudentAuthor() {
         String name = "";
         try {
-            PreparedStatement stmt =
-                    stmt = conn.prepareStatement("Select first_name, last_name, school_year" +
-                            " from student_info where user_id = ?");
+            PreparedStatement stmt = conn.prepareStatement("Select first_name, last_name, school_year" +
+                    " from student_info where user_id = ?");
             stmt.setLong(1, adminLog.getUserID());
             ResultSet rst = stmt.executeQuery();
-            if(rst.next()){
-                name = rst.getString("first_name")+" "+ rst.getString("last_name");
+            if (rst.next()) {
+                name = rst.getString("first_name") + " " + rst.getString("last_name");
                 info.setEventSchoolYear(rst.getString("school_year"));
             }
         } catch (SQLException e) {
@@ -187,19 +183,43 @@ public class CreateEventPageController implements Initializable {
 
     @FXML
     void submit(ActionEvent event) {
+//        System.out.println(info.isAfternoonActive());
         if (info.isMorningActive() || info.isAfternoonActive()) {
-            info.setEvent_date(getDate() + " 01:00:00");
+            if(info.getMorning_begin() != null){
+                info.setEvent_date(info.getMorning_begin());
+            }else{
+                info.setEvent_date(info.getAfternoon_begin());
+            }
             info.setEvent_author(getUserStudentAuthor());
 
-            System.out.println("Event name "+ info.getEvent_name());
-            System.out.println("Event description "+ info.getEvent_desc());
-            System.out.println("Event author "+ info.getEvent_author());
-            System.out.println("Event date "+ info.getEvent_date());
-            System.out.println("Event Morning begin"+ info.getMorning_begin());
-            System.out.println("Event Morning end"+ info.getMorning_end());
-            System.out.println("Event Afternoon begin"+ info.getAfternoon_begin());
-            System.out.println("Event Afternoon end"+ info.getAfternoon_end());
-            System.out.println("Event School Year"+ info.getEventSchoolYear());
+//            System.out.println("Event name "+ info.getEvent_name());
+//            System.out.println("Event description "+ info.getEvent_desc());
+//            System.out.println("Event author "+ info.getEvent_author());
+//            System.out.println("Event date "+ info.getEvent_date());
+//            System.out.println("Event Morning begin"+ info.getMorning_begin());
+//            System.out.println("Event Morning end"+ info.getMorning_end());
+//            System.out.println("Event Afternoon begin"+ info.getAfternoon_begin());
+//            System.out.println("Event Afternoon end"+ info.getAfternoon_end());
+//            System.out.println("Event School Year"+ info.getEventSchoolYear());
+
+            try {
+                PreparedStatement stmt = conn.prepareStatement("Insert into" +
+                        " event_info (event_name,event_date,event_desc,event_author," +
+                        "morning_begin,morning_end,afternoon_begin,afternoon_end," +
+                        "event_school_year) VALUES (?,?,?,?,?,?,?,?,?)");
+                stmt.setString(1, info.getEvent_name());
+                stmt.setObject(2, info.getEvent_date(), Types.TIMESTAMP);
+                stmt.setString(3, info.getEvent_desc());
+                stmt.setString(4, info.getEvent_author());
+                stmt.setObject(5, info.getMorning_begin(), Types.TIMESTAMP);
+                stmt.setObject(6, info.getMorning_end(), Types.TIMESTAMP);
+                stmt.setObject(7, info.getAfternoon_begin(), Types.TIMESTAMP);
+                stmt.setObject(8, info.getAfternoon_end(), Types.TIMESTAMP);
+                stmt.setString(9, info.getEventSchoolYear());
+                stmt.execute();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
 
 
         }

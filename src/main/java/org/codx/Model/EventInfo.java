@@ -154,10 +154,13 @@ public class EventInfo extends  EventConvert{//subclass
 
 
         try {
-            PreparedStatement stmt = conn.prepareStatement("Select count(u.student_id) from student_info u;");
+            PreparedStatement stmt = conn.prepareStatement("Select count(u.student_id) from student_info u" +
+                    " where school_year = ?;");
+            stmt.setString(1,getEventSchoolYear());
             ResultSet rst = stmt.executeQuery();
             if(rst.next()){
                 absent = rst.getInt("count") - active;
+                absent = absent < 0 ? 0 : absent;
             }
 
         } catch (SQLException e) {
