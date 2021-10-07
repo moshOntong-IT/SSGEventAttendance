@@ -6,6 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -46,7 +47,7 @@ public class MainPageController implements Initializable {
     private ObservableList<EventInfo> eventInfoObservableList;
     private Connection conn;
     private LoginHistory adminInfo;
-
+    private EventInfo info;
     @FXML
     private Button eventButton;
 
@@ -265,7 +266,23 @@ public class MainPageController implements Initializable {
 
     @FXML
     void addEvent(ActionEvent event) {
+        info = new EventInfo();
+
+
+        while (true) {
+            createEventPage();
+            if(info.isBack()){
+                break;
+            }
+
+        }
+        init_attendanceList();
+    }
+
+    private void createEventPage() {
+        info.setNext(false);
         Parent root = attendanceBox.getScene().getRoot();
+
         ColorAdjust adj = new ColorAdjust(0, 0, -0.8, 0);
         GaussianBlur blur = new GaussianBlur(10);
         adj.setInput(blur);
@@ -277,6 +294,8 @@ public class MainPageController implements Initializable {
 
             CreateEventPageController controller = loader.getController();
             controller.setAdminLog(adminInfo);
+            controller.setInfo(info);
+            controller.setConn(conn);
 
 
             Stage stage = new Stage();
@@ -287,9 +306,43 @@ public class MainPageController implements Initializable {
             stage.initStyle(StageStyle.UNDECORATED);
 
             stage.showAndWait();
-            init_attendanceList();
+
+          if(info.isNext()){
+              createEventPage2(info);
+//              System.out.println(info.isBack());
+
+//              System.out.println(info.getEvent_date());
+//            init_attendanceList();
+          }
 
             root.setEffect(null);
+
+        } catch (IOException ex) {
+            Logger.getLogger(MainPageController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void createEventPage2(EventInfo info) {
+        info.setBack(false);
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("createEventPage2.fxml"));
+            Parent form = loader.load();
+
+            CreateEventPageController controller = loader.getController();
+            controller.setAdminLog(this.adminInfo);
+            controller.setInfo(info);
+            controller.setConn(conn);
+
+            Stage stage = new Stage();
+            Scene scene = new Scene(form);
+            form.requestFocus();
+            stage.setScene(scene);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initStyle(StageStyle.UNDECORATED);
+
+
+            stage.showAndWait();
+
 
         } catch (IOException ex) {
             Logger.getLogger(MainPageController.class.getName()).log(Level.SEVERE, null, ex);

@@ -44,7 +44,7 @@
          <children>
             <VBox alignment="CENTER" prefHeight="355.0" prefWidth="289.0">
                <children>
-                  <ImageView fitHeight="361.0" fitWidth="320.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="imageID" fitHeight="361.0" fitWidth="320.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@assets/humaan_4.png" />
                      </image>
@@ -56,25 +56,25 @@
             </VBox>
             <VBox prefHeight="358.0" prefWidth="412.0">
                <children>
-                  <TextField prefHeight="35.0" prefWidth="412.0" promptText="Event's Title" styleClass="EventTitle">
+                  <TextField fx:id="titleField" prefHeight="35.0" prefWidth="412.0" promptText="Title" styleClass="EventTitle">
                      <VBox.margin>
-                        <Insets left="15.0" right="15.0" top="20.0" />
+                        <Insets bottom="5.0" left="15.0" right="15.0" top="20.0" />
                      </VBox.margin>
                   </TextField>
-                  <Pane prefHeight="31.0" prefWidth="389.0" />
-                  <TextField alignment="TOP_LEFT" prefHeight="156.0" prefWidth="359.0" promptText="Event's Description" styleClass="EventDescription">
+                  <Pane prefHeight="7.0" prefWidth="389.0" />
+                  <TextField fx:id="descriptionField" alignment="TOP_LEFT" prefHeight="156.0" prefWidth="359.0" promptText="Description" styleClass="EventDescription">
                      <VBox.margin>
                         <Insets left="15.0" right="15.0" top="20.0" />
                      </VBox.margin>
                   </TextField>
                   <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="19.0" prefWidth="157.0" styleClass="DiscardButton" text="Discard">
+                        <Button mnemonicParsing="false" onAction="#discardAction" prefHeight="19.0" prefWidth="157.0" styleClass="DiscardButton" text="Discard">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
                         </Button>
-                        <Button alignment="CENTER" mnemonicParsing="false" prefHeight="6.0" prefWidth="85.0" styleClass="NextButton" text="Next" textFill="#700f8a">
+                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#nextAction" prefHeight="6.0" prefWidth="85.0" styleClass="NextButton" text="Next" textFill="#700f8a">
                            <HBox.margin>
                               <Insets right="15.0" />
                            </HBox.margin>

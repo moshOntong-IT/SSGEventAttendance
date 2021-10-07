@@ -23,20 +23,22 @@
 }
 
 
-.MorningButton{
+.active{
      -fx-background-color: #3641B7;
      -fx-text-fill: white;
      -fx-font-family: 'EuclidCircularA-Bold';
      -fx-font-size: 15px;
      -fx-border-radius: 0px;
+     -fx-cursor:hand;
 }
 
-.AfterButton{
+.disActive{
     -fx-background-color: darkgrey;
     -fx-text-fill: white;
     -fx-font-family: 'EuclidCircularA-SemiBold';
     -fx-font-size: 15px;
     -fx-border-radius: 0px;
+    -fx-cursor:hand;
 }
 
 .DateBorder{
@@ -50,6 +52,7 @@
      -fx-font-size: 15px;
      -fx-border-radius: 0px;
      -fx-border-color: #3641B7;
+     -fx-cursor:hand;
 }
 
 .SubmitButton{
@@ -58,4 +61,19 @@
      -fx-font-family: 'EuclidCircularA-Bold';
      -fx-font-size: 15px;
      -fx-border-radius: 0px;
+     -fx-cursor:hand;
+}
+
+.createEvent-header{
+    -fx-font-family: 'EuclidCircularA-Bold';
+    -fx-font-size: 40px;
+}
+
+.subtitle2{
+    -fx-font-family: 'EuclidCircularA-SemiBold';
+    -fx-font-size: 18px;
+}
+
+.txt{
+    -fx-font-size: 15px;
 }

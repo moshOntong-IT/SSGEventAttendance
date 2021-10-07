@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
-<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
@@ -9,21 +8,12 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="440.0" styleClass="body" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="573.0" prefWidth="440.0" styleClass="body" stylesheets="@createEventPage2.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.codx.Controller.CreateEventPageController">
    <children>
       <VBox prefHeight="111.0" prefWidth="440.0">
          <children>
-            <Label text="CREATE EVENT">
-               <styleClass>
-                  <String fx:value="createEvent-header" />
-                  <String fx:value="txt-euclid-bold" />
-               </styleClass>
-            </Label>
-            <Label text="Manage the availability of the event">
-               <styleClass>
-                  <String fx:value="txt-euclid-semibold" />
-                  <String fx:value="subtitle2" />
-               </styleClass>
+            <Label styleClass="createEvent-header" text="CREATE EVENT" />
+            <Label styleClass="subtitle2" text="Manage the availability of the event">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
@@ -56,7 +46,7 @@
                   <Insets left="50.0" top="55.0" />
                </padding>
                <children>
-                  <DatePicker />
+                  <DatePicker fx:id="eventDate" promptText="Event Date" />
                </children>
             </VBox>
          </children>
@@ -80,9 +70,9 @@
       </HBox>
       <HBox alignment="CENTER" prefHeight="59.0" prefWidth="440.0">
          <children>
-            <Button mnemonicParsing="false" prefHeight="52.0" prefWidth="225.0" text="Morning">
+            <Button mnemonicParsing="false" onAction="#activate" prefHeight="52.0" prefWidth="225.0" text="Morning">
                <styleClass>
-                  <String fx:value="MorningButton" />
+                  <String fx:value="disActive" />
                   <String fx:value="EventTitle" />
                </styleClass>
             </Button>
@@ -90,26 +80,22 @@
       </HBox>
       <HBox alignment="CENTER" prefHeight="122.0" prefWidth="440.0">
          <children>
-            <Button mnemonicParsing="false" prefHeight="52.0" prefWidth="225.0" styleClass="AfterButton" text="Afternoon" />
+            <Button mnemonicParsing="false" onAction="#activate" prefHeight="52.0" prefWidth="225.0" styleClass="disActive" text="Afternoon" />
          </children>
       </HBox>
       <HBox prefHeight="133.0" prefWidth="440.0">
          <children>
             <VBox alignment="BOTTOM_CENTER" prefHeight="125.0" prefWidth="222.0">
                <children>
-                  <Button alignment="CENTER" mnemonicParsing="false" prefHeight="80.0" prefWidth="233.0" styleClass="BackButton" text="Back" />
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#back" prefHeight="81.0" prefWidth="198.0" styleClass="BackButton" text="Back" />
                </children>
             </VBox>
             <VBox alignment="BOTTOM_CENTER" prefHeight="125.0" prefWidth="266.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="261.0" styleClass="SubmitButton" text="Submit" />
+                  <Button mnemonicParsing="false" onAction="#submit" prefHeight="80.0" prefWidth="261.0" styleClass="SubmitButton" text="Submit" />
                </children>
             </VBox>
          </children>
       </HBox>
    </children>
-   <stylesheets>
-      <URL value="@style.css" />
-      <URL value="@createEventPage2.css" />
-   </stylesheets>
 </VBox>

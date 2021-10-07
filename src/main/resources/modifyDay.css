@@ -49,4 +49,21 @@
 .txt-field{
     -fx-background-color: transparent;
     -fx-border-color: #1F28CF;
+    -fx-font-size: 12;
+}
+
+
+
+.createEvent-header{
+    -fx-font-family: 'EuclidCircularA-Bold';
+    -fx-font-size: 40px;
+}
+
+.subtitle2{
+    -fx-font-family: 'EuclidCircularA-SemiBold';
+    -fx-font-size: 18px;
+}
+
+.txt{
+    -fx-font-size: 15px;
 }

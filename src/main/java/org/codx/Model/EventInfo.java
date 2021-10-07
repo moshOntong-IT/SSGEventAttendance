@@ -23,9 +23,17 @@ public class EventInfo extends  EventConvert{//subclass
     private String eventSchoolYear;
     private int active;
     private int absent;
-
     private String todayDate;
     private String durationDate;
+    //optional this is for creating event
+    private boolean isBack;
+    private boolean isNext;
+    private boolean morningActive;
+    private boolean afternoonActive;
+
+    public EventInfo(){
+
+    }
 
     public EventInfo(long event_id, String event_name, String event_date, String event_desc,
                      String event_author, String morning_begin, String morning_end,
@@ -169,7 +177,35 @@ public class EventInfo extends  EventConvert{//subclass
         return durationDate;
     }
 
+    public boolean isBack() {
+        return isBack;
+    }
 
+    public void setBack(boolean back) {
+        isBack = back;
+    }
 
+    public boolean isNext() {
+        return isNext;
+    }
 
+    public void setNext(boolean next) {
+        isNext = next;
+    }
+
+    public boolean isMorningActive() {
+        return morningActive;
+    }
+
+    public void setMorningActive(boolean morningActive) {
+        this.morningActive = morningActive;
+    }
+
+    public boolean isAfternoonActive() {
+        return afternoonActive;
+    }
+
+    public void setAfternoonActive(boolean afternoonActive) {
+        this.afternoonActive = afternoonActive;
+    }
 }
